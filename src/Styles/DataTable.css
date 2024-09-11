@@ -1,0 +1,20 @@
+/* Data table styling */
+.DataTable {
+    width: 100%;
+    min-width: 1000px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+  }
+  
+  .MuiDataGrid-root {
+    overflow: hidden !important;
+  }
+  
+  .MuiDataGrid-viewport {
+    transform: none !important;
+  }
+  
+  .css-1rtad1 {
+    left: 0px !important;
+  }
+  

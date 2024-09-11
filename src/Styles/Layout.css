@@ -1,0 +1,34 @@
+/* Layout styles for main application */
+.App {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 10px;
+}
+/* General reset and background */
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #cae1ff); /* Gradient applied to the body */
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+
+
+/* Header styles */
+h1, h2 {
+  color: #244566;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 15px;
+}

@@ -1,0 +1,54 @@
+/* Button container for layout */
+.button-container, .add-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+/* Common button styles */
+.add-button, .delete-button {
+  border-radius: 5px;
+  width: 70px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+/* Add Button */
+.add-button {
+  font-size: 1.5rem !important;
+  background-color: #E8EFF7 !important;
+  color: #244566 !important;
+}
+
+.add-button:hover {
+  background-color: #244566 !important;
+  color: white !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #1976D2 !important;
+  color: white !important;
+}
+
+.delete-button:hover {
+  background-color: #991f1f !important;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Disabled Delete Button */
+.delete-button:disabled {
+  background-color: #A9A9A9 !important; /* Light gray background for disabled state */
+  color: #ffffff !important; /* Keep text white */
+  cursor: not-allowed; /* Change the cursor to indicate it's disabled */
+  box-shadow: none; /* Remove shadow when disabled */
+}
