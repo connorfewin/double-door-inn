@@ -1,15 +1,22 @@
-/* Button container for layout */
-.button-container, .add-button-container {
+/* Flexbox container for DateFilter and buttons */
+.filter-button-container {
   display: flex;
-  justify-content: flex-start;
-  margin-bottom: 10px;
+  justify-content: space-between; /* Ensure even spacing */
+  align-items: center; /* Align items vertically */
+  margin-bottom: 0px;
+}
+
+/* Flexbox container for buttons */
+.button-container {
+  display: flex;
+  gap: 10px; /* Add some space between the buttons */
 }
 
 /* Common button styles */
 .add-button, .delete-button {
   border-radius: 5px;
-  width: 70px;
-  height: 40px;
+  width: 80px; 
+  height: 56px; /* Match button height to the date pickers */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,8 +30,8 @@
 /* Add Button */
 .add-button {
   font-size: 1.5rem !important;
-  background-color: #E8EFF7 !important;
-  color: #244566 !important;
+  background-color: #1976D2 !important;
+  color: #ffffff !important;
 }
 
 .add-button:hover {
@@ -35,7 +42,7 @@
 
 /* Delete Button */
 .delete-button {
-  background-color: #1976D2 !important;
+  background-color: #244566 !important;
   color: white !important;
 }
 
@@ -47,8 +54,8 @@
 
 /* Disabled Delete Button */
 .delete-button:disabled {
-  background-color: #A9A9A9 !important; /* Light gray background for disabled state */
-  color: #ffffff !important; /* Keep text white */
-  cursor: not-allowed; /* Change the cursor to indicate it's disabled */
-  box-shadow: none; /* Remove shadow when disabled */
+  background-color: #A9A9A9 !important;
+  color: #ffffff !important;
+  cursor: not-allowed;
+  box-shadow: none;
 }

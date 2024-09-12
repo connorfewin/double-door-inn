@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import AddButton from './AddButton';
-import { Button } from '@mui/material';
+import DeleteButton from './DeleteButton';
+import DateFilter from './DateFilter'; // Import the new DateFilter component
 import sampleData from '../Helpers/SampleData.json';
-import '../Styles/DataTable.css'; // Updated import
-import '../Styles/Buttons.css'; // For button styles
+import '../Styles/DataTable.css';
+import '../Styles/Buttons.css';
 
 const columns = [
   { field: 'DATE', headerName: 'Date', width: 200, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
@@ -36,6 +37,7 @@ const initialRows = sampleData.map((item, index) => ({
 
 function DataTable() {
   const [rows, setRows] = useState(initialRows);
+  const [filteredRows, setFilteredRows] = useState(initialRows);
   const [selectionModel, setSelectionModel] = useState([]);
 
   const handleAdd = (newEntry) => {
@@ -45,31 +47,33 @@ function DataTable() {
       DATE: getDate(newEntry.DATE),
     };
     setRows([...rows, newRow]);
+    setFilteredRows([...rows, newRow]); // Update filtered rows as well
   };
 
-  const handleDelete = () => {
-    const remainingRows = rows.filter((row) => !selectionModel.includes(row.id));
-    setRows(remainingRows);
-    setSelectionModel([]);
+  const handleFilter = (filtered) => {
+    setFilteredRows(filtered);
   };
 
   return (
     <div>
-      <div className="button-container">
-        <AddButton onAdd={handleAdd} />
-        <Button
-          variant="contained"
-          className="delete-button"
-          onClick={handleDelete}
-          disabled={selectionModel.length === 0}
-          style={{ marginLeft: '10px' }}
-        >
-          Delete
-        </Button>
+      {/* Updated row container for the filter and buttons */}
+      <div className="filter-button-container">
+        <DateFilter rows={rows} onFilter={handleFilter} />
+        <div className="button-container">
+          <DeleteButton
+            selectionModel={selectionModel}
+            rows={rows}
+            setRows={setRows}
+            setSelectionModel={setSelectionModel}
+            setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
+          />
+          <AddButton onAdd={handleAdd} />          
+        </div>
       </div>
+
       <div style={{ height: 600, width: '100%', margin: 'auto', overflowX: 'auto' }}>
         <DataGrid
-          rows={rows}
+          rows={filteredRows}
           columns={columns}
           checkboxSelection
           onRowSelectionModelChange={(newSelectionModel) => {
