@@ -8,11 +8,11 @@ import '../Styles/DataTable.css';
 import '../Styles/Buttons.css';
 
 const columns = [
-  { field: 'DATE', headerName: 'Date', width: 200, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
-  { field: 'HEADLINER', headerName: 'Headliner', width: 300, cellClassName: 'tableCell' },
-  { field: 'OPENER', headerName: 'Opener', width: 300, cellClassName: 'tableCell' },
-  { field: 'NOTES', headerName: 'Notes', width: 250, cellClassName: 'tableCell' },
-  { field: 'DAY', headerName: 'Day', width: 150, cellClassName: 'tableCell' },
+  { field: 'DATE', headerName: 'Date', width: 100, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
+  { field: 'DAY', headerName: 'Day', width: 100, cellClassName: 'tableCell' },
+  { field: 'HEADLINER', headerName: 'Headliner', width: 500, cellClassName: 'tableCell' },
+  { field: 'OPENER', headerName: 'Opener', width: 400, cellClassName: 'tableCell' },
+  { field: 'NOTES', headerName: 'Notes', width: 250, cellClassName: 'tableCell' },  
 ];
 
 function getDate(date) {
@@ -71,11 +71,11 @@ function DataTable() {
         </div>
       </div>
 
-      <div style={{ height: 500, width: '100%', margin: 'auto', overflowX: 'auto' }}>
+      <div style={{ height: 400, width: '100%', margin: 'auto', overflowX: 'auto' }}>
         <DataGrid
           rows={filteredRows}
           columns={columns}
-          checkboxSelection
+          checkboxSelection={false}
           onRowSelectionModelChange={(newSelectionModel) => {
             setSelectionModel(newSelectionModel);
           }}

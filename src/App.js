@@ -5,9 +5,12 @@ import DataTable from './Components/DataTable';
 
 function App() {
   return (
-    <div className="App">
+    <div className="AppContainer">
       <Header />
-      <DataTable />
+      <div className="DataTableContainer">
+        <DataTable />
+      </div>
+      <p className='Footer'>Copyright 2024. All rights reserved.</p>
     </div>
   );
 }
