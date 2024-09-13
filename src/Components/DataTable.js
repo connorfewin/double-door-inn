@@ -71,7 +71,7 @@ function DataTable() {
         </div>
       </div>
 
-      <div style={{ height: 600, width: '100%', margin: 'auto', overflowX: 'auto' }}>
+      <div style={{ height: 500, width: '100%', margin: 'auto', overflowX: 'auto' }}>
         <DataGrid
           rows={filteredRows}
           columns={columns}

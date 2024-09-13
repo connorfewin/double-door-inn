@@ -1,3 +1,23 @@
+/* General reset for html and body */
+html, body {
+  height: 100vh; /* Use 100vh to ensure it fills the viewport */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #cae1ff); /* Gradient applied to the body */
+  min-height: 100vh; /* Ensures it fills the viewport */
+  background-size: cover; /* Ensures the background covers the entire area */
+  background-attachment: fixed; /* Prevents the background from scrolling with the page */
+  background-repeat: no-repeat; /* Ensures it doesn't repeat */
+  background-position: top center; /* Keeps the background positioned nicely */
+  display: flex;
+  flex-direction: column;
+}
+
+
 /* Layout styles for main application */
 .App {
   max-width: 1100px;
@@ -8,16 +28,9 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
+  flex-grow: 1; /* Allows the content to stretch to fill the available space */
 }
-/* General reset and background */
-body {
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #cae1ff); /* Gradient applied to the body */
-  padding-bottom: 40px;
-  padding-top: 20px;
-}
-
 
 /* Header styles */
 h1, h2 {
