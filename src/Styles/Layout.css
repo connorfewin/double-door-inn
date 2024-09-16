@@ -1,4 +1,8 @@
-/* General reset for html and body */
+/* ===========================
+   General Reset and Body Styles
+   =========================== */
+
+/* Reset for html and body */
 html, body {
   height: 100%;
   margin: 0;
@@ -7,79 +11,139 @@ html, body {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #cae1ff);
+  background: #000000;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: top center;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; /* Allow body to scroll */
+  overflow-y: auto; /* Enable scrolling */
 }
 
-/* Container for the entire application */
+/* ===========================
+   Layout Containers
+   =========================== */
+
+/* Main application container */
 .AppContainer {
-  position: relative;
   width: 100%;
-  min-height: 100vh; /* Ensure it covers the full screen height */
-  overflow: hidden;
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column; /* Keeps footer at the bottom */
+  justify-content: space-between; /* Space between content and footer */
 }
 
-/* Positioning the header in the background */
+/* ===========================
+   Header Styles
+   =========================== */
+
+/* Keep the header fixed like the image */
 .Header {
-  position: absolute;
-  top: 30px; /* Space between the top of the page and the header */
+  top: 50px; /* Positioned just below the image */
   width: 100%;
-  z-index: 1;
+  z-index: 1; /* Ensure it's above the data table */
   text-align: center;
-  opacity: 0.8; /* Slight transparency to blend with the background */
 }
 
-/* Container for the data table */
-.DataTableContainer {
-  position: relative;
-  z-index: 2;
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  background-color: white;
-  padding: 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  text-align: center;
-  margin-top: 200px; /* Adjust depending on header height */
-  flex-grow: 1;
-  max-height: 70vh; /* Ensure the table doesn't exceed 70% of the viewport height */
-  overflow-y: auto; /* Enable scrolling when content exceeds the container's height */
-}
-
-/* Header styles */
+/* Header text styles */
 h1, h2 {
-  color: #244566;
+  color: #ffffff;
+  font-family: 'Oswald', sans-serif; /* Stylish, bold font */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Text shadow for contrast */
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  margin-top: 0px;
+  font-size: 3rem; /* Large font size for emphasis */
+  font-weight: 700; /* Bold */
+  margin: 0 0 10px 0; /* No top margin, small bottom margin */
 }
 
 h2 {
-  font-size: 1.75rem;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 10px 0 20px 0; /* Spacing around the heading */
 }
 
-/* Paragraph styling for Header */
 .Header p {
-  color: #6c7a89; /* A softer color for contrast */
-  font-size: 1.2rem;
-  margin: 5px 0; /* Tighter spacing between paragraphs */
+  color: #ffffff;
+  font-size: 1.3rem;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0); /* Softer shadow for readability */
+  margin: 5px 0; /* Small vertical margin */
 }
 
+/* ===========================
+   Data Table Styles
+   =========================== */
+
+/* Sticky DataTable container */
+.DataTableContainer {
+  position: sticky;
+  top: 100px; /* Adjust based on header height */
+  z-index: 998; /* Lower than the header for "push out" effect */
+  padding: 0 10px 10px 10px; /* Padding for top and bottom */
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 15px;
+  overflow-y: auto; /* Enable scrolling inside the table */
+}
+
+/* ===========================
+   Footer Styles
+   =========================== */
+
+/* Footer styling */
 .Footer {
-  padding-top: 20px;
-  padding-bottom: 10px;
-  color: #244566;
+  padding: 20px 0 10px 0; /* Padding for top and bottom */
+  color: #ffffff;
   text-align: center;
+  z-index: 2;
+  position: relative; /* Part of the normal flow */
+  margin-top: auto; /* Push to the bottom of the content */
+}
+
+/* ===========================
+   Header Image Styles
+   =========================== */
+
+/* Fixed header image */
+.HeaderImage {
+  position: fixed; /* Keeps the image fixed at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  margin: 0 auto;
+  max-width: 1120px; /* Matches .DataTableContainer */
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Consistent shadow effect */
+  z-index: 0; /* Ensure it's behind other content */
+}
+
+/* ===========================
+   Section Styles
+   =========================== */
+
+/* General section layout */
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sticky section header */
+.section-header {
+  position: sticky;
+  top: 0;
+  z-index: 999; /* Ensure it stays on top */
+  padding: 10px; /* Optional padding for clean look */
+}
+
+/* Section content margin */
+.section-content {
+  margin-top: 20px; /* Avoid overlap with other content */
 }

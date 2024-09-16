@@ -59,18 +59,19 @@ function DataTable() {
       {/* Updated row container for the filter and buttons */}
       <div className="filter-button-container">
         <DateFilter rows={rows} onFilter={handleFilter} />
-        <div className="button-container">
-          <DeleteButton
-            selectionModel={selectionModel}
-            rows={rows}
-            setRows={setRows}
-            setSelectionModel={setSelectionModel}
-            setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
-          />
-          <AddButton onAdd={handleAdd} />          
+        {false && 
+          <div className="button-container">
+            <DeleteButton
+              selectionModel={selectionModel}
+              rows={rows}
+              setRows={setRows}
+              setSelectionModel={setSelectionModel}
+              setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
+            />
+            <AddButton onAdd={handleAdd} />          
+          </div>
+        }
         </div>
-      </div>
-
       <div style={{ height: 400, width: '100%', margin: 'auto', overflowX: 'auto' }}>
         <DataGrid
           rows={filteredRows}
