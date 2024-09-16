@@ -34,7 +34,7 @@ const DateFilter = ({ rows, onFilter }) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box display="flex" gap="10px" margin="20px 0">
+      <Box display="flex" gap="10px" margin="10px 0">
         <DatePicker
           label="Start Date"
           value={startDate}

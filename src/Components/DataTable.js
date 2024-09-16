@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridFooterContainer, GridPagination } from '@mui/x-data-grid';
 import AddButton from './AddButton';
 import DeleteButton from './DeleteButton';
 import DateFilter from './DateFilter'; // Import the new DateFilter component
@@ -39,6 +39,7 @@ function DataTable() {
   const [rows, setRows] = useState(initialRows);
   const [filteredRows, setFilteredRows] = useState(initialRows);
   const [selectionModel, setSelectionModel] = useState([]);
+  const [clickedCellData, setClickedCellData] = useState(null);
 
   const handleAdd = (newEntry) => {
     const newRow = {
@@ -54,9 +55,30 @@ function DataTable() {
     setFilteredRows(filtered);
   };
 
+  // Handle the cell click event to capture selected cell data
+  const handleCellClick = (params) => {
+    setClickedCellData({
+      field: params.field,
+      value: params.value,
+    });
+  };
+
+
+  const CustomFooter = () => {
+    return (
+      <GridFooterContainer>
+        {/* Custom message */}
+        <div style={{ padding: '10px' }}>
+          {clickedCellData
+            ? `${clickedCellData.field}: ${clickedCellData.value}` : ''}
+        </div>
+        {/* Pagination controls */}
+        <GridPagination />
+      </GridFooterContainer>
+    );
+  };
   return (
     <div>
-      {/* Updated row container for the filter and buttons */}
       <div className="filter-button-container">
         <DateFilter rows={rows} onFilter={handleFilter} />
         {false && 
@@ -71,7 +93,7 @@ function DataTable() {
             <AddButton onAdd={handleAdd} />          
           </div>
         }
-        </div>
+      </div>
       <div style={{ height: 400, width: '100%', margin: 'auto', overflowX: 'auto' }}>
         <DataGrid
           rows={filteredRows}
@@ -80,7 +102,11 @@ function DataTable() {
           onRowSelectionModelChange={(newSelectionModel) => {
             setSelectionModel(newSelectionModel);
           }}
+          onCellClick={handleCellClick} // Capture cell click event
           className="DataTable"
+          slots={{
+            footer: CustomFooter, // Override the default footer
+          }}
         />
       </div>
     </div>
