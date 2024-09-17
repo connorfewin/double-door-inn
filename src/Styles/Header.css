@@ -1,0 +1,40 @@
+/* ===========================
+   Header Styles
+   =========================== */
+
+/* Keep the header fixed like the image */
+.Header {
+    width: 100%;
+    padding-bottom: 30px;
+  }
+  
+  /* Header text styles */
+  h1, h2 {
+    color: #600000;
+    font-family: 'Bungee', sans-serif;
+    text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9), /* More pronounced shadow */
+                 0px 0px 6px rgb(255, 255, 255); /* Soft glow to enhance contrast */
+  }
+  
+  h1 {
+    padding-top: 10px;
+    font-size: 3rem;
+    font-weight: 700; /* Bold */
+    margin: 0 0 10px 0;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 10px 0 0 0;
+  }
+  
+  /* Enhance the text-shadow for p elements as well */
+  .Header p {
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8), /* Stronger shadow */
+                 1px 1px 2px rgba(255, 255, 255, 0.1); /* Subtle glow */
+    margin: 5px 0;
+  }
+  

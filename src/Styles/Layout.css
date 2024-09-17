@@ -11,7 +11,7 @@ html, body {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: #000000;
+  background: #ffffff;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -34,43 +34,6 @@ body {
   justify-content: space-between; /* Space between content and footer */
 }
 
-/* ===========================
-   Header Styles
-   =========================== */
-
-/* Keep the header fixed like the image */
-.Header {
-  top: 50px; /* Positioned just below the image */
-  width: 100%;
-  z-index: 1; /* Ensure it's above the data table */
-  text-align: center;
-}
-
-/* Header text styles */
-h1, h2 {
-  color: #ffffff;
-  font-family: 'Oswald', sans-serif; /* Stylish, bold font */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Text shadow for contrast */
-}
-
-h1 {
-  font-size: 3rem; /* Large font size for emphasis */
-  font-weight: 700; /* Bold */
-  margin: 0 0 10px 0; /* No top margin, small bottom margin */
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 10px 0 20px 0; /* Spacing around the heading */
-}
-
-.Header p {
-  color: #ffffff;
-  font-size: 1.3rem;
-  text-shadow: 2px 2px 2px rgb(0, 0, 0); /* Softer shadow for readability */
-  margin: 5px 0; /* Small vertical margin */
-}
 
 /* ===========================
    Data Table Styles
@@ -80,13 +43,11 @@ h2 {
 .DataTableContainer {
   position: sticky;
   top: 100px; /* Adjust based on header height */
-  z-index: 998; /* Lower than the header for "push out" effect */
-  padding: 0 10px 10px 10px;
+  padding: 10px 20px 20px 20px;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Subtle shadow */
   border-radius: 15px;
   overflow-y: auto; /* Enable scrolling inside the table */
 }
@@ -101,11 +62,9 @@ h2 {
 /* Footer styling */
 .Footer {
   padding: 20px 0 10px 0; /* Padding for top and bottom */
-  color: #ffffff;
+  color: #000000;
   text-align: center;
-  z-index: 2;
   position: relative; /* Part of the normal flow */
-  margin-top: auto; /* Push to the bottom of the content */
 }
 
 /* ===========================
@@ -114,17 +73,15 @@ h2 {
 
 /* Fixed header image */
 .HeaderImage {
-  position: fixed; /* Keeps the image fixed at the top */
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative; /* Keeps the image fixed at the top */
   display: block;
   margin: 0 auto;
-  max-width: 1120px; /* Matches .DataTableContainer */
+  max-width: 1140px; /* Matches .DataTableContainer */
   width: 100%;
   height: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Consistent shadow effect */
-  z-index: 0; /* Ensure it's behind other content */
+  border-radius: 15px;
+  z-index: 1;
 }
 
 /* ===========================
@@ -135,19 +92,47 @@ h2 {
 section {
   position: relative;
   display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center;
   flex-direction: column;
 }
 
-/* Sticky section header */
 .section-header {
   position: sticky;
+  display: flex;
+  justify-content: space-between; /* Ensures Profile is left, Header is centered */
+  align-items: center;
+  padding: 10px;
   top: 0;
-  z-index: 999; /* Ensure it stays on top */
-  padding: 10px; /* Optional padding for clean look */
+  z-index: 998;
+  width: 100%; /* Full width for proper alignment */
 }
+
+.ProfileContainer {
+  position: relative;
+  padding: 15px;
+  margin-left: 20px; /* Adjust this value to move the profile icon */
+  margin-bottom: auto;
+}
+
+.HeaderContainer {
+  text-align: center; /* Centers the text inside the Header */
+  flex-grow: 1;
+  padding: 0 20px; /* Adds padding around the header */
+  display: flex;
+  justify-content: center; /* Ensures the text itself is centered inside the container */
+  margin-left: -100px;
+}
+
 
 /* Section content margin */
 .section-content {
-  margin-top: 20px; /* Avoid overlap with other content */
+  margin-bottom: 30px; /* Avoid overlap with other content */
 }
+
+.spacer {
+  height: 330px; /* Adjust the height to control the space */
+  width: 100%;  /* Ensures it spans the full width */
+}
+
 
