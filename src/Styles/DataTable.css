@@ -1,19 +1,79 @@
 /* Data table styling */
 .DataTable {
-    width: 100%;
-    min-width: 1000px;
-    overflow-x: auto;
+  width: 100%;
+  min-width: 1000px;
+  overflow-x: auto;
+}
+
+.MuiDataGrid-root {
+  overflow: hidden !important;
+}
+
+.MuiDataGrid-viewport {
+  transform: none !important;
+}
+
+.css-1rtad1 {
+  left: 0px !important;
+}
+
+/* Pagination controls styling */
+.pagination-controls {
+  display: flex;
+  align-items: center; /* Align the pagination controls vertically */
+  justify-content: flex-end; /* Align pagination controls to the right */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  max-width: 40%; /* Set max width to reduce extra space */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Custom Footer Message styling */
+.custom-footer-message {
+  padding: 10px;
+  max-height: 40px;
+  max-width: 60%; /* Adjust width of the custom message */
+  overflow-y: auto;
+}
+
+.MuiTablePagination-actions {
+  justify-content: center;
+  margin-left: 0px !important;
+  width: auto; /* Adjust width to fit buttons */
+  overflow: hidden; /* Prevent any overflow */
+}
+
+/* Hide the displayed rows and pagination input when the width gets below 1000px */
+@media (max-width: 1000px) {
+  .MuiTablePagination-displayedRows,
+  .MuiTablePagination-input,
+  .MuiTablePagination-selectLabel {
+    display: none;
   }
-  
-  .MuiDataGrid-root {
-    overflow: hidden !important;
+}
+
+/* Hide pagination details when the width gets below 768px */
+@media (max-width: 768px) {
+  .MuiTablePagination-spacer,
+  .MuiTablePagination-selectLabel {
+    display: none !important;
   }
-  
-  .MuiDataGrid-viewport {
-    transform: none !important;
+}
+
+/* Show only pagination arrows when the width gets below 600px */
+@media (max-width: 600px) {
+  .MuiTablePagination-displayedRows,
+  .MuiTablePagination-spacer,
+  .MuiTablePagination-selectLabel,
+  .MuiTablePagination-input {
+    display: none;
   }
-  
-  .css-1rtad1 {
-    left: 0px !important;
+
+  /* Ensure only the arrow buttons are shown and centered */
+  .MuiTablePagination-actions {
+    justify-content: center;
+    margin-left: 0px !important;
+    width: auto; /* Adjust width to fit buttons */
+    overflow: hidden; /* Prevent any overflow */
   }
-  
+}

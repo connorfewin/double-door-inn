@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridFooterContainer, GridPagination } from '@mui/x-data-grid';
 import AddButton from './AddButton';
 import DeleteButton from './DeleteButton';
 import DateFilter from './DateFilter'; // Import the new DateFilter component
@@ -10,7 +10,7 @@ import '../Styles/Buttons.css';
 const columns = [
   { field: 'DATE', headerName: 'Date', width: 100, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
   { field: 'DAY', headerName: 'Day', width: 100, cellClassName: 'tableCell' },
-  { field: 'HEADLINER', headerName: 'Headliner', width: 500, cellClassName: 'tableCell' },
+  { field: 'HEADLINER', headerName: 'Headliner', width: 600, cellClassName: 'tableCell' },
   { field: 'OPENER', headerName: 'Opener', width: 400, cellClassName: 'tableCell' },
   { field: 'NOTES', headerName: 'Notes', width: 250, cellClassName: 'tableCell' },  
 ];
@@ -39,6 +39,7 @@ function DataTable() {
   const [rows, setRows] = useState(initialRows);
   const [filteredRows, setFilteredRows] = useState(initialRows);
   const [selectionModel, setSelectionModel] = useState([]);
+  const [clickedCellData, setClickedCellData] = useState(null);
 
   const handleAdd = (newEntry) => {
     const newRow = {
@@ -54,24 +55,59 @@ function DataTable() {
     setFilteredRows(filtered);
   };
 
+  // Handle the cell click event to capture selected cell data
+  const handleCellClick = (params) => {
+    setClickedCellData({
+      field: params.field,
+      value: params.value,
+    });
+  };
+
+
+  const CustomFooter = () => {
+    const formatField = (field) => {
+      return field
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+    };
+  
+    return (
+      <GridFooterContainer>
+        {/* Custom message */}
+        <div style={{ padding: '10px', maxHeight: '40px', maxWidth: '62%', overflowY: 'auto' }}>
+          {clickedCellData
+            ? `${formatField(clickedCellData.field)}: ${clickedCellData.value}`
+            : ''}
+        </div>
+        
+        {/* Pagination controls */}
+        <div className="pagination-controls" style={{maxWidth: '38%', padding: 0}}>
+          <GridPagination />
+        </div>
+      </GridFooterContainer>
+    );
+  };
+  
+  
+
   return (
     <div>
-      {/* Updated row container for the filter and buttons */}
-      <div className="filter-button-container">
+      <div style={{ width: '96%', margin: 'auto', overflowX: 'auto' }} className="filter-button-container" >
         <DateFilter rows={rows} onFilter={handleFilter} />
-        <div className="button-container">
-          <DeleteButton
-            selectionModel={selectionModel}
-            rows={rows}
-            setRows={setRows}
-            setSelectionModel={setSelectionModel}
-            setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
-          />
-          <AddButton onAdd={handleAdd} />          
-        </div>
+        {false && 
+          <div className="button-container">
+            <DeleteButton
+              selectionModel={selectionModel}
+              rows={rows}
+              setRows={setRows}
+              setSelectionModel={setSelectionModel}
+              setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
+            />
+            <AddButton onAdd={handleAdd} />          
+          </div>
+        }
       </div>
-
-      <div style={{ height: 400, width: '100%', margin: 'auto', overflowX: 'auto' }}>
+      <div style={{ height: 500, width: '96%', margin: 'auto', overflowX: 'auto' }}>
         <DataGrid
           rows={filteredRows}
           columns={columns}
@@ -79,7 +115,11 @@ function DataTable() {
           onRowSelectionModelChange={(newSelectionModel) => {
             setSelectionModel(newSelectionModel);
           }}
+          onCellClick={handleCellClick} // Capture cell click event
           className="DataTable"
+          slots={{
+            footer: CustomFooter, // Override the default footer
+          }}
         />
       </div>
     </div>

@@ -2,6 +2,13 @@
     {
       "DAY": "Saturday",
       "DATE": "December 22, 1973",
+      "HEADLINER": "The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn, The double door inn.",
+      "OPENER": "",
+      "NOTES": "Long headliner name"
+    },
+    {
+      "DAY": "Saturday",
+      "DATE": "December 22, 1973",
       "HEADLINER": "The Double Door Inn Opened for Business",
       "OPENER": "",
       "NOTES": "Opening Day"
