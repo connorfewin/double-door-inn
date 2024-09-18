@@ -1,11 +1,35 @@
 .profile-icon {
-    z-index: 999;
-    cursor: pointer;
-    color: lightgray; /* Default color */
-    transition: color 0.3s ease; /* Smooth transition */
+  z-index: 999;
+  cursor: pointer;
+  color: lightgray; /* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+.profile-icon:hover {
+  color: darkgray; /* Color when hovered */
+}
+
+.ProfileContainer {
+  position: relative;
+  padding: 15px;
+  margin-left: 20px; /* Adjust this value to move the profile icon */
+  margin-bottom: auto;
+}
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+  .profile-icon {
+      z-index: 999;
+      color: lightgray; /* Keep default color */
+      transition: color 0.3s ease;
   }
-  
-  .profile-icon:hover {
-    color: darkgray; /* Color when hovered */
+
+  .profile-icon svg {
+      font-size: 35px; /* Reduce icon size for mobile view */
   }
-  
+
+  .ProfileContainer {
+      padding: 10px; /* Adjust padding for mobile */
+      margin-left: 10px; /* Adjust margin for mobile */
+  }
+}

@@ -43,13 +43,15 @@ body {
 .DataTableContainer {
   position: sticky;
   top: 100px; /* Adjust based on header height */
-  padding: 10px 20px 20px 20px;
-  max-width: 1100px;
+  padding: 10px 0 20px 0; /* Adjust padding to prevent overflow */
+  max-width: 1140px; /* Set max width to viewport width */
   width: 100%;
   margin: 0 auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Subtle shadow */
   border-radius: 15px;
+  overflow-x: auto; /* Handle horizontal overflow */
   overflow-y: auto; /* Enable scrolling inside the table */
+  box-sizing: border-box; /* Ensure padding is included in width calculations */
 }
 .MuiDataGrid-cell:hover {
   color: #1976D2
@@ -105,13 +107,6 @@ section {
   top: 0;
   z-index: 998;
   width: 100%; /* Full width for proper alignment */
-}
-
-.ProfileContainer {
-  position: relative;
-  padding: 15px;
-  margin-left: 20px; /* Adjust this value to move the profile icon */
-  margin-bottom: auto;
 }
 
 .HeaderContainer {

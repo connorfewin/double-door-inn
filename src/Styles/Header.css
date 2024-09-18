@@ -59,3 +59,34 @@ h2 {
 .HeaderIcons svg {
     filter: drop-shadow(0px 0px 3px rgb(255, 255, 255)); /* Stronger shadow behind the icons */
 }
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    /* Adjust h1 for mobile */
+    h1 {
+        font-size: 2rem; /* Reduce size for mobile */
+        padding-top: 5px; /* Adjust padding for mobile */
+    }
+
+    /* Adjust h2 for mobile */
+    h2 {
+        font-size: 1.5rem; /* Reduce size for mobile */
+        margin: 5px 0 0 0; /* Adjust margin for mobile */
+    }
+
+    /* Adjust the gap and size for icons and text */
+    .HeaderIcons {
+        gap: 5px; /* Reduces the gap between icons and text in mobile view */
+    }
+
+    .HeaderIcons p {
+        font-size: 14px; /* Adjust text size for mobile if needed */
+    }
+
+    .HeaderIcons svg {
+        width: 20px; /* Adjust icon size for mobile */
+        height: 20px;
+    }
+}
+
+

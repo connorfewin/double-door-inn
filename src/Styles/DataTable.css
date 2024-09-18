@@ -16,4 +16,30 @@
   .css-1rtad1 {
     left: 0px !important;
   }
+
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  /* Hide pagination details except for the left and right arrows on mobile */
+  @media (max-width: 768px) {
+    .MuiTablePagination-spacer,
+    .MuiTablePagination-selectLabel,
+    .MuiTablePagination-input,
+    .MuiTablePagination-displayedRows {
+      display: none;
+    }
+  
+    /* Ensure only the arrow buttons are shown and centered */
+    .MuiTablePagination-actions {
+      justify-content: center;
+      margin-left: 0px !important;
+      width: auto; /* Adjust width to fit buttons */
+      overflow: hidden; /* Prevent any overflow */
+    }
+  }
+  
+  
   

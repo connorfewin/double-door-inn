@@ -65,21 +65,34 @@ function DataTable() {
 
 
   const CustomFooter = () => {
+    const formatField = (field) => {
+      return field
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+    };
+  
     return (
       <GridFooterContainer>
         {/* Custom message */}
-        <div style={{ padding: '10px' }}>
+        <div style={{ padding: '10px', maxHeight: '40px', maxWidth: '65%', overflowY: 'auto' }}>
           {clickedCellData
-            ? `${clickedCellData.field}: ${clickedCellData.value}` : ''}
+            ? `${formatField(clickedCellData.field)}: ${clickedCellData.value}`
+            : ''}
         </div>
+        
         {/* Pagination controls */}
-        <GridPagination />
+        <div className="pagination-controls">
+          <GridPagination />
+        </div>
       </GridFooterContainer>
     );
   };
+  
+  
+
   return (
     <div>
-      <div className="filter-button-container">
+      <div style={{ width: '96%', margin: 'auto', overflowX: 'auto' }} className="filter-button-container" >
         <DateFilter rows={rows} onFilter={handleFilter} />
         {false && 
           <div className="button-container">
@@ -94,7 +107,7 @@ function DataTable() {
           </div>
         }
       </div>
-      <div style={{ height: 500, width: '100%', margin: 'auto', overflowX: 'auto' }}>
+      <div style={{ height: 500, width: '96%', margin: 'auto', overflowX: 'auto' }}>
         <DataGrid
           rows={filteredRows}
           columns={columns}
