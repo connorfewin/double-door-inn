@@ -10,7 +10,7 @@ import '../Styles/Buttons.css';
 const columns = [
   { field: 'DATE', headerName: 'Date', width: 100, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
   { field: 'DAY', headerName: 'Day', width: 100, cellClassName: 'tableCell' },
-  { field: 'HEADLINER', headerName: 'Headliner', width: 500, cellClassName: 'tableCell' },
+  { field: 'HEADLINER', headerName: 'Headliner', width: 600, cellClassName: 'tableCell' },
   { field: 'OPENER', headerName: 'Opener', width: 400, cellClassName: 'tableCell' },
   { field: 'NOTES', headerName: 'Notes', width: 250, cellClassName: 'tableCell' },  
 ];
@@ -74,14 +74,14 @@ function DataTable() {
     return (
       <GridFooterContainer>
         {/* Custom message */}
-        <div style={{ padding: '10px', maxHeight: '40px', maxWidth: '65%', overflowY: 'auto' }}>
+        <div style={{ padding: '10px', maxHeight: '40px', maxWidth: '62%', overflowY: 'auto' }}>
           {clickedCellData
             ? `${formatField(clickedCellData.field)}: ${clickedCellData.value}`
             : ''}
         </div>
         
         {/* Pagination controls */}
-        <div className="pagination-controls">
+        <div className="pagination-controls" style={{maxWidth: '38%', padding: 0}}>
           <GridPagination />
         </div>
       </GridFooterContainer>
