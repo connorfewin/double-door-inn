@@ -11,7 +11,7 @@ function Header() {
 
       <div className="HeaderIcons">
         <LocationOnIcon />
-        <p>Charlotte, North Carolina  |</p>
+        <p>Charlotte, North Carolina</p>
         <CalendarMonthTwoToneIcon />
         <p>1973-2017</p>
       </div>

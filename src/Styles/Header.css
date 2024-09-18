@@ -48,6 +48,7 @@ h2 {
     align-items: center; /* Vertically centers the icons and text */
     gap: 10px; /* Adds space between the icons and text */
     color: #000000;
+    padding-top: 10px;
 }
 
 .HeaderIcons p {
