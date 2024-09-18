@@ -102,7 +102,6 @@ section {
   display: flex;
   justify-content: space-between; /* Ensures Profile is left, Header is centered */
   align-items: center;
-  padding: 10px;
   top: 0;
   z-index: 998;
   width: 100%; /* Full width for proper alignment */
