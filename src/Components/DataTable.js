@@ -70,11 +70,25 @@ function DataTable() {
   };
 
   const handleCellClick = (params, event) => {
+    
     const cellElement = event.currentTarget;
+    
+    // Check if the clicked cell is already expanded
+    const isCurrentlyExpanded = expandedRowId === params.id;
+    
+    // Collapse the currently expanded cell if it's different
+    if (expandedRowId >= 0) {
+      console.log('In here');
+      setExpandedRowId(null);
+    }
+  
+    // Toggle the expanded state of the clicked cell if it has overflowing data
     if (isOverflown(cellElement)) {
-      setExpandedRowId((prev) => (prev === params.id ? null : params.id));
+      setExpandedRowId(isCurrentlyExpanded ? null : params.id);
     }
   };
+  
+  
 
   const getRowHeight = (params) => {
     return expandedRowId === params.id ? 'auto' : 52;
@@ -96,14 +110,13 @@ function DataTable() {
   return (
     <div>
       <div style={{ margin: 'auto', overflowX: 'auto' }} className="filter-button-container">
-      <input
-        type="text"
-        placeholder="Search by Headliner"
-        value={searchTerm}
-        onChange={handleSearch}
-        className="searchInput"
-      />
-
+        <input
+          type="text"
+          placeholder="Search by Headliner"
+          value={searchTerm}
+          onChange={handleSearch}
+          className="searchInput"
+        />
         <DateFilter rows={rows} onFilter={handleFilter} />
       </div>
       <div style={{ height: 500, margin: 'auto', overflowX: 'auto' }} ref={gridRef}>
