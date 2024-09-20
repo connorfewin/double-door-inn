@@ -38,6 +38,7 @@
   flex-wrap: wrap; /* Allow items to wrap on smaller screens */
   max-width: 100%; /* Ensure it doesn't exceed the DataTable's width */
   overflow: hidden; /* Prevent overflow */
+  padding-bottom: 10px;
 }
 
 /* Media query for mobile view */
@@ -45,5 +46,8 @@
   .searchInput {
     width: 100%; /* Full width for mobile */
     margin-bottom: 0px; /* Space between the input and date filters */
+  }
+  .filter-button-container {
+    padding-bottom: 0px;
   }
 }

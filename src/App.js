@@ -15,7 +15,7 @@ function App() {
       <div className='HeaderContainer'>
         <Header />
       </div>  
-      <div className='ImageContainer'>
+      <div className='ImagePadding'>
         <Image />
       </div>    
       <div className="DataTableContainer">
