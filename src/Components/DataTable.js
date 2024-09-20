@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import AddButton from './AddButton';
 import DeleteButton from './DeleteButton';
-import DateFilter from './DateFilter'; // Import the new DateFilter component
+import DateFilter from './DateFilter';
 import sampleData from '../Helpers/SampleData.json';
 import '../Styles/DataTable.css';
 import '../Styles/Buttons.css';
@@ -35,9 +35,10 @@ function DataTable() {
   const [rows, setRows] = useState(initialRows);
   const [filteredRows, setFilteredRows] = useState(initialRows);
   const [selectionModel, setSelectionModel] = useState([]);
-  const [expandedRowId, setExpandedRowId] = useState(null); // Store only one expanded row ID
-  
-  const gridRef = useRef(null); // To reference the grid for detecting outside clicks
+  const [expandedRowId, setExpandedRowId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search input
+
+  const gridRef = useRef(null);
 
   const handleAdd = (newEntry) => {
     const newRow = {
@@ -46,10 +47,18 @@ function DataTable() {
       DATE: getDate(newEntry.DATE),
     };
     setRows([...rows, newRow]);
-    setFilteredRows([...rows, newRow]); // Update filtered rows as well
+    setFilteredRows([...rows, newRow]);
   };
 
   const handleFilter = (filtered) => {
+    setFilteredRows(filtered);
+  };
+
+  // Function to handle search input
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearchTerm(value);
+    const filtered = rows.filter(row => row.HEADLINER.toLowerCase().includes(value));
     setFilteredRows(filtered);
   };
 
@@ -63,21 +72,18 @@ function DataTable() {
   const handleCellClick = (params, event) => {
     const cellElement = event.currentTarget;
     if (isOverflown(cellElement)) {
-      setExpandedRowId((prev) => {
-        return prev === params.id ? null : params.id; // Toggle between expanding and collapsing
-      });
+      setExpandedRowId((prev) => (prev === params.id ? null : params.id));
     }
   };
 
   const getRowHeight = (params) => {
-    return expandedRowId === params.id ? 'auto' : 52; // Default row height is 52px
+    return expandedRowId === params.id ? 'auto' : 52;
   };
 
-  // Collapse any expanded row if clicking outside of the table
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (gridRef.current && !gridRef.current.contains(event.target)) {
-        setExpandedRowId(null); // Collapse the expanded row when clicking outside
+        setExpandedRowId(null);
       }
     };
 
@@ -90,6 +96,14 @@ function DataTable() {
   return (
     <div>
       <div style={{ margin: 'auto', overflowX: 'auto' }} className="filter-button-container">
+      <input
+        type="text"
+        placeholder="Search by Headliner"
+        value={searchTerm}
+        onChange={handleSearch}
+        className="searchInput"
+      />
+
         <DateFilter rows={rows} onFilter={handleFilter} />
       </div>
       <div style={{ height: 500, margin: 'auto', overflowX: 'auto' }} ref={gridRef}>

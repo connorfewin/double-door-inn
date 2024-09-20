@@ -29,7 +29,7 @@ const DateFilter = ({ rows, onFilter }) => {
   const handleClearFilter = () => {
     setStartDate(null);
     setEndDate(null);
-    onFilter(rows); // Reset to all rows
+    onFilter(rows); 
   };
 
   return (

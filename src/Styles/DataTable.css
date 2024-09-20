@@ -6,7 +6,7 @@
 }
 
 .headlinerCell {
-  font-size: 16px; /* Adjust the font size as needed */
+  font-size: 18px; /* Adjust the font size as needed */
   font-weight: bold; /* Make the text bold */
   white-space: normal;
   word-wrap: break-word;
@@ -22,3 +22,28 @@
   transition: all .5s ease-in-out;
 }
 
+/* Input styling for search bar */
+.searchInput {
+  padding: 18px;
+  width: 300px; /* Adjust width as needed */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+}
+/* Filter button container styling */
+.filter-button-container {
+  display: flex;
+  flex-direction: row; /* Default to row */
+  align-items: center; /* Center items vertically */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  max-width: 100%; /* Ensure it doesn't exceed the DataTable's width */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Media query for mobile view */
+@media (max-width: 600px) {
+  .searchInput {
+    width: 100%; /* Full width for mobile */
+    margin-bottom: 0px; /* Space between the input and date filters */
+  }
+}

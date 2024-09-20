@@ -1,16 +1,22 @@
 .ImageContainer {
-    padding-top: 20px;
-    padding-bottom: 30px;
-}
-  
-.HeaderImage {
     position: relative;
+    padding: 20px 0 30px;
     display: block;
     margin: 0 auto;
     max-width: 1140px; /* Matches .DataTableContainer */
+    text-align: center; /* Center-aligns content inside the container */
+}
+
+.HeaderImage {
     width: 100%;
     height: auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Consistent shadow effect */
     border-radius: 15px;
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.HeaderImage:hover {
+    transform: scale(1.02); /* Slightly enlarges the image on hover */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
 }

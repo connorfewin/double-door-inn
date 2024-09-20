@@ -4,6 +4,7 @@ import './Styles/Image.css';
 import Header from './Components/Header';
 import DataTable from './Components/DataTable';
 import Profile from './Components/Profile';
+import Image from './Components/Image';
 
 function App() {
   return (
@@ -15,11 +16,7 @@ function App() {
         <Header />
       </div>  
       <div className='ImageContainer'>
-        <img
-          src={process.env.PUBLIC_URL + '/DoubleDoorInn.jpg'}
-          alt="Double Door Inn"
-          className="HeaderImage"
-        />
+        <Image />
       </div>    
       <div className="DataTableContainer">
         <DataTable />

@@ -76,4 +76,12 @@ body {
   background:  #ffffff;
 }
 
+.ImageContainer {
+  position: relative;
+  width: 100%; /* Take full width */
+  max-width: 1140px; /* Maximum width */
+  margin: 0 auto; 
+  height: auto;
+}
+
 
