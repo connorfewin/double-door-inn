@@ -1,0 +1,16 @@
+.ImageContainer {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+  
+.HeaderImage {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    max-width: 1140px; /* Matches .DataTableContainer */
+    width: 100%;
+    height: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Consistent shadow effect */
+    border-radius: 15px;
+    cursor: pointer;
+}

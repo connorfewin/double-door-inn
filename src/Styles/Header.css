@@ -5,7 +5,6 @@
 /* Keep the header fixed like the image */
 .Header {
     width: 100%;
-    padding-bottom: 30px;
 }
   
 /* Header text styles */
@@ -17,7 +16,6 @@ h1, h2 {
 }
 
 h1 {
-    padding-top: 10px;
     font-size: 3rem;
     font-weight: 700; /* Bold */
     margin: 0 0 10px 0;
@@ -66,7 +64,7 @@ h2 {
     /* Adjust h1 for mobile */
     h1 {
         font-size: 2rem; /* Reduce size for mobile */
-        padding-top: 5px; /* Adjust padding for mobile */
+        padding-top: 0px; /* Adjust padding for mobile */
     }
 
     /* Adjust h2 for mobile */

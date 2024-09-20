@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { DataGrid, GridFooterContainer, GridPagination } from '@mui/x-data-grid';
+import React, { useState, useEffect, useRef } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
 import AddButton from './AddButton';
 import DeleteButton from './DeleteButton';
 import DateFilter from './DateFilter'; // Import the new DateFilter component
@@ -10,9 +10,7 @@ import '../Styles/Buttons.css';
 const columns = [
   { field: 'DATE', headerName: 'Date', width: 100, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
   { field: 'DAY', headerName: 'Day', width: 100, cellClassName: 'tableCell' },
-  { field: 'HEADLINER', headerName: 'Headliner', width: 600, cellClassName: 'tableCell' },
-  { field: 'OPENER', headerName: 'Opener', width: 400, cellClassName: 'tableCell' },
-  { field: 'NOTES', headerName: 'Notes', width: 250, cellClassName: 'tableCell' },  
+  { field: 'HEADLINER', headerName: 'Headliner', flex: 1, cellClassName: 'headlinerCell' },
 ];
 
 function getDate(date) {
@@ -31,15 +29,15 @@ const initialRows = sampleData.map((item, index) => ({
   DAY: item.DAY,
   DATE: getDate(item.DATE),
   HEADLINER: item.HEADLINER,
-  OPENER: item.OPENER,
-  NOTES: item.NOTES,
 }));
 
 function DataTable() {
   const [rows, setRows] = useState(initialRows);
   const [filteredRows, setFilteredRows] = useState(initialRows);
   const [selectionModel, setSelectionModel] = useState([]);
-  const [clickedCellData, setClickedCellData] = useState(null);
+  const [expandedRowId, setExpandedRowId] = useState(null); // Store only one expanded row ID
+  
+  const gridRef = useRef(null); // To reference the grid for detecting outside clicks
 
   const handleAdd = (newEntry) => {
     const newRow = {
@@ -55,59 +53,46 @@ function DataTable() {
     setFilteredRows(filtered);
   };
 
-  // Handle the cell click event to capture selected cell data
-  const handleCellClick = (params) => {
-    setClickedCellData({
-      field: params.field,
-      value: params.value,
-    });
-  };
-
-
-  const CustomFooter = () => {
-    const formatField = (field) => {
-      return field
-        .toLowerCase()
-        .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
-    };
-  
+  const isOverflown = (element) => {
     return (
-      <GridFooterContainer>
-        {/* Custom message */}
-        <div style={{ padding: '10px', maxHeight: '40px', maxWidth: '62%', overflowY: 'auto' }}>
-          {clickedCellData
-            ? `${formatField(clickedCellData.field)}: ${clickedCellData.value}`
-            : ''}
-        </div>
-        
-        {/* Pagination controls */}
-        <div className="pagination-controls" style={{maxWidth: '38%', padding: 0}}>
-          <GridPagination />
-        </div>
-      </GridFooterContainer>
+      element.scrollHeight > element.clientHeight ||
+      element.scrollWidth > element.clientWidth
     );
   };
-  
-  
+
+  const handleCellClick = (params, event) => {
+    const cellElement = event.currentTarget;
+    if (isOverflown(cellElement)) {
+      setExpandedRowId((prev) => {
+        return prev === params.id ? null : params.id; // Toggle between expanding and collapsing
+      });
+    }
+  };
+
+  const getRowHeight = (params) => {
+    return expandedRowId === params.id ? 'auto' : 52; // Default row height is 52px
+  };
+
+  // Collapse any expanded row if clicking outside of the table
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (gridRef.current && !gridRef.current.contains(event.target)) {
+        setExpandedRowId(null); // Collapse the expanded row when clicking outside
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [gridRef]);
 
   return (
     <div>
-      <div style={{ width: '96%', margin: 'auto', overflowX: 'auto' }} className="filter-button-container" >
+      <div style={{ margin: 'auto', overflowX: 'auto' }} className="filter-button-container">
         <DateFilter rows={rows} onFilter={handleFilter} />
-        {false && 
-          <div className="button-container">
-            <DeleteButton
-              selectionModel={selectionModel}
-              rows={rows}
-              setRows={setRows}
-              setSelectionModel={setSelectionModel}
-              setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
-            />
-            <AddButton onAdd={handleAdd} />          
-          </div>
-        }
       </div>
-      <div style={{ height: 500, width: '96%', margin: 'auto', overflowX: 'auto' }}>
+      <div style={{ height: 500, margin: 'auto', overflowX: 'auto' }} ref={gridRef}>
         <DataGrid
           rows={filteredRows}
           columns={columns}
@@ -115,11 +100,9 @@ function DataTable() {
           onRowSelectionModelChange={(newSelectionModel) => {
             setSelectionModel(newSelectionModel);
           }}
-          onCellClick={handleCellClick} // Capture cell click event
+          onCellClick={handleCellClick}
+          getRowHeight={getRowHeight}
           className="DataTable"
-          slots={{
-            footer: CustomFooter, // Override the default footer
-          }}
         />
       </div>
     </div>
