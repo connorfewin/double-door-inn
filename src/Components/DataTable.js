@@ -132,6 +132,18 @@ function DataTable() {
           className="DataTable"
         />
       </div>
+      {false && 
+          <div className="add-button-container">
+            <DeleteButton
+              selectionModel={selectionModel}
+              rows={rows}
+              setRows={setRows}
+              setSelectionModel={setSelectionModel}
+              setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
+            />
+            <AddButton onAdd={handleAdd} />          
+          </div>
+        }
     </div>
   );
 }

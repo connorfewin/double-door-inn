@@ -7,9 +7,11 @@
 }
 
 /* Flexbox container for buttons */
-.button-container {
+.add-button-container {
   display: flex;
   gap: 10px; /* Add some space between the buttons */
+  padding-top: 10px;
+  margin-left: -10px;
 }
 
 /* Common button styles */
