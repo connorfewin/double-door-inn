@@ -5,6 +5,11 @@ import Header from './Components/Header';
 import DataTable from './Components/DataTable';
 import Profile from './Components/Profile';
 import Image from './Components/Image';
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports'; // Adjust the path if necessary
+
+// Configure Amplify
+Amplify.configure(awsExports);
 
 function App() {
   return (

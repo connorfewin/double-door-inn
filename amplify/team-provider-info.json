@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-doubledoorinn-dev-1d5c8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-dev-1d5c8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-dev-1d5c8-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-doubledoorinn-dev-1d5c8-deployment",
+      "UnauthRoleName": "amplify-doubledoorinn-dev-1d5c8-unauthRole",
+      "StackName": "amplify-doubledoorinn-dev-1d5c8",
+      "StackId": "arn:aws:cloudformation:us-east-1:836557714765:stack/amplify-doubledoorinn-dev-1d5c8/d0c2d740-7a7f-11ef-a418-0affce134e5d",
+      "AmplifyAppId": "d1rxx9n6uq0hsn"
+    },
+    "categories": {
+      "auth": {
+        "doubledoorinn8a6ed015": {}
+      }
+    }
+  }
+}
