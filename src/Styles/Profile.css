@@ -1,5 +1,4 @@
 .profile-icon {
-  z-index: 999;
   cursor: pointer;
   color: lightgray; /* Default color */
   transition: color 0.3s ease; /* Smooth transition */
@@ -11,9 +10,6 @@
 
 .ProfileContainer {
   position: relative;
-  padding: 15px;
-  margin-left: 20px; /* Adjust this value to move the profile icon */
-  margin-bottom: auto;
 }
 
 /* Media query for mobile view */

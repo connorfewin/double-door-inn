@@ -5,75 +5,49 @@
   overflow-x: auto;
 }
 
-.MuiDataGrid-root {
-  overflow: hidden !important;
+.headlinerCell {
+  font-size: 18px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold */
+  white-space: normal;
+  word-wrap: break-word;
 }
 
-.MuiDataGrid-viewport {
-  transform: none !important;
+.tableCell {
+  white-space: normal;
+  word-wrap: break-word;
 }
 
-.css-1rtad1 {
-  left: 0px !important;
+/* Add smooth transition effect for the row height */
+.DataTable .MuiDataGrid-row {
+  transition: all .5s ease-in-out;
 }
 
-/* Pagination controls styling */
-.pagination-controls {
+/* Input styling for search bar */
+.searchInput {
+  padding: 18px;
+  width: 300px; /* Adjust width as needed */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+}
+/* Filter button container styling */
+.filter-button-container {
   display: flex;
-  align-items: center; /* Align the pagination controls vertically */
-  justify-content: flex-end; /* Align pagination controls to the right */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-  max-width: 40%; /* Set max width to reduce extra space */
+  flex-direction: row; /* Default to row */
+  align-items: center; /* Center items vertically */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  max-width: 100%; /* Ensure it doesn't exceed the DataTable's width */
   overflow: hidden; /* Prevent overflow */
+  padding-bottom: 10px;
 }
 
-/* Custom Footer Message styling */
-.custom-footer-message {
-  padding: 10px;
-  max-height: 40px;
-  max-width: 60%; /* Adjust width of the custom message */
-  overflow-y: auto;
-}
-
-.MuiTablePagination-actions {
-  justify-content: center;
-  margin-left: 0px !important;
-  width: auto; /* Adjust width to fit buttons */
-  overflow: hidden; /* Prevent any overflow */
-}
-
-/* Hide the displayed rows and pagination input when the width gets below 1000px */
-@media (max-width: 1000px) {
-  .MuiTablePagination-displayedRows,
-  .MuiTablePagination-input,
-  .MuiTablePagination-selectLabel {
-    display: none;
-  }
-}
-
-/* Hide pagination details when the width gets below 768px */
-@media (max-width: 768px) {
-  .MuiTablePagination-spacer,
-  .MuiTablePagination-selectLabel {
-    display: none !important;
-  }
-}
-
-/* Show only pagination arrows when the width gets below 600px */
+/* Media query for mobile view */
 @media (max-width: 600px) {
-  .MuiTablePagination-displayedRows,
-  .MuiTablePagination-spacer,
-  .MuiTablePagination-selectLabel,
-  .MuiTablePagination-input {
-    display: none;
+  .searchInput {
+    width: 100%; /* Full width for mobile */
+    margin-bottom: 0px; /* Space between the input and date filters */
   }
-
-  /* Ensure only the arrow buttons are shown and centered */
-  .MuiTablePagination-actions {
-    justify-content: center;
-    margin-left: 0px !important;
-    width: auto; /* Adjust width to fit buttons */
-    overflow: hidden; /* Prevent any overflow */
+  .filter-button-container {
+    padding-bottom: 0px;
   }
 }

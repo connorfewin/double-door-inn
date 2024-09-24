@@ -43,25 +43,21 @@ body {
 .DataTableContainer {
   position: sticky;
   top: 100px; /* Adjust based on header height */
-  padding: 10px 0 20px 0; /* Adjust padding to prevent overflow */
+  padding: 10px 20px 20px 20px; /* Adjust padding to prevent overflow */
   max-width: 1140px; /* Set max width to viewport width */
   width: 100%;
   margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow */
   border-radius: 15px;
   overflow-x: auto; /* Handle horizontal overflow */
   overflow-y: auto; /* Enable scrolling inside the table */
   box-sizing: border-box; /* Ensure padding is included in width calculations */
+  background-color: #ffffff;
 }
 .MuiDataGrid-cell:hover {
   color: #1976D2
 }
 
-/* ===========================
-   Footer Styles
-   =========================== */
-
-/* Footer styling */
 .Footer {
   padding: 20px 0 10px 0; /* Padding for top and bottom */
   color: #000000;
@@ -69,64 +65,23 @@ body {
   position: relative; /* Part of the normal flow */
 }
 
-/* ===========================
-   Header Image Styles
-   =========================== */
-
-/* Fixed header image */
-.HeaderImage {
-  position: relative; /* Keeps the image fixed at the top */
-  display: block;
-  margin: 0 auto;
-  max-width: 1140px; /* Matches .DataTableContainer */
-  width: 100%;
-  height: auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Consistent shadow effect */
-  border-radius: 15px;
-  z-index: 1;
-}
-
-/* ===========================
-   Section Styles
-   =========================== */
-
-/* General section layout */
-section {
-  position: relative;
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center;
-  flex-direction: column;
-}
-
-.section-header {
-  position: sticky;
-  display: flex;
-  justify-content: space-between; /* Ensures Profile is left, Header is centered */
-  align-items: center;
-  top: 0;
-  z-index: 998;
-  width: 100%; /* Full width for proper alignment */
-}
-
 .HeaderContainer {
   text-align: center; /* Centers the text inside the Header */
-  flex-grow: 1;
-  padding: 0 20px; /* Adds padding around the header */
   display: flex;
   justify-content: center; /* Ensures the text itself is centered inside the container */
-  margin-left: -100px;
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto; /* Centers the container horizontally */
+  border-radius: 15px;
+  background:  #ffffff;
 }
 
-
-/* Section content margin */
-.section-content {
-  margin-bottom: 30px; /* Avoid overlap with other content */
-}
-
-.spacer {
-  height: 330px; /* Adjust the height to control the space */
-  width: 100%;  /* Ensures it spans the full width */
+.ImageContainer {
+  position: relative;
+  width: 100%; /* Take full width */
+  max-width: 1140px; /* Maximum width */
+  margin: 0 auto; 
+  height: auto;
 }
 
 
