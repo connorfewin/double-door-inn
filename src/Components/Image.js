@@ -73,6 +73,10 @@ const Image = () => {
                         <p>
                             However, despite our best efforts, the list is missing about 2,000 nights of music. If you have information that would help us add any missing bands and dates, please reach out to us at info@____. We’d love to hear from you!
                         </p> 
+                        <br />
+                        <p>Keeping the Memories Alive,</p>
+                        <p>- John Hosmer</p>
+                        <p>P.S. Nick says to tell y’all hi.</p>
                     </div>
                 </div>
             </div>

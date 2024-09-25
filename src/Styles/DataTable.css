@@ -13,6 +13,7 @@
 }
 
 .tableCell {
+  font-size: 18px; /* Adjust the font size as needed */
   white-space: normal;
   word-wrap: break-word;
 }

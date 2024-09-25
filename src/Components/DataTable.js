@@ -8,7 +8,7 @@ import '../Styles/DataTable.css';
 import '../Styles/Buttons.css';
 
 const columns = [
-  { field: 'DATE', headerName: 'Date', width: 100, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
+  { field: 'DATE', headerName: 'Date', width: 120, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
   { field: 'DAY', headerName: 'Day', width: 100, cellClassName: 'tableCell' },
   { field: 'HEADLINER', headerName: 'Headliner', flex: 1, cellClassName: 'headlinerCell' },
 ];
