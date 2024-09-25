@@ -1,4 +1,19 @@
 {
+  "api": {
+    "doubledoorinn": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "AWS_IAM"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
   "auth": {
     "doubledoorinn8a6ed015": {
       "customAuth": false,

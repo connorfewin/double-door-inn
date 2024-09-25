@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import AddButton from './AddButton';
 import DeleteButton from './DeleteButton';
 import DateFilter from './DateFilter';
-import sampleData from '../Helpers/SampleData.json';
+import sampleData from '../Helpers/OriginalData.json';
 import '../Styles/DataTable.css';
 import '../Styles/Buttons.css';
 
