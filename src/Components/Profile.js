@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import { Dialog, DialogTitle, DialogContent, Link, Button, Snackbar } from '@mui/material';
-import { signOut, getCurrentUser } from 'aws-amplify/auth';
+import { signOut, getCurrentUser, fetchUserAttributes } from 'aws-amplify/auth';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import '../Styles/Profile.css';
 import '../Styles/Modals.css';
 
-const Profile = () => {
+const Profile = ({ setSuperAdmin }) => {
   const [open, setOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
@@ -18,8 +18,12 @@ const Profile = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      try {
-        await getCurrentUser();
+      try {        
+        await getCurrentUser();       
+        const user = await fetchUserAttributes();
+        setSuperAdmin(user["custom:superAdmin"] === "true");
+        console.log(user);
+         
         setIsAuthenticated(true);
       } catch (error) {
         setIsAuthenticated(false);
@@ -27,7 +31,7 @@ const Profile = () => {
     };
 
     checkUser();
-  }, []);
+  }, [setSuperAdmin]);
 
   const handleClick = () => {
     setOpen(true);
@@ -53,6 +57,7 @@ const Profile = () => {
     try {
       await signOut();
       setIsAuthenticated(false);
+      setSuperAdmin(false);
       handleClose();
       setSnackbarMessage('Successfully signed out.');
       setSnackbarOpen(true);
@@ -103,7 +108,8 @@ const Profile = () => {
                   password={password} 
                   setPassword={setPassword} 
                   handleClose={handleClose}
-                  setIsAuthenticated={setIsAuthenticated} // Pass the setter function
+                  setIsAuthenticated={setIsAuthenticated}
+                  setSuperAdmin={setSuperAdmin}
                 />
               )}
               <p style={{marginTop: '10px'}}>

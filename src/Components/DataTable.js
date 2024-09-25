@@ -31,7 +31,7 @@ const initialRows = sampleData.map((item, index) => ({
   HEADLINER: item.HEADLINER,
 }));
 
-function DataTable() {
+function DataTable({ superAdmin }) {
   const [rows, setRows] = useState(initialRows);
   const [filteredRows, setFilteredRows] = useState(initialRows);
   const [selectionModel, setSelectionModel] = useState([]);
@@ -123,7 +123,7 @@ function DataTable() {
         <DataGrid
           rows={filteredRows}
           columns={columns}
-          checkboxSelection={false}
+          checkboxSelection={superAdmin}
           onRowSelectionModelChange={(newSelectionModel) => {
             setSelectionModel(newSelectionModel);
           }}
@@ -132,7 +132,7 @@ function DataTable() {
           className="DataTable"
         />
       </div>
-      {false && 
+      {superAdmin && 
           <div className="add-button-container">
             <DeleteButton
               selectionModel={selectionModel}

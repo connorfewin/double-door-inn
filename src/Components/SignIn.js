@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography } from '@mui/material';
-import { signIn } from 'aws-amplify/auth';
+import { signIn, fetchUserAttributes } from 'aws-amplify/auth';
 
-const SignIn = ({ email, setEmail, password, setPassword, handleClose, setIsAuthenticated }) => {
+const SignIn = ({ email, setEmail, password, setPassword, handleClose, setIsAuthenticated, setSuperAdmin }) => {
   const [error, setError] = useState('');
 
   const handleSignIn = async (e) => {
@@ -10,8 +10,10 @@ const SignIn = ({ email, setEmail, password, setPassword, handleClose, setIsAuth
     setError(''); // Clear previous error
     try {
       await signIn({ username: email, password });
-      setIsAuthenticated(true); // Update the authentication state
+      setIsAuthenticated(true); 
       handleClose();
+      const user = await fetchUserAttributes();
+      setSuperAdmin(user["custom:superAdmin"] === "true");
     } catch (error) {
       console.error('Error signing in:', error);
       setError(error.message || 'An error occurred during sign in.'); // Set error message

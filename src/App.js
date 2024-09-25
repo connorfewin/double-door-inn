@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Styles/Layout.css';
 import './Styles/Image.css';
 import Header from './Components/Header';
@@ -12,10 +12,12 @@ import awsExports from './aws-exports'; // Adjust the path if necessary
 Amplify.configure(awsExports);
 
 function App() {
+  const [superAdmin, setSuperAdmin] = useState(false)
+
   return (
     <div className="AppContainer">
       <div className="ProfileContainer">
-        <Profile /> 
+        <Profile setSuperAdmin={setSuperAdmin}/> 
       </div>
       <div className='HeaderContainer'>
         <Header />
@@ -24,7 +26,7 @@ function App() {
         <Image />
       </div>    
       <div className="DataTableContainer">
-        <DataTable />
+        <DataTable superAdmin={superAdmin}/>
       </div>
       <p className="Footer">Copyright 2024. All rights reserved.</p>
     </div>
