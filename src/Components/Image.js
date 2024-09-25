@@ -3,40 +3,34 @@ import "../Styles/Image.css"; // Ensure this CSS file is linked
 
 const Image = () => {
     const [isOverlayVisible, setOverlayVisible] = useState(false);
-    const [isLoading, setLoading] = useState(true); // Track loading state
+    const [isImageVisible, setImageVisible] = useState(false);
 
     const handleImageClick = () => {
         setOverlayVisible(!isOverlayVisible);
     };
 
     const handleImageLoad = () => {
-        setLoading(false); // Set loading to false once the image is loaded
+        setImageVisible(true); // Image has loaded, trigger the visibility
     };
 
     return (
         <div className="ImageContainer">
-            {/* Display the loading graphic while the image is loading */}
-            {isLoading && (
-                <div className="LoadingGraphic">
-                    {/* Subtle loading graphic */}
-                    <div className="Spinner"></div>
-                </div>
-            )}
             <img
                 src={process.env.PUBLIC_URL + '/DoubleDoorInn.jpg'}
                 alt="Double Door Inn"
-                className={`HeaderImage ${isLoading ? 'HiddenImage' : ''}`}
+                className={`HeaderImage ${isImageVisible ? 'HeaderImageVisible' : ''}`}
                 onClick={handleImageClick}
-                onLoad={handleImageLoad} // Handle when image finishes loading
+                onLoad={handleImageLoad}
             />
-            {isOverlayVisible && (
-                <div className="Overlay" onClick={handleImageClick}>
-                    <div className="OverlayContainer">
-                        <h2>About us</h2>
-                        <p>We collected this data through blood, sweat, and tears. In fact, I developed carpal tunnel syndrome while writing this sentence.</p>
-                    </div>                     
+            <div
+                className={`Overlay ${isOverlayVisible ? 'OverlayVisible' : ''}`}
+                onClick={handleImageClick}
+            >
+                <div className="OverlayContainer">
+                    <h2>About us</h2>
+                    <p>We collected this data through blood, sweat, and tears. In fact, I developed carpal tunnel syndrome while writing this sentence.</p>
                 </div>
-            )}
+            </div>
         </div>
     );
 };
