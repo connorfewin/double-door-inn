@@ -1,21 +1,25 @@
-import React from 'react';
-import { TextField, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { TextField, Button, Typography } from '@mui/material';
 import { signIn } from 'aws-amplify/auth';
 
 const SignIn = ({ email, setEmail, password, setPassword, handleClose, setIsAuthenticated }) => {
+  const [error, setError] = useState('');
+
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setError(''); // Clear previous error
     try {
       await signIn({ username: email, password });
       setIsAuthenticated(true); // Update the authentication state
       handleClose();
     } catch (error) {
       console.error('Error signing in:', error);
+      setError(error.message || 'An error occurred during sign in.'); // Set error message
     }
   };
 
   return (
-    <form onSubmit={handleSignIn}>
+    <form onSubmit={handleSignIn} style={{ position: 'relative' }}>
       <TextField
         autoFocus
         margin="dense"
@@ -46,6 +50,14 @@ const SignIn = ({ email, setEmail, password, setPassword, handleClose, setIsAuth
       >
         Sign In
       </Button>
+      {error && (
+        <Typography 
+          color="error" 
+          style={{paddingTop: '10px'}}
+        >
+          {error}
+        </Typography>
+      )}
     </form>
   );
 };

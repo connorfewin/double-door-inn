@@ -81,7 +81,7 @@ const Profile = () => {
         <DialogContent>
           {isAuthenticated ? (
             <div>
-              <p>You are currently signed in.</p>
+              <p style={{marginTop: '0px', marginBottom: '20px'}}>You are currently signed in.</p>
               <Button variant="contained" color="primary" onClick={handleSignOut}>
                 Sign Out
               </Button>
@@ -106,7 +106,7 @@ const Profile = () => {
                   setIsAuthenticated={setIsAuthenticated} // Pass the setter function
                 />
               )}
-              <p>
+              <p style={{marginTop: '10px'}}>
                 {isSignUp ? (
                   <>
                     Already have an account?{' '}
