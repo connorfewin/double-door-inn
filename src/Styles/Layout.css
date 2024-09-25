@@ -53,6 +53,7 @@ body {
   box-sizing: border-box; /* Ensure padding is included in width calculations */
   background-color: #ffffff;
 }
+
 .MuiDataGrid-cell:hover {
   color: #1976D2
 }

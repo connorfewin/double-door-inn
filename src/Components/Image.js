@@ -1,12 +1,27 @@
-import React, { useState } from "react";
-import "../Styles/Image.css"; // Ensure this CSS file is linked
+import React, { useState, useEffect } from "react";
+import "../Styles/Image.css";
 
 const Image = () => {
     const [isOverlayVisible, setOverlayVisible] = useState(false);
     const [isImageVisible, setImageVisible] = useState(false);
     const [mainImageURL, setMainImageURL] = useState(process.env.PUBLIC_URL + '/DoubleDoorInn.jpg');
 
-    const handleImageClick = () => {       
+    // Preload images using document.createElement
+    useEffect(() => {
+        
+        const imagesToPreload = [
+            '/GroupPhoto1.JPEG',
+            '/GroupPhoto2.jpg',
+            '/DoubleDoorInn.jpg'
+        ];
+
+        imagesToPreload.forEach(image => {
+            const img = document.createElement('img');
+            img.src = process.env.PUBLIC_URL + image;
+        });
+    }, []);
+
+    const handleImageClick = () => {
         setOverlayVisible(!isOverlayVisible);
     };
 
@@ -15,8 +30,11 @@ const Image = () => {
     };
 
     const handleMiniImageClick = (URL) => {
-        setMainImageURL(process.env.PUBLIC_URL + URL); // Change main image URL
-        setOverlayVisible(!isOverlayVisible);
+        setImageVisible(false); // Hide the image during transition
+        setTimeout(() => {
+            setMainImageURL(process.env.PUBLIC_URL + URL); // Change main image URL
+            setOverlayVisible(!isOverlayVisible);
+        }, 200); // Delay to allow smooth fade-out effect
     };
 
     return (
