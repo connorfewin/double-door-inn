@@ -8,7 +8,6 @@ const Image = () => {
 
     // Preload images using document.createElement
     useEffect(() => {
-        
         const imagesToPreload = [
             '/GroupPhoto1.JPEG',
             '/GroupPhoto2.jpg',
@@ -26,15 +25,18 @@ const Image = () => {
     };
 
     const handleImageLoad = () => {
-        setImageVisible(true); // Image has loaded, trigger the visibility
+        setImageVisible(true); 
     };
 
     const handleMiniImageClick = (URL) => {
-        setImageVisible(false); // Hide the image during transition
-        setTimeout(() => {
-            setMainImageURL(process.env.PUBLIC_URL + URL); // Change main image URL
+        if(mainImageURL !== URL) {
+            setTimeout(() => {
+                setMainImageURL(process.env.PUBLIC_URL + URL); // Change main image URL
+                setOverlayVisible(!isOverlayVisible);
+            }, 200); // Delay to allow smooth fade-out effect
+        } else {
             setOverlayVisible(!isOverlayVisible);
-        }, 200); // Delay to allow smooth fade-out effect
+        }
     };
 
     return (
