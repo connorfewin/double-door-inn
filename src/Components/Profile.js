@@ -1,24 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
-import { Dialog, DialogTitle, DialogContent, TextField, Button, Link } from '@mui/material';
-import '../Styles/Profile.css'; // Import the CSS file for styling
-import '../Styles/Modals.css'
+import { Dialog, DialogTitle, DialogContent, Link, Button, Snackbar } from '@mui/material';
+import { signOut, getCurrentUser, fetchUserAttributes } from 'aws-amplify/auth';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+import '../Styles/Profile.css';
+import '../Styles/Modals.css';
 
-const Profile = () => {
+const Profile = ({ setSuperAdmin }) => {
   const [open, setOpen] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false); // Track if it's a sign-up form
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {        
+        await getCurrentUser();       
+        const user = await fetchUserAttributes();
+        setSuperAdmin(user["custom:superAdmin"] === "true");
+        console.log(user);
+         
+        setIsAuthenticated(true);
+      } catch (error) {
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkUser();
+  }, [setSuperAdmin]);
 
   const handleClick = () => {
-    setOpen(true); // Open the modal when the icon is clicked
+    setOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false); // Close the modal
-    setIsSignUp(false); // Reset to sign-in when modal closes
+    setOpen(false);
+    setIsSignUp(false);
+    resetForm();
   };
 
   const toggleSignUp = () => {
-    setIsSignUp(!isSignUp); // Toggle between sign-in and sign-up
+    setIsSignUp(!isSignUp);
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      setIsAuthenticated(false);
+      setSuperAdmin(false);
+      handleClose();
+      setSnackbarMessage('Successfully signed out.');
+      setSnackbarOpen(true);
+    } catch (error) {
+      console.error('Error signing out:', error);
+      setSnackbarMessage('Error signing out. Please try again.');
+      setSnackbarOpen(true);
+    }
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -30,57 +81,66 @@ const Profile = () => {
         />
       </div>
 
-      {/* Modal for Sign In / Sign Up */}
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{isSignUp ? 'Sign Up' : 'Sign In'}</DialogTitle>
+        <DialogTitle>{isAuthenticated ? 'Profile' : (isSignUp ? 'Sign Up' : 'Sign In')}</DialogTitle>
         <DialogContent>
-          <form>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="email"
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              margin="dense"
-              id="password"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-            />
-            <Button
-              onClick={handleClose}
-              variant="contained"
-              color="primary"
-              style={{ marginTop: '20px' }}
-              fullWidth
-            >
-              {isSignUp ? 'Create Account' : 'Sign In'}
-            </Button>
-          </form>
-
-          {/* Link to toggle between Sign In and Sign Up */}
-          {isSignUp ? (
-            <p>
-              Already have an account?{' '}
-              <Link component="button" variant="body2" onClick={toggleSignUp}>
-                Sign In
-              </Link>
-            </p>
+          {isAuthenticated ? (
+            <div>
+              <p style={{marginTop: '0px', marginBottom: '20px'}}>You are currently signed in.</p>
+              <Button variant="contained" color="primary" onClick={handleSignOut}>
+                Sign Out
+              </Button>
+            </div>
           ) : (
-            <p>
-              Don't have an account?{' '}
-              <Link component="button" variant="body2" onClick={toggleSignUp}>
-                Sign Up
-              </Link>
-            </p>
+            <>
+              {isSignUp ? (
+                <SignUp 
+                  email={email} 
+                  setEmail={setEmail} 
+                  password={password} 
+                  setPassword={setPassword} 
+                  handleClose={handleClose} 
+                />
+              ) : (
+                <SignIn 
+                  email={email} 
+                  setEmail={setEmail} 
+                  password={password} 
+                  setPassword={setPassword} 
+                  handleClose={handleClose}
+                  setIsAuthenticated={setIsAuthenticated}
+                  setSuperAdmin={setSuperAdmin}
+                />
+              )}
+              <p style={{marginTop: '10px'}}>
+                {isSignUp ? (
+                  <>
+                    Already have an account?{' '}
+                    <Link component="button" variant="body2" onClick={toggleSignUp}>
+                      Sign In
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    Don't have an account?{' '}
+                    <Link component="button" variant="body2" onClick={toggleSignUp}>
+                      Sign Up
+                    </Link>
+                  </>
+                )}
+              </p>
+            </>
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Snackbar for feedback */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={4000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+      />
     </div>
   );
 };
