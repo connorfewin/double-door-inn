@@ -41,15 +41,14 @@ body {
 
 /* Sticky DataTable container */
 .DataTableContainer {
-  position: sticky;
-  top: 100px; /* Adjust based on header height */
+  position: relative;
   padding: 10px 20px 20px 20px; /* Adjust padding to prevent overflow */
   max-width: 1140px; /* Set max width to viewport width */
   width: 100%;
   margin: 0 auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow */
   border-radius: 15px;
-  overflow-x: auto; /* Handle horizontal overflow */
+  overflow-x: hidden; /* Handle horizontal overflow */
   overflow-y: auto; /* Enable scrolling inside the table */
   box-sizing: border-box; /* Ensure padding is included in width calculations */
   background-color: #ffffff;
