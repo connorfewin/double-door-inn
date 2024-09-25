@@ -38,7 +38,7 @@
     left: 0;
     width: 100%;
     height: 99%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.85);
     color: white;
     display: flex;
     flex-direction: column;
@@ -58,7 +58,12 @@
 
 .OverlayContainer {
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: scroll; /* Allows scrolling without showing the scrollbar */
+    scrollbar-width: none; /* For Firefox */
+}
+
+.OverlayContainer::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
 }
 
 .Overlay p {
@@ -68,3 +73,29 @@
     color: rgb(255, 255, 255);
     font-weight:bold;
 }
+
+.ImageRow {
+    display: flex;
+    justify-content: space-between; /* Distributes space evenly between images */
+    width: 100%; /* Ensures the row takes the full width of the container */
+    margin-bottom: 20px; /* Adds space below the image row */
+}
+
+.OverlayImage {
+    width: calc(33.33% - 10px); /* Adjust width to account for margin */
+    object-fit: cover; /* Ensures images cover their area without distortion */
+    margin-right: 10px; /* Adds space to the right of each image */
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+    border-radius: 10px;
+}
+
+.OverlayImage:last-child {
+    margin-right: 0; /* Removes margin from the last image */
+}
+
+.OverlayImage:hover {
+    transform: scale(1.05); /* Scales the image up on hover */
+    box-shadow: 0 0px 25px rgba(255, 255, 255, 0.6);
+}
+
+
