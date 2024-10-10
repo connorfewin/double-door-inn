@@ -3,9 +3,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import AddButton from './AddButton';
 import DeleteButton from './DeleteButton';
 import DateFilter from './DateFilter';
-import sampleData from '../Helpers/OriginalData.json';
 import '../Styles/DataTable.css';
 import '../Styles/Buttons.css';
+import { createShowAPI, fetchAllShowsAPI } from '../Api/show';
 
 const columns = [
   { field: 'DATE', headerName: 'Date', width: 120, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
@@ -24,37 +24,75 @@ function getDate(date) {
   return `${month}/${day}/${year}`;
 }
 
-const initialRows = sampleData.map((item, index) => ({
-  id: index,
-  DAY: item.DAY,
-  DATE: getDate(item.DATE),
-  HEADLINER: item.HEADLINER,
-}));
-
 function DataTable({ superAdmin }) {
-  const [rows, setRows] = useState(initialRows);
-  const [filteredRows, setFilteredRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
+  const [filteredRows, setFilteredRows] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
   const [expandedRowId, setExpandedRowId] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); // State for search input
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const gridRef = useRef(null);
 
-  const handleAdd = (newEntry) => {
+  useEffect(() => {
+    const fetchShows = async () => {
+      setLoading(true);
+      const shows = await fetchAllShowsAPI();
+      const formattedRows = shows.map(show => ({
+        HEADLINER: show.headliner,
+        DAY: show.day,
+        DATE: getDate(show.date),
+        id: show.id,
+      }));
+      setRows(formattedRows);
+      setFilteredRows(formattedRows);
+      setLoading(false);
+    };
+    
+    fetchShows();
+  }, []); 
+
+  const handleAdd = async (newEntry) => {
+    // Check for duplicates
+    const duplicate = rows.find(row => 
+      row.HEADLINER.toLowerCase() === newEntry.HEADLINER.toLowerCase() && row.DATE === newEntry.DATE
+    );
+  
+    if (duplicate) {
+      setError(`${duplicate.HEADLINER} already has a show on ${duplicate.DATE}.`);
+      return { error: true }; // Indicate an error
+    }
+
+    if (!newEntry.DATE) {
+      setError(`Entry requires a date`)
+      return { error: true }
+    }
+
+    if (newEntry.HEADLINER === '') {
+      setError(`Entry requires a headliner`)
+      return { error: true }
+    }
+  
+    const newShow = await createShowAPI(newEntry);
     const newRow = {
-      id: rows.length,
-      ...newEntry,
-      DATE: getDate(newEntry.DATE),
+      id: newShow.id,
+      DATE: newShow.date,
+      DAY: newShow.day,
+      HEADLINER: newShow.headliner
     };
     setRows([...rows, newRow]);
     setFilteredRows([...rows, newRow]);
+    setError(''); // Clear any existing error
+  
+    return { error: false }; // Indicate success
   };
+  
 
   const handleFilter = (filtered) => {
     setFilteredRows(filtered);
   };
 
-  // Function to handle search input
   const handleSearch = (event) => {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
@@ -70,25 +108,15 @@ function DataTable({ superAdmin }) {
   };
 
   const handleCellClick = (params, event) => {
-    
     const cellElement = event.currentTarget;
-    
-    // Check if the clicked cell is already expanded
     const isCurrentlyExpanded = expandedRowId === params.id;
-    
-    // Collapse the currently expanded cell if it's different
     if (expandedRowId >= 0) {
-      console.log('In here');
       setExpandedRowId(null);
     }
-  
-    // Toggle the expanded state of the clicked cell if it has overflowing data
     if (isOverflown(cellElement)) {
       setExpandedRowId(isCurrentlyExpanded ? null : params.id);
     }
   };
-  
-  
 
   const getRowHeight = (params) => {
     return expandedRowId === params.id ? 'auto' : 52;
@@ -130,20 +158,32 @@ function DataTable({ superAdmin }) {
           onCellClick={handleCellClick}
           getRowHeight={getRowHeight}
           className="DataTable"
+          loading={loading} 
+          slotProps={{
+            loadingOverlay: {
+              variant: 'skeleton',
+              noRowsVariant: 'skeleton',
+            },
+          }}
+          initialState={{
+            pinnedColumns: {
+              left: ['desk'],
+            },
+          }}
         />
       </div>
       {superAdmin && 
-          <div className="add-button-container">
-            <DeleteButton
-              selectionModel={selectionModel}
-              rows={rows}
-              setRows={setRows}
-              setSelectionModel={setSelectionModel}
-              setFilteredRows={setFilteredRows} // Pass setFilteredRows as prop
-            />
-            <AddButton onAdd={handleAdd} />          
-          </div>
-        }
+        <div className="add-button-container">
+          <DeleteButton
+            selectionModel={selectionModel}
+            rows={rows}
+            setRows={setRows}
+            setSelectionModel={setSelectionModel}
+            setFilteredRows={setFilteredRows}
+          />
+          <AddButton onAdd={handleAdd} errorMessage={error} /> {/* Pass error message to AddButton */}
+        </div>
+      }
     </div>
   );
 }

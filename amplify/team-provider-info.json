@@ -1,14 +1,14 @@
 {
-  "dev": {
+  "prod": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-doubledoorinn-dev-1d5c8-authRole",
-      "UnauthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-dev-1d5c8-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-dev-1d5c8-authRole",
+      "AuthRoleName": "amplify-doubledoorinn-prod-89a79-authRole",
+      "UnauthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-prod-89a79-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-prod-89a79-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-doubledoorinn-dev-1d5c8-deployment",
-      "UnauthRoleName": "amplify-doubledoorinn-dev-1d5c8-unauthRole",
-      "StackName": "amplify-doubledoorinn-dev-1d5c8",
-      "StackId": "arn:aws:cloudformation:us-east-1:836557714765:stack/amplify-doubledoorinn-dev-1d5c8/d0c2d740-7a7f-11ef-a418-0affce134e5d",
+      "DeploymentBucketName": "amplify-doubledoorinn-prod-89a79-deployment",
+      "UnauthRoleName": "amplify-doubledoorinn-prod-89a79-unauthRole",
+      "StackName": "amplify-doubledoorinn-prod-89a79",
+      "StackId": "arn:aws:cloudformation:us-east-1:836557714765:stack/amplify-doubledoorinn-prod-89a79/a4874220-8717-11ef-a668-120481d6a153",
       "AmplifyAppId": "d1rxx9n6uq0hsn"
     },
     "categories": {

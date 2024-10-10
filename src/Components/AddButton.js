@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Modal, Box, Button, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
-import '../Styles/Buttons.css'; // Updated import
-import '../Styles/Modals.css'; // Import for modal styles
+import '../Styles/Buttons.css'; 
+import '../Styles/Modals.css'; 
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-const AddButton = ({ onAdd }) => {
+const AddButton = ({ onAdd, errorMessage }) => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     DATE: null,
@@ -33,14 +33,21 @@ const AddButton = ({ onAdd }) => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const formattedDate = formData.DATE ? dayjs(formData.DATE).format('MM/DD/YYYY') : null;
     const dayOfWeek = formData.DATE ? dayjs(formData.DATE).format('dddd') : '';
     const newEntry = { ...formData, DATE: formattedDate, DAY: dayOfWeek };
-    onAdd(newEntry);
-    setFormData({ DATE: null, HEADLINER: '', OPENER: '', NOTES: '' });
-    handleClose();
+  
+    // Call onAdd and get the error status
+    const result = await onAdd(newEntry);
+    
+    // Check if there is an error
+    if (!result.error) {
+      setFormData({ DATE: null, HEADLINER: '', OPENER: '', NOTES: '' }); // Reset form data
+      handleClose(); // Close modal only if there is no error
+    }
   };
+  
 
   return (
     <div className="button-container">
@@ -51,6 +58,7 @@ const AddButton = ({ onAdd }) => {
         <Modal open={open} onClose={handleClose}>
           <Box className="modal-box">
             <h2>Add New Entry</h2>
+            {errorMessage && <div style={{ color: 'red', paddingBottom: '10px', paddingTop: '5px'}}>{errorMessage}</div>} {/* Display error message */}
             <DatePicker
               label="Date"
               value={formData.DATE}
