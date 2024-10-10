@@ -11,3 +11,7 @@
     padding: 20px;
     border-radius: 10px;
   }
+
+.modal-box h2 {
+  margin-bottom: 10px;
+}

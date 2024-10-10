@@ -7,7 +7,7 @@ import '../Styles/Modals.css';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-const AddButton = ({ onAdd, errorMessage }) => {
+const AddButton = ({ onAdd, errorMessage, setError }) => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     DATE: null,
@@ -17,7 +17,7 @@ const AddButton = ({ onAdd, errorMessage }) => {
   });
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {setError(''); setOpen(false)};
 
   const handleChange = (e) => {
     setFormData({
@@ -58,7 +58,7 @@ const AddButton = ({ onAdd, errorMessage }) => {
         <Modal open={open} onClose={handleClose}>
           <Box className="modal-box">
             <h2>Add New Entry</h2>
-            {errorMessage && <div style={{ color: 'red', paddingBottom: '10px', paddingTop: '5px'}}>{errorMessage}</div>} {/* Display error message */}
+            {errorMessage && <div style={{ color: 'red', paddingBottom: '10px'}}>{errorMessage}</div>} {/* Display error message */}
             <DatePicker
               label="Date"
               value={formData.DATE}

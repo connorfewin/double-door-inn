@@ -181,7 +181,7 @@ function DataTable({ superAdmin }) {
             setSelectionModel={setSelectionModel}
             setFilteredRows={setFilteredRows}
           />
-          <AddButton onAdd={handleAdd} errorMessage={error} /> {/* Pass error message to AddButton */}
+          <AddButton onAdd={handleAdd} errorMessage={error} setError={setError} /> {/* Pass error message to AddButton */}
         </div>
       }
     </div>
