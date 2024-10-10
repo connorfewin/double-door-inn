@@ -28,7 +28,7 @@ const fetchAllShowsAPI = async () => {
             allShows.push(...fetchedShows);
             nextToken = result.data.listShows.nextToken;
             count++;
-        } while (count < 2 && nextToken);
+        } while (count < 1 && nextToken);
 
         console.log("Successfully fetched all shows", allShows.length);
     } catch (error) {

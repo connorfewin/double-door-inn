@@ -6,7 +6,7 @@ const Image = () => {
     const [isImageVisible, setImageVisible] = useState(false);
     const [mainImageURL, setMainImageURL] = useState(process.env.PUBLIC_URL + '/DoubleDoorInn.jpg');
 
-    // Preload images using document.createElement
+    // Preload images
     useEffect(() => {
         const imagesToPreload = [
             '/GroupPhoto1.JPEG',
@@ -40,7 +40,7 @@ const Image = () => {
     };
 
     return (
-        <div className="ImageContainer">
+        <div className={`ImageContainer ${isOverlayVisible ? 'OverlayVisible' : ''}`}>
             <img
                 src={mainImageURL}
                 alt="Double Door Inn"
