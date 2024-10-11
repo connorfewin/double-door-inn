@@ -4,7 +4,12 @@
     "apiName": "doubledoorinn",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "AWS_IAM"
-    }
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2025-10-10T14:47:34.377Z",
+      "keyDescription": "API Key for shows table"
+    },
+    "additionalAuthTypes": [],
+    "conflictResolution": {}
   }
 }

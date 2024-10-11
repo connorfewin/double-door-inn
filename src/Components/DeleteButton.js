@@ -1,16 +1,35 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
+import { deleteShowAPI } from '../Api/show';
 
 function DeleteButton({ selectionModel, rows, setRows, setSelectionModel, setFilteredRows }) {
   const [open, setOpen] = useState(false);
 
-  const handleDelete = () => {
-    const remainingRows = rows.filter((row) => !selectionModel.includes(row.id));
-    setRows(remainingRows);
-    setFilteredRows(remainingRows); // Ensure filteredRows is updated too
-    setSelectionModel([]);
-    setOpen(false); // Close the modal after deleting
+  const handleDelete = async () => {
+      try {
+          // Filter out the rows that are not in the selection model
+          const remainingRows = rows.filter((row) => !selectionModel.includes(row.id));
+          
+          // Update the rows and filtered rows state
+          setRows(remainingRows);
+          setFilteredRows(remainingRows);
+          
+          // Delete each selected show asynchronously
+          for (const id of selectionModel) {
+              await deleteShowAPI(id);
+          }
+          
+          // Clear the selection model
+          setSelectionModel([]);
+          
+          // Close the modal or confirmation dialog
+          setOpen(false);
+      } catch (error) {
+          console.error("Error deleting shows:", error);
+          // Optionally, show an error message to the user
+      }
   };
+
 
   const handleOpenModal = () => {
     setOpen(true); // Open the modal

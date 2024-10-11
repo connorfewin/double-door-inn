@@ -38,7 +38,7 @@
     left: 0;
     width: 100%;
     height: 99%;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.95);
     color: white;
     display: flex;
     flex-direction: column;
@@ -67,11 +67,13 @@
 }
 
 .Overlay p {
-    font-size: 1.6rem;
-    margin: 0;
+    font-size: 1.7rem;
+    margin: 3px;
     text-align: center;
     color: rgb(255, 255, 255);
-    text-shadow: 0px 0px 4px rgb(0, 0, 0);
+    text-shadow: 0px 0px 10px rgb(0, 0, 0);
+    font-family: 'PT Serif', serif;
+    font-weight: 500;
 }
 
 .ImageRow {
@@ -97,4 +99,40 @@
     transform: scale(1.05); /* Scales the image up on hover */
     box-shadow: 0 0px 25px rgba(255, 255, 255, 0.6);
 }
+
+@media (max-width: 768px) {
+
+    .ImageContainer.OverlayVisible {
+        height: 500px; /* Maintain height when overlay is visible */
+    }
+
+    .ImagePadding {
+        padding-bottom: 10px;
+    }
+
+    .OverlayContainer {
+        padding: 0;
+        padding-top: 15px;
+        overflow-y: scroll; /* Allows scrolling without showing the scrollbar */
+        scrollbar-width: none; /* For Firefox */
+    }
+    .OverlayImage {
+        width: calc(33.33%); /* Adjust width to account for margin */
+        margin: 0;
+        object-fit: cover; /* Ensures images cover their area without distortion */
+        transition: transform 0.3s ease; /* Smooth transition for scaling */
+        border-radius: 10px;
+    }
+
+    .Overlay p {
+        font-size: 1.3rem;
+        margin: 3px;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        text-shadow: 0px 0px 10px rgb(0, 0, 0);
+        font-family: 'PT Serif', serif;
+        font-weight: 500;
+    }
+}
+
 
