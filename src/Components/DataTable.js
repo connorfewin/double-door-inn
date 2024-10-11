@@ -158,7 +158,7 @@ function DataTable({ superAdmin }) {
           slotProps={{
             loadingOverlay: {
               variant: 'skeleton',
-              noShowsVariant: 'skeleton',
+              noRowsVariant: 'skeleton',
             },
           }}
           initialState={{

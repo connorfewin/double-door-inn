@@ -12,14 +12,13 @@ const client = generateClient();
 const fetchAllShowsAPI = async () => {
     const allShows = [];
     let nextToken = null;
-    let count = 0;
     try {
         do {
             const result = await client.graphql({
                 query: listShows,
                 variables: { 
                     filter: null, 
-                    limit: 10, 
+                    limit: 1000, 
                     nextToken: nextToken,
                 }
             });
@@ -27,8 +26,7 @@ const fetchAllShowsAPI = async () => {
             const fetchedShows = result.data.listShows.items;
             allShows.push(...fetchedShows);
             nextToken = result.data.listShows.nextToken;
-            count++;
-        } while (count < 1 && nextToken);
+        } while (nextToken);
 
         console.log("Successfully fetched all shows", allShows.length);
     } catch (error) {
