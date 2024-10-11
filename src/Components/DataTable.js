@@ -8,25 +8,14 @@ import '../Styles/Buttons.css';
 import { createShowAPI, fetchAllShowsAPI } from '../Api/show';
 
 const columns = [
-  { field: 'DATE', headerName: 'Date', width: 120, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
-  { field: 'DAY', headerName: 'Day', width: 100, cellClassName: 'tableCell' },
-  { field: 'HEADLINER', headerName: 'Headliner', flex: 1, cellClassName: 'headlinerCell' },
+  { field: 'date', headerName: 'Date', width: 120, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
+  { field: 'day', headerName: 'Day', width: 100, cellClassName: 'tableCell' },
+  { field: 'headliner', headerName: 'Headliner', flex: 1, cellClassName: 'headlinerCell' },
 ];
 
-function getDate(date) {
-  const newDate = new Date(date);
-  if (isNaN(newDate)) {
-    return '';
-  }
-  const year = newDate.getFullYear();
-  const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
-  const day = newDate.getDate().toString().padStart(2, '0');
-  return `${month}/${day}/${year}`;
-}
-
 function DataTable({ superAdmin }) {
-  const [rows, setRows] = useState([]);
-  const [filteredRows, setFilteredRows] = useState([]);
+  const [shows, setShows] = useState([]);
+  const [filteredShows, setFilteredShows] = useState([]);
   const [selectionModel, setSelectionModel] = useState([]);
   const [expandedRowId, setExpandedRowId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,67 +26,74 @@ function DataTable({ superAdmin }) {
 
   useEffect(() => {
     const fetchShows = async () => {
-      setLoading(true);
-      const shows = await fetchAllShowsAPI();
-      const formattedRows = shows.map(show => ({
-        HEADLINER: show.headliner,
-        DAY: show.day,
-        DATE: getDate(show.date),
-        id: show.id,
-      }));
-      setRows(formattedRows);
-      setFilteredRows(formattedRows);
-      setLoading(false);
+        setLoading(true);
+        
+        // Check if data exists in local storage
+        const cachedShows = localStorage.getItem('shows');
+        
+        if (cachedShows) {
+            // Parse and use the cached data
+            const parsedShows = JSON.parse(cachedShows);
+            setShows(parsedShows);
+            setFilteredShows(parsedShows);
+            setLoading(false);
+            return; // Exit if we are using cached data
+        }
+        // If no cached data, fetch from the API
+        const fetchedShows = await fetchAllShowsAPI();
+        //Store the fetched data in local storage
+        localStorage.setItem('shows', JSON.stringify(fetchedShows));
+        
+        setShows(fetchedShows);
+        setFilteredShows(fetchedShows);
+        setLoading(false);
     };
-    
+
     fetchShows();
-  }, []); 
+  }, []);
 
   const handleAdd = async (newEntry) => {
     // Check for duplicates
-    const duplicate = rows.find(row => 
-      row.HEADLINER.toLowerCase() === newEntry.HEADLINER.toLowerCase() && row.DATE === newEntry.DATE
+    const duplicate = shows.find(row => 
+      row.headliner.toLowerCase() === newEntry.headliner.toLowerCase() && row.date === newEntry.date
     );
   
     if (duplicate) {
-      setError(`${duplicate.HEADLINER} already has a show on ${duplicate.DATE}.`);
+      setError(`${duplicate.headliner} already has a show on ${duplicate.date}.`);
       return { error: true }; // Indicate an error
     }
 
-    if (!newEntry.DATE) {
+    if (!newEntry.date) {
       setError(`Entry requires a date`)
       return { error: true }
     }
 
-    if (newEntry.HEADLINER === '') {
+    if (newEntry.headliner === '') {
       setError(`Entry requires a headliner`)
       return { error: true }
     }
   
     const newShow = await createShowAPI(newEntry);
-    const newRow = {
-      id: newShow.id,
-      DATE: newShow.date,
-      DAY: newShow.day,
-      HEADLINER: newShow.headliner
-    };
-    setRows([...rows, newRow]);
-    setFilteredRows([...rows, newRow]);
+    const updatedShows = [...shows, newShow];
+    setShows(updatedShows);
+    setFilteredShows(updatedShows);
     setError(''); // Clear any existing error
-  
+
+    localStorage.setItem('shows', JSON.stringify(updatedShows));
+    
     return { error: false }; // Indicate success
   };
   
 
   const handleFilter = (filtered) => {
-    setFilteredRows(filtered);
+    setFilteredShows(filtered);
   };
 
   const handleSearch = (event) => {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
-    const filtered = rows.filter(row => row.HEADLINER.toLowerCase().includes(value));
-    setFilteredRows(filtered);
+    const filtered = shows.filter(row => row.headliner.toLowerCase().includes(value));
+    setFilteredShows(filtered);
   };
 
   const isOverflown = (element) => {
@@ -145,11 +141,11 @@ function DataTable({ superAdmin }) {
           onChange={handleSearch}
           className="searchInput"
         />
-        <DateFilter rows={rows} onFilter={handleFilter} />
+        <DateFilter shows={shows} onFilter={handleFilter} />
       </div>
       <div style={{ height: 500, margin: 'auto', overflowX: 'auto' }} ref={gridRef}>
         <DataGrid
-          rows={filteredRows}
+          rows={filteredShows}
           columns={columns}
           checkboxSelection={superAdmin}
           onRowSelectionModelChange={(newSelectionModel) => {
@@ -162,7 +158,7 @@ function DataTable({ superAdmin }) {
           slotProps={{
             loadingOverlay: {
               variant: 'skeleton',
-              noRowsVariant: 'skeleton',
+              noShowsVariant: 'skeleton',
             },
           }}
           initialState={{
@@ -176,10 +172,10 @@ function DataTable({ superAdmin }) {
         <div className="add-button-container">
           <DeleteButton
             selectionModel={selectionModel}
-            rows={rows}
-            setRows={setRows}
+            shows={shows}
+            setShows={setShows}
             setSelectionModel={setSelectionModel}
-            setFilteredRows={setFilteredRows}
+            setFilteredShows={setFilteredShows}
           />
           <AddButton onAdd={handleAdd} errorMessage={error} setError={setError} /> {/* Pass error message to AddButton */}
         </div>

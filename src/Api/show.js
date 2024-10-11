@@ -19,7 +19,7 @@ const fetchAllShowsAPI = async () => {
                 query: listShows,
                 variables: { 
                     filter: null, 
-                    limit: 1000, 
+                    limit: 10, 
                     nextToken: nextToken,
                 }
             });
@@ -52,11 +52,11 @@ function getDayOfWeek(dateString) {
 const createShowAPI = async (showDetails) => {
     try {
         const newShow = {
-            date: showDetails.DATE,
-            day: getDayOfWeek(showDetails.DATE),
-            headliner: showDetails.HEADLINER,
-            opener: showDetails.OPENER,
-            notes: showDetails.NOTES,
+            date: showDetails.date,
+            day: getDayOfWeek(showDetails.date),
+            headliner: showDetails.headliner,
+            opener: showDetails.opener,
+            notes: showDetails.notes,
         }
 
         const result = await client.graphql({

@@ -19,5 +19,26 @@
         "doubledoorinn": {}
       }
     }
+  },
+  "backend": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-doubledoorinn-backend-af090-authRole",
+      "UnauthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-backend-af090-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::836557714765:role/amplify-doubledoorinn-backend-af090-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-doubledoorinn-backend-af090-deployment",
+      "UnauthRoleName": "amplify-doubledoorinn-backend-af090-unauthRole",
+      "StackName": "amplify-doubledoorinn-backend-af090",
+      "StackId": "arn:aws:cloudformation:us-east-1:836557714765:stack/amplify-doubledoorinn-backend-af090/58fabb00-87d7-11ef-b250-12c496181a0d",
+      "AmplifyAppId": "d1rxx9n6uq0hsn"
+    },
+    "categories": {
+      "auth": {
+        "doubledoorinn8a6ed015": {}
+      },
+      "api": {
+        "doubledoorinn": {}
+      }
+    }
   }
 }
