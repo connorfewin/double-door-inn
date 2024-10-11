@@ -22,7 +22,6 @@ const Profile = ({ setSuperAdmin }) => {
         await getCurrentUser();       
         const user = await fetchUserAttributes();
         setSuperAdmin(user["custom:superAdmin"] === "true");
-        console.log(user);
          
         setIsAuthenticated(true);
       } catch (error) {

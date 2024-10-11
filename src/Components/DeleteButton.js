@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import { deleteShowAPI } from '../Api/show';
 
-function DeleteButton({ selectionModel, rows, setRows, setSelectionModel, setFilteredRows }) {
+function DeleteButton({ selectionModel, shows, setShows, setSelectionModel, setFilteredShows }) {
   const [open, setOpen] = useState(false);
 
   const handleDelete = async () => {
       try {
-          // Filter out the rows that are not in the selection model
-          const remainingRows = rows.filter((row) => !selectionModel.includes(row.id));
+          // Filter out the shows that are not in the selection model
+          const remainingShows = shows.filter((row) => !selectionModel.includes(row.id));
           
-          // Update the rows and filtered rows state
-          setRows(remainingRows);
-          setFilteredRows(remainingRows);
+          // Update the shows and filtered shows state
+          setShows(remainingShows);
+          setFilteredShows(remainingShows);
           
           // Delete each selected show asynchronously
           for (const id of selectionModel) {
@@ -57,10 +57,10 @@ function DeleteButton({ selectionModel, rows, setRows, setSelectionModel, setFil
           <DialogContentText>
             Are you sure you want to delete the following entries?
             {selectionModel.map((id) => {
-              const selectedRow = rows.find((row) => row.id === id);
+              const selectedRow = shows.find((row) => row.id === id);
               return (
                 <Typography key={id}>
-                  <strong>Date:</strong> {selectedRow?.DATE}, <strong>Headliner:</strong> {selectedRow?.HEADLINER}
+                  <strong>Date:</strong> {selectedRow?.date}, <strong>Headliner:</strong> {selectedRow?.headliner}
                 </Typography>
               );
             })}
