@@ -1,0 +1,42 @@
+/* Flexbox container for DateFilter and buttons */
+.filter-button-container {
+    display: flex;
+    justify-content: space-between; /* Ensure even spacing */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 0px;
+}
+
+  /* Input styling for search bar */
+.searchInput {
+    width: 300px;
+    font-size: 16px; /* Font size */
+}
+/* Filter button container styling */
+.filter-button-container {
+    display: flex;
+    flex-direction: row; /* Default to row */
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    max-width: 100%; /* Ensure it doesn't exceed the DataTable's width */
+    overflow: hidden; /* Prevent overflow */
+    padding-bottom: 10px;
+}
+
+@media (max-width: 975px) {
+    .searchInput {
+        padding-top: 10px;
+        width: 620px;
+        margin-bottom: 0px; /* Space between the input and date filters */
+      }
+}
+/* Media query for mobile view */
+@media (max-width: 675px) {
+  .searchInput {
+    padding-top: 10px;
+    width: 100% !important;
+    margin-bottom: 0px; /* Space between the input and date filters */
+  }
+  .filter-button-container {
+    padding-bottom: 0px;
+  }
+}

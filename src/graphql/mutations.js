@@ -55,3 +55,45 @@ export const deleteShow = /* GraphQL */ `
     }
   }
 `;
+export const createAdminSettings = /* GraphQL */ `
+  mutation CreateAdminSettings(
+    $input: CreateAdminSettingsInput!
+    $condition: ModelAdminSettingsConditionInput
+  ) {
+    createAdminSettings(input: $input, condition: $condition) {
+      id
+      lastUpdate
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateAdminSettings = /* GraphQL */ `
+  mutation UpdateAdminSettings(
+    $input: UpdateAdminSettingsInput!
+    $condition: ModelAdminSettingsConditionInput
+  ) {
+    updateAdminSettings(input: $input, condition: $condition) {
+      id
+      lastUpdate
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteAdminSettings = /* GraphQL */ `
+  mutation DeleteAdminSettings(
+    $input: DeleteAdminSettingsInput!
+    $condition: ModelAdminSettingsConditionInput
+  ) {
+    deleteAdminSettings(input: $input, condition: $condition) {
+      id
+      lastUpdate
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;

@@ -39,3 +39,33 @@ export const listShows = /* GraphQL */ `
     }
   }
 `;
+export const getAdminSettings = /* GraphQL */ `
+  query GetAdminSettings($id: ID!) {
+    getAdminSettings(id: $id) {
+      id
+      lastUpdate
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listAdminSettings = /* GraphQL */ `
+  query ListAdminSettings(
+    $filter: ModelAdminSettingsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAdminSettings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        lastUpdate
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;

@@ -1,39 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import '../Styles/Filter.css';
 
-const DateFilter = ({ rows, onFilter }) => {
+const Filter = ({ shows, onFilter }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleDateFilter = () => {
-    const filtered = rows.filter((row) => {
-      const rowDate = dayjs(row.DATE, 'MM/DD/YYYY');
+  useEffect(() => {
+    console.log("Start Date: ", startDate);
+    console.log(("End Date: ", endDate));
+    console.log("Search Term: ", searchTerm);
+       
+    const filtered = shows.filter((show) => {
+      const showDate = dayjs(show.date, 'MM/DD/YYYY');
 
       if (startDate && endDate) {
-        return rowDate.isAfter(dayjs(startDate)) && rowDate.isBefore(dayjs(endDate));
+        return showDate.isAfter(dayjs(startDate)) && showDate.isBefore(dayjs(endDate));
       } else if (startDate) {
-        return rowDate.isAfter(dayjs(startDate));
+        return showDate.isAfter(dayjs(startDate));
       } else if (endDate) {
-        return rowDate.isBefore(dayjs(endDate));
+        return showDate.isBefore(dayjs(endDate));
       }
       return true;
     });
 
-    onFilter(filtered);
-  };
+    const finalFiltered = filtered.filter(row => row.headliner.toLowerCase().includes(searchTerm.toLowerCase()));
+    onFilter(finalFiltered);
+  }, [startDate, endDate, searchTerm, onFilter, shows]);
 
   const handleClearFilter = () => {
     setStartDate(null);
     setEndDate(null);
-    onFilter(rows); 
+    setSearchTerm('');
+    onFilter(shows);
+  };
+
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div className="searchInput">
+        <TextField
+            label="Search by Headliner"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            fullWidth
+          />
+      </div>
       <Box display="flex" gap="10px" margin="10px 0">
         <DatePicker
           label="Start Date"
@@ -47,9 +68,6 @@ const DateFilter = ({ rows, onFilter }) => {
           onChange={(newValue) => setEndDate(newValue)}
           renderInput={(params) => <TextField {...params} fullWidth />}
         />
-        <Button variant="contained" onClick={handleDateFilter}>
-          Filter
-        </Button>
         <Button variant="outlined" onClick={handleClearFilter}>
           Clear
         </Button>
@@ -58,4 +76,4 @@ const DateFilter = ({ rows, onFilter }) => {
   );
 };
 
-export default DateFilter;
+export default Filter;

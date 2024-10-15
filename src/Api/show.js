@@ -4,6 +4,7 @@ import config from '../amplifyconfiguration.json';
 
 import { listShows } from '../graphql/queries';
 import { createShow, deleteShow } from '../graphql/mutations'; // Import the mutations
+import { updateAdminSettingsWithTimestamp } from './adminSettings';
 
 Amplify.configure(config);
 
@@ -63,6 +64,9 @@ const createShowAPI = async (showDetails) => {
         });
 
         console.log("Show created successfully:", result.data.createShow);
+        // Update Admin Settings
+        await updateAdminSettingsWithTimestamp();
+
         return result.data.createShow; // Return the created show
     } catch (error) {
         console.log("Error in createShowAPI:", JSON.stringify(error) === '{}' ? error : JSON.stringify(error));
@@ -78,6 +82,9 @@ const deleteShowAPI = async (showId) => {
             variables: { input: { id: showId } }
         });
         console.log("Show deleted successfully:", result.data.deleteShow);
+        // Update Admin Settings
+        await updateAdminSettingsWithTimestamp();
+        
         return result.data.deleteShow; // Return the deleted show
     } catch (error) {
         console.log("Error in deleteShowAPI:", JSON.stringify(error) === '{}' ? error : JSON.stringify(error));

@@ -10,3 +10,8 @@ type Show @model {
   opener: String
   notes: String  
 }
+
+type AdminSettings @model {
+  id: ID!
+  lastUpdate: String
+}

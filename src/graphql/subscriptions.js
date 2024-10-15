@@ -46,3 +46,42 @@ export const onDeleteShow = /* GraphQL */ `
     }
   }
 `;
+export const onCreateAdminSettings = /* GraphQL */ `
+  subscription OnCreateAdminSettings(
+    $filter: ModelSubscriptionAdminSettingsFilterInput
+  ) {
+    onCreateAdminSettings(filter: $filter) {
+      id
+      lastUpdate
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateAdminSettings = /* GraphQL */ `
+  subscription OnUpdateAdminSettings(
+    $filter: ModelSubscriptionAdminSettingsFilterInput
+  ) {
+    onUpdateAdminSettings(filter: $filter) {
+      id
+      lastUpdate
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteAdminSettings = /* GraphQL */ `
+  subscription OnDeleteAdminSettings(
+    $filter: ModelSubscriptionAdminSettingsFilterInput
+  ) {
+    onDeleteAdminSettings(filter: $filter) {
+      id
+      lastUpdate
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
