@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
-import { Dialog, DialogTitle, DialogContent, Link, Button, Snackbar } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, /* Link,*/ Button, Snackbar } from '@mui/material';
 import { signOut, getCurrentUser, fetchUserAttributes } from 'aws-amplify/auth';
 import SignIn from './SignIn';
-import SignUp from './SignUp';
+// import SignUp from './SignUp';
 import '../Styles/Profile.css';
 import '../Styles/Modals.css';
 
 const Profile = ({ setSuperAdmin }) => {
   const [open, setOpen] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
+  // const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,11 +18,11 @@ const Profile = ({ setSuperAdmin }) => {
 
   useEffect(() => {
     const checkUser = async () => {
-      try {        
-        await getCurrentUser();       
+      try {
+        await getCurrentUser();
         const user = await fetchUserAttributes();
         setSuperAdmin(user["custom:superAdmin"] === "true");
-         
+
         setIsAuthenticated(true);
       } catch (error) {
         setIsAuthenticated(false);
@@ -38,14 +38,14 @@ const Profile = ({ setSuperAdmin }) => {
 
   const handleClose = () => {
     setOpen(false);
-    setIsSignUp(false);
+    // setIsSignUp(false); // Commented out
     resetForm();
   };
 
-  const toggleSignUp = () => {
-    setIsSignUp(!isSignUp);
-    resetForm();
-  };
+  // const toggleSignUp = () => { // Commented out
+  //   setIsSignUp(!isSignUp);
+  //   resetForm();
+  // }; 
 
   const resetForm = () => {
     setEmail('');
@@ -81,7 +81,7 @@ const Profile = ({ setSuperAdmin }) => {
       </div>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{isAuthenticated ? 'Profile' : (isSignUp ? 'Sign Up' : 'Sign In')}</DialogTitle>
+        <DialogTitle>{isAuthenticated ? 'Profile' : 'Sign In'}</DialogTitle>
         <DialogContent>
           {isAuthenticated ? (
             <div>
@@ -91,44 +91,15 @@ const Profile = ({ setSuperAdmin }) => {
               </Button>
             </div>
           ) : (
-            <>
-              {isSignUp ? (
-                <SignUp 
-                  email={email} 
-                  setEmail={setEmail} 
-                  password={password} 
-                  setPassword={setPassword} 
-                  handleClose={handleClose} 
-                />
-              ) : (
-                <SignIn 
-                  email={email} 
-                  setEmail={setEmail} 
-                  password={password} 
-                  setPassword={setPassword} 
-                  handleClose={handleClose}
-                  setIsAuthenticated={setIsAuthenticated}
-                  setSuperAdmin={setSuperAdmin}
-                />
-              )}
-              <p style={{marginTop: '10px'}}>
-                {isSignUp ? (
-                  <>
-                    Already have an account?{' '}
-                    <Link component="button" variant="body2" onClick={toggleSignUp}>
-                      Sign In
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    Don't have an account?{' '}
-                    <Link component="button" variant="body2" onClick={toggleSignUp}>
-                      Sign Up
-                    </Link>
-                  </>
-                )}
-              </p>
-            </>
+            <SignIn 
+              email={email} 
+              setEmail={setEmail} 
+              password={password} 
+              setPassword={setPassword} 
+              handleClose={handleClose}
+              setIsAuthenticated={setIsAuthenticated}
+              setSuperAdmin={setSuperAdmin}
+            />
           )}
         </DialogContent>
       </Dialog>

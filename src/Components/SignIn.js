@@ -47,7 +47,7 @@ const SignIn = ({ email, setEmail, password, setPassword, handleClose, setIsAuth
         type="submit"
         variant="contained"
         color="primary"
-        style={{ marginTop: '20px' }}
+        style={{ marginTop: '20px', marginBottom: '10px'}}
         fullWidth
       >
         Sign In
