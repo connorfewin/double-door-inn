@@ -150,7 +150,11 @@ function DataTable({ superAdmin }) {
             pinnedColumns: {
               left: ['desk'],
             },
+            sorting: {
+              sortModel: [{ field: 'date', sort: 'asc' }]
+            }
           }}
+          sortingOrder={['asc', 'desc']}
         />
       </div>
       {superAdmin && 
