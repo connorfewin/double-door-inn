@@ -23,7 +23,6 @@ const createAdminSettingsWithTimestamp = async () => {
                 }
             }
         });
-
         console.log("New Admin Settings created successfully:", result.data.createAdminSettings);
         return result.data.createAdminSettings;
     } catch (error) {

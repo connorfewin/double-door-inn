@@ -27,6 +27,7 @@ const AddButton = ({ onAdd, errorMessage, setError }) => {
   };
 
   const handleDateChange = (newDate) => {
+    console.log("New Date: ", newDate);
     setFormData({
       ...formData,
       date: newDate,

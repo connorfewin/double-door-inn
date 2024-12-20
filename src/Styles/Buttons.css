@@ -24,19 +24,19 @@
 /* Add Button */
 .add-button {
   font-size: 1.5rem !important;
-  background-color: #1976D2 !important;
+  background-color: #244566 !important;
   color: #ffffff !important;
 }
 
 .add-button:hover {
-  background-color: #244566 !important;
+  background-color: #1976D2 !important;
   color: white !important;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Delete Button */
 .delete-button {
-  background-color: #244566 !important;
+  background-color: #500000 !important;
   color: white !important;
 }
 
@@ -48,6 +48,26 @@
 
 /* Disabled Delete Button */
 .delete-button:disabled {
+  background-color: #A9A9A9 !important;
+  color: #ffffff !important;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Edit Button */
+.edit-button {
+  background-color: #244566 !important;
+  color: white !important;
+}
+
+.edit-button:hover {
+  background-color: #1976D2 !important;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Disabled Edit Button */
+.edit-button:disabled {
   background-color: #A9A9A9 !important;
   color: #ffffff !important;
   cursor: not-allowed;
