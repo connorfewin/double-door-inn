@@ -4,10 +4,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
+import { editShowAPI } from "../Api/show";
 
-function EditButton({ selectedRows, shows, setError }) {
+function EditButton({ selectedRows, shows, setShows }) {
     const [open, setOpen] = useState(false);
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
+        id: null,
         date: null,
         headliner: '',
         opener: '',
@@ -15,10 +18,11 @@ function EditButton({ selectedRows, shows, setError }) {
     });
 
     useEffect(() => {
-        if(selectedRows.length === 1) {
+        if (selectedRows.length === 1) {
             const show = shows.find((show) => show.id === selectedRows[0]);
             console.log("Show: ", show);
             const newFormData = {
+                id: show.id,
                 date: dayjs(show.date),
                 headliner: show.headliner,
                 opener: show.opener,
@@ -30,41 +34,57 @@ function EditButton({ selectedRows, shows, setError }) {
 
     const handleChange = (e) => {
         setFormData({
-          ...formData,
-          [e.target.name]: e.target.value,
+            ...formData,
+            [e.target.name]: e.target.value,
         });
-      };
-    
-      const handleDateChange = (newDate) => {
+    };
+
+    const handleDateChange = (newDate) => {
         console.log(newDate)
         setFormData({
-          ...formData,
-          date: newDate,
+            ...formData,
+            date: newDate,
         });
-      };
+    };
 
-        const handleSubmit = async () => {
-          const formattedDate = formData.date ? dayjs(formData.date).format('MM/DD/YYYY') : null;
-          const dayOfWeek = formData.date ? dayjs(formData.date).format('dddd') : '';
-          const newEntry = { ...formData, date: formattedDate, day: dayOfWeek };
-        
-          // Call onAdd and get the error status
-        //   const result = await onAdd(newEntry);
-          
-          // Check if there is an error
-        //   if (!result.error) {
-        //     setFormData({ date: null, headliner: '', opener: '', notes: '' }); // Reset form data
-        //     handleClose(); // Close modal only if there is no error
-        //   }
-          handleClose();
-          console.log("This is the change: ", newEntry);
-        };
+
+    const handleSubmit = async () => {
+        const formattedDate = formData.date ? dayjs(formData.date).format('MM/DD/YYYY') : null;
+        const dayOfWeek = formData.date ? dayjs(formData.date).format('dddd') : '';
+        const newEntry = { ...formData, date: formattedDate, day: dayOfWeek };
+
+        const duplicate = shows.find(row =>
+            row.headliner.toLowerCase() === newEntry.headliner.toLowerCase() && row.date === newEntry.date
+        );
+
+        if (duplicate) {
+            setError(`${duplicate.headliner} already has a show on ${duplicate.date}.`);
+            return;
+        }
+
+        try {
+            const updatedShow = await editShowAPI(newEntry);
+
+            // Update the shows array with the updated show
+            setShows((prevShows) =>
+                prevShows.map((show) =>
+                    show.id === updatedShow.id ? updatedShow : show
+                )
+            );
+
+            handleClose();
+        } catch (e) {
+            // Handle the error here, e.g.:
+            setError('Could not edit show');
+            console.error(e);
+        }
+    };
 
     const handleClick = () => {
         setOpen(true);
     }
 
-    const handleClose = () => {setError(''); setOpen(false)};
+    const handleClose = () => { setError(''); setOpen(false) };
     return (
         <>
             <Button
@@ -81,7 +101,7 @@ function EditButton({ selectedRows, shows, setError }) {
                 <Modal open={open} onClose={handleClose}>
                     <Box className="modal-box">
                         <h2>Edit Entry</h2>
-                        {/* {errorMessage && <div style={{ color: 'red', paddingBottom: '10px' }}>{errorMessage}</div>} Display error message */}
+                        {error && <div style={{ color: 'red', paddingBottom: '10px' }}>{error}</div>}
                         <DatePicker
                             label="Date"
                             value={formData.date}

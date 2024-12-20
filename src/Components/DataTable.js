@@ -165,7 +165,7 @@ function DataTable({ superAdmin }) {
           <EditButton 
             selectedRows={selectionModel}
             shows={shows}
-            setError={setError}
+            setShows={setShows}
           />
           <AddButton onAdd={handleAdd} errorMessage={error} setError={setError} />
         </div>
