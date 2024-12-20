@@ -54,7 +54,7 @@ function EditButton({ selectedRows, shows, setShows }) {
         const newEntry = { ...formData, date: formattedDate, day: dayOfWeek };
 
         const duplicate = shows.find(row =>
-            row.headliner.toLowerCase() === newEntry.headliner.toLowerCase() && row.date === newEntry.date
+            row.id !== newEntry.id && row.headliner.toLowerCase() === newEntry.headliner.toLowerCase() && row.date === newEntry.date
         );
 
         if (duplicate) {
