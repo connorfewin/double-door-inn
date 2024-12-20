@@ -3,7 +3,7 @@ import { generateClient } from 'aws-amplify/api';
 import config from '../amplifyconfiguration.json';
 
 import { listShows } from '../graphql/queries';
-import { createShow, deleteShow } from '../graphql/mutations'; // Import the mutations
+import { createShow, deleteShow, updateShow } from '../graphql/mutations'; // Import the mutations
 import { updateAdminSettingsWithTimestamp } from './adminSettings';
 
 Amplify.configure(config);
@@ -92,4 +92,23 @@ const deleteShowAPI = async (showId) => {
     }
 };
 
-export { fetchAllShowsAPI, createShowAPI, deleteShowAPI };
+// Function to edit a show
+const editShowAPI = async (show) => {
+    try {
+        const result = await client.graphql({
+            query: updateShow,
+            variables: { input: show }
+        });
+
+        console.log("Show updates successfully:", result.data.updateShow);
+        // Update Admin Settings
+        await updateAdminSettingsWithTimestamp();
+
+        return result.data.updateShow; // Return the updated show
+    } catch (error) {
+        console.log("Error in editShowAPI:", JSON.stringify(error) === '{}' ? error : JSON.stringify(error));
+        throw new Error('Could not edit show');
+    }
+};
+
+export { fetchAllShowsAPI, createShowAPI, deleteShowAPI, editShowAPI };

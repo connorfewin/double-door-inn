@@ -11,11 +11,7 @@ const Filter = ({ shows, onFilter }) => {
   const [endDate, setEndDate] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    console.log("Start Date: ", startDate);
-    console.log(("End Date: ", endDate));
-    console.log("Search Term: ", searchTerm);
-       
+  useEffect(() => {       
     const filtered = shows.filter((show) => {
       const showDate = dayjs(show.date, 'MM/DD/YYYY');
 
