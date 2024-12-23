@@ -136,15 +136,17 @@ def upload_data_to_amplify(graphql_endpoint, data, api_key=None):
 
 # Example usage:
 def main():
+    dev_graphql_endpoint = "https://lfe4ysttlre7bloeixh45yzb2m.appsync-api.us-east-1.amazonaws.com/graphql"
     graphql_endpoint = "https://6lb5xx4gmffbpprfyqv7jtp5ra.appsync-api.us-east-1.amazonaws.com/graphql"
+    dev_api_key = "da2-vanfaqg3p5hhhia3rpuhojjxnu"
     api_key = "da2-n3mugkjx6jhelbrpotgca6bzv4"  # Replace with your actual API key if needed
-    json_file_path = os.path.join('src', 'Helpers', 'OriginalData.json')  # Path to the JSON file
+    json_file_path = os.path.join('src', 'Helpers', 'SampleData.json')  # Path to the JSON file
 
     # Read data from the JSON file
     data = read_json_file(json_file_path)
 
     # Upload data to the GraphQL API
-    upload_data_to_amplify(graphql_endpoint, data, api_key)
+    upload_data_to_amplify(dev_graphql_endpoint, data, dev_api_key)
 
 if __name__ == "__main__":
     main()
