@@ -46,7 +46,7 @@ body {
   max-width: 1140px; /* Set max width to viewport width */
   width: 100%;
   margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15); /* Subtle shadow */
   border-radius: 15px;
   overflow-x: hidden; /* Handle horizontal overflow */
   overflow-y: auto; /* Enable scrolling inside the table */
@@ -82,6 +82,15 @@ body {
   max-width: 1140px; /* Maximum width */
   margin: 0 auto; 
   height: auto;
+}
+
+.CommentsContainer {
+  position: relative;
+  width: 100%; /* Take full width */
+  max-width: 1140px; /* Maximum width */
+  margin: 0 auto; 
+  height: auto;
+  padding-bottom: 20px;
 }
 
 
