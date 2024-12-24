@@ -38,6 +38,9 @@
       },
       "api": {
         "doubledoorinn": {}
+      },
+      "storage": {
+        "DoubleDoorInnDevImages": {}
       }
     }
   }

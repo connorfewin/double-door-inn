@@ -1,42 +1,51 @@
 import React, { useState } from 'react';
 import { Modal, Box, TextField, Button } from '@mui/material';
 import { createCommentAPI } from '../Api/comment';
+import ImageDropzone from './ImageDropzone';
 
 function AddCommentModal({ open, onClose }) {
-  // State for form fields
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [author, setAuthor] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false); // Submission state
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    author: '',
+    files: [],
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle form submission
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFilesChange = (files) => {
+    setFormData(prev => ({ ...prev, files }));
+  };
+
   const handleSubmit = async () => {
+    const { title, description, author, files } = formData;
+
     if (!title || !description || !author) {
       console.warn('All fields are required');
       return;
     }
 
-    setIsSubmitting(true); // Start submission state
-
+    setIsSubmitting(true);
     try {
       const commentData = {
         title,
         description,
         author,
+        images: files.map(file => file.file),
       };
-
       const createdComment = await createCommentAPI(commentData);
       console.log('Submitted Comment:', createdComment);
 
-      // Clear form fields after successful submission
-      setTitle('');
-      setDescription('');
-      setAuthor('');
-      onClose(); // Close modal
+      setFormData({ title: '', description: '', author: '', files: [] });
+      onClose();
     } catch (error) {
       console.error('Failed to create comment:', error.message);
     } finally {
-      setIsSubmitting(false); // End submission state
+      setIsSubmitting(false);
     }
   };
 
@@ -48,10 +57,10 @@ function AddCommentModal({ open, onClose }) {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '90%', // Default width for mobile
-          maxWidth: '400px', // Limit max width on larger screens
-          maxHeight: '90vh', // Prevent modal from exceeding viewport height
-          overflowY: 'auto', // Enable scrolling for overflow content
+          width: '90%',
+          maxWidth: '440px',
+          maxHeight: '90vh',
+          overflowY: 'auto',
           bgcolor: 'background.paper',
           boxShadow: 24,
           p: 3,
@@ -61,46 +70,47 @@ function AddCommentModal({ open, onClose }) {
         }}
       >
         <h2 style={{ textAlign: 'center' }}>Add a Comment</h2>
-        
-        {/* Title Field */}
+
         <TextField
           fullWidth
           label="Title"
+          name="title"
           variant="outlined"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formData.title}
+          onChange={handleChange}
           margin="normal"
           disabled={isSubmitting}
         />
-        
-        {/* Description Field */}
+
         <TextField
           fullWidth
           label="Description"
+          name="description"
           variant="outlined"
           multiline
-          rows={5}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          rows={3}
+          value={formData.description}
+          onChange={handleChange}
           margin="normal"
           disabled={isSubmitting}
         />
-        
-        {/* Author Field */}
+
         <TextField
           fullWidth
           label="Author"
+          name="author"
           variant="outlined"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          value={formData.author}
+          onChange={handleChange}
           margin="normal"
           disabled={isSubmitting}
         />
-        
-        {/* Submit Button */}
-        <Button 
-          variant="contained" 
-          color="primary" 
+
+        <ImageDropzone onFilesChange={handleFilesChange} />
+
+        <Button
+          variant="contained"
+          color="primary"
           onClick={handleSubmit}
           sx={{ mt: 2 }}
           disabled={isSubmitting}

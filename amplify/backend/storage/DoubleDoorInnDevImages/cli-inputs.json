@@ -1,0 +1,17 @@
+{
+  "resourceName": "DoubleDoorInnDevImages",
+  "policyUUID": "99c8fa56",
+  "bucketName": "doubledoorinn7682a0acc2b6402995ba7f72d186da81",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
