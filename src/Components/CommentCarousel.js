@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Button } from '@mui/material';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Comment from "./Comment";
+import CommentCard from "./CommentCard";
+import AddCommentModal from "./AddCommentModal";
 import { fetchAllCommentsAPI } from "../Api/comment";
 
 import "../Styles/CommentCarousel.css";
@@ -27,6 +29,7 @@ const responsive = {
 
 function CommentCarousel() {
   const [comments, setComments] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -37,23 +40,34 @@ function CommentCarousel() {
     fetchComments();
   }, []);
 
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
   return (
     <div>
       <Carousel
         responsive={responsive}
         infinite={true}
         keyBoardControl={true}
-        showDots={true}
+        showDots={false}
         draggable
         pauseOnHover
         removeArrowOnDeviceType={["tablet", "mobile"]}
       >
         {comments.map((comment, index) => (
           <div key={index} style={{ padding: "10px" }}>
-            <Comment comment={comment} />
+            <CommentCard comment={comment} />
           </div>
         ))}
       </Carousel>
+      
+      {/* Add Comment Button */}
+      <div className="AddCommentButton">
+        <Button onClick={handleOpenModal}>Add Comment</Button>
+      </div>
+
+      {/* Add Comment Modal */}
+      <AddCommentModal open={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }

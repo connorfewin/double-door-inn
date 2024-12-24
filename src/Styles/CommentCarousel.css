@@ -1,0 +1,18 @@
+.AddCommentButton {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .AddCommentButton button {
+    background-color: #000000; /* Red palette */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-transform: none;
+  }
+  
+  .AddCommentButton button:hover {
+    background-color: #600000;
+  }
+  
