@@ -8,6 +8,7 @@ import '../Styles/Buttons.css';
 import { createShowAPI, fetchAllShowsAPI } from '../Api/show';
 import { fetchAdminSettingsAPI } from '../Api/adminSettings';
 import { useCallback } from 'react';
+import EditButton from './EditButton';
 
 const columns = [
   { field: 'date', headerName: 'Date', width: 120, cellClassName: 'tableCell', sortComparator: (v1, v2) => new Date(v1) - new Date(v2) },
@@ -149,7 +150,11 @@ function DataTable({ superAdmin }) {
             pinnedColumns: {
               left: ['desk'],
             },
+            sorting: {
+              sortModel: [{ field: 'date', sort: 'asc' }]
+            }
           }}
+          sortingOrder={['asc', 'desc']}
         />
       </div>
       {superAdmin && 
@@ -160,6 +165,11 @@ function DataTable({ superAdmin }) {
             setShows={setShows}
             setSelectionModel={setSelectionModel}
             setFilteredShows={setFilteredShows}
+          />
+          <EditButton 
+            selectedRows={selectionModel}
+            shows={shows}
+            setShows={setShows}
           />
           <AddButton onAdd={handleAdd} errorMessage={error} setError={setError} />
         </div>

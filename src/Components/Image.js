@@ -91,8 +91,10 @@ const Image = () => {
                         </p>
                         <br />
                         <p>
-                            However, despite our best efforts, the list is missing about 2,000 nights of music. If you have information that would help us add any missing bands and dates, please reach out to us at info@____. We’d love to hear from you!
-                        </p> 
+                            However, despite our best efforts, the list is missing about 2,000 nights of music. If you have information that would help us add any missing bands and dates, please reach out to us at <strong><u>info@doubeldoormusic.com</u></strong>. We’d love to hear from you!
+                        </p>
+
+
                         <br />
                         <p>Keeping the Memories Alive,</p>
                         <p>- John Hosmer</p>
