@@ -63,7 +63,7 @@ function CommentCarousel() {
       
       {/* Add Comment Button */}
       <div className="AddCommentButton">
-        <Button onClick={handleOpenModal}>Add Comment</Button>
+        <Button onClick={handleOpenModal}>Add New</Button>
       </div>
 
       {/* Add Comment Modal */}

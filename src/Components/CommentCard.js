@@ -15,17 +15,13 @@ function CommentCard({ comment, index }) {
         )}
 
           <h3 className="CommentCardTitle">{comment.title}</h3>
+          <p className="CommentCardAuthor">- {comment.author}</p>
           {/* Conditional Description Styling */}
           <p
-            className={
-              hasImage
-                ? "CommentCardDescriptionWithImage"
-                : "CommentCardDescriptionWithoutImage"
-            }
+            className="CommentCardDescription"
           >
             {comment.descripton}
           </p>
-          <p className="CommentCardAuthor">- {comment.author}</p>
         </div>
     </div>
   );

@@ -1,78 +1,66 @@
 .CommentCardContainer {
-    border-radius: 10px;
-    max-height: 450px; /* Overall card height */
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-  }
+  border-radius: 10px;
+  max-height: 450px; /* Overall card height remains the same */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.CommentCardContent {
+  /* This needs to scroll within the container */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  overflow-y: auto; /* Make content scrollable */
+  -webkit-overflow-scrolling: touch; /* Smoother scrolling on mobile */
   
-  .CommentCardContent {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    gap: 8px;
-  }
-  
-  /* Image Section */
-  .CommentCardImage {
-    width: 100%;
-    max-height: 300px; /* Manually adjustable height */
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .CommentCardImage img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  /* Title Section */
-  .CommentCardTitle {
-    font-size: 1.2em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 40px; /* Manually adjustable height */
-    margin: 0;
-  }
-  
-  /* Description With Image */
-  .CommentCardDescriptionWithImage {
-    font-size: 0.9em;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Adjust number of lines for smaller space */
-    -webkit-box-orient: vertical;
-    max-height: 100px; /* Manually adjustable height */
-  }
-  
-  /* Description Without Image */
-  .CommentCardDescriptionWithoutImage {
-    font-size: 0.9em;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 21; /* Adjust number of lines for larger space */
-    -webkit-box-orient: vertical;
-    max-height: 650px; /* Manually adjustable height */
-  }
-  
-  /* Author Section */
-  .CommentCardAuthor {
-    font-style: italic;
-    font-size: 0.8em;
-    color: #555;
-    margin-top: auto;
-    max-height: 30px; /* Manually adjustable height */
-  }
-  
+  /* Hide the scrollbar (modern browsers) */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ & Edge */
+}
+
+.CommentCardContent::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.CommentCardImage {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CommentCardImage img {
+  width: 100%;
+  object-fit: contain; /* Keep image aspect ratio */
+  border-radius: 8px;
+}
+
+/* Title Section */
+.CommentCardTitle {
+  font-size: 1.2em;
+  margin: 0px;
+}
+
+/* Description With Image */
+.CommentCardDescription {
+  font-size: 0.9em;
+  margin: 0px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Author Section */
+.CommentCardAuthor {
+  font-style: italic;
+  font-size: 0.8em;
+  color: #555;
+  margin-top: auto;
+  margin-bottom: 0px;
+  max-height: 30px;
+}
