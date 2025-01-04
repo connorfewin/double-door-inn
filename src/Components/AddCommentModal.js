@@ -24,7 +24,7 @@ function AddCommentModal({ open, onClose }) {
   const handleSubmit = async () => {
     const { title, description, author, files } = formData;
 
-    if (!title || !description || !author) {
+    if (!title && !description && !author) {
       console.warn('All fields are required');
       return;
     }

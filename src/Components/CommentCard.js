@@ -10,21 +10,16 @@ function CommentCard({ comment, index }) {
         {/* Image Section */}
         {hasImage && (
           <div className="CommentCardImage">
-            <img
-              src={comment.images[0]}
-              alt={`Slide ${index + 1}`}
-            />
+            <img src={comment.images[0]} alt={`Slide ${index + 1}`} />
           </div>
         )}
-        
-        {/* Info Section */}
-        <div className="CommentCardInfo">
+
           <h3 className="CommentCardTitle">{comment.title}</h3>
           {/* Conditional Description Styling */}
-          <p 
+          <p
             className={
-              hasImage 
-                ? "CommentCardDescriptionWithImage" 
+              hasImage
+                ? "CommentCardDescriptionWithImage"
                 : "CommentCardDescriptionWithoutImage"
             }
           >
@@ -32,7 +27,6 @@ function CommentCard({ comment, index }) {
           </p>
           <p className="CommentCardAuthor">- {comment.author}</p>
         </div>
-      </div>
     </div>
   );
 }
