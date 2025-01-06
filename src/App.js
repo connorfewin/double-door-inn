@@ -25,13 +25,13 @@ function App() {
       </div>  
       <div className='ImagePadding'>
         <Image />
-      </div>
-      <div className='CommentsContainer'>
-        <CommentCarousel />
-      </div>    
+      </div>  
       <div className="DataTableContainer">
         <DataTable superAdmin={superAdmin}/>
       </div>
+      <div className='CommentsContainer'>
+        <CommentCarousel />
+      </div>  
       <p className="Footer">Copyright 2024. All rights reserved.</p>
     </div>
   );

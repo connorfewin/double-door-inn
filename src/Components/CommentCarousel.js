@@ -50,9 +50,19 @@ function CommentCarousel() {
         infinite={true}
         keyBoardControl={true}
         showDots={false}
-        draggable
-        pauseOnHover
+        draggable={true}
+        pauseOnHover={true}
+        swipeable={true}
+        autoPlay={false}
+        minimumTouchDrag={80}
+        transitionDuration={500}
         removeArrowOnDeviceType={["tablet", "mobile"]}
+        lazyLoad={true}
+        renderButtonGroupOutside={false}
+        afterChange={(previousSlide, { currentSlide }) => {
+          console.log(`Moved to slide ${currentSlide}`);
+        }}
+        onSwipe={(direction) => console.log(`Swiped ${direction}`)}
       >
         {comments.map((comment, index) => (
           <div key={index} style={{ padding: "10px" }}>
@@ -60,7 +70,8 @@ function CommentCarousel() {
           </div>
         ))}
       </Carousel>
-      
+
+
       {/* Add Comment Button */}
       <div className="AddCommentButton">
         <Button onClick={handleOpenModal}>Add New</Button>
