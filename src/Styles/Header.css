@@ -1,91 +1,135 @@
 /* ===========================
-   Header Styles
-   =========================== */
+   Header Layout
+=========================== */
 
-/* Keep the header fixed like the image */
-.Header {
-    width: 100%;
-}
-  
-/* Header text styles */
 h1, h2 {
-    color: #600000;
-    font-family: 'Bungee', sans-serif;
-    text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9), /* More pronounced shadow */
-                 0px 0px 6px rgb(255, 255, 255); /* Soft glow to enhance contrast */
+  color: #600000;
+  font-family: 'Bungee', sans-serif;
+  text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9), 0px 0px 6px rgb(255, 255, 255);
 }
 
 h1 {
-    font-size: 3rem;
-    font-weight: 700; /* Bold */
-    margin: 0 0 10px 0;
+  padding-top: 50px;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
 }
-  
+
 h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin: 10px 0 0 0;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 10px 0 0 0;
 }
 
-/* Enhance the text-shadow for p elements as well */
 .Header p {
-    color: #000000;
-    font-family: 'Bungee', sans-serif;
-    text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9), /* More pronounced shadow */
-                 0px 0px 6px rgb(255, 255, 255); /* Soft glow to enhance contrast */
+  color: #000000;
+  font-family: 'Bungee', sans-serif;
+  text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9), 0px 0px 6px rgb(255, 255, 255);
 }
 
-/* ===========================
-   Flexbox for Icons and Text
-   =========================== */
-  
-/* Flexbox layout for the icons and text */
+.Header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Top Row: Tabs, Icons, Profile */
+.HeaderTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+/* Tabs on the Left */
+.HeaderTabs {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Icons in the Middle */
 .HeaderIcons {
-    display: flex; /* Aligns icons and text horizontally */
-    justify-content: center; /* Centers the entire row */
-    align-items: center; /* Vertically centers the icons and text */
-    gap: 10px; /* Adds space between the icons and text */
-    color: #000000;
-    padding-top: 10px;
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-.HeaderIcons p {
-    margin: 0; /* Removes default paragraph margins */
-    padding: 0;
+/* Profile Icon on the Right */
+.HeaderProfile {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-/* Add shadow behind icons */
-.HeaderIcons svg {
-    filter: drop-shadow(0px 0px 3px rgb(255, 255, 255)); /* Stronger shadow behind the icons */
+/* Bottom Row (Mobile View) */
+.HeaderBottomRow {
+  display: none; /* Hidden by default */
+  flex-direction: row; /* Ensure side-by-side layout */
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
 }
 
-/* Media query for mobile view */
+/* Adjust Tabs and Profile in Bottom Row */
+.HeaderBottomRow .HeaderTabs {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.HeaderBottomRow .HeaderProfile {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Media Query for Smaller Screens */
 @media (max-width: 768px) {
-    /* Adjust h1 for mobile */
-    h1 {
-        font-size: 2rem; /* Reduce size for mobile */
-        padding-top: 0px; /* Adjust padding for mobile */
-    }
+  h1 {
+    font-size: 2rem;
+    padding: 20px 1px 0px;
+  }
 
-    /* Adjust h2 for mobile */
-    h2 {
-        font-size: 1.5rem; /* Reduce size for mobile */
-        margin: 5px 0 0 0; /* Adjust margin for mobile */
-    }
+  h2 {
+    font-size: 1.5rem;
+    padding: 5px 0 0 0;
+  }
 
-    /* Adjust the gap and size for icons and text */
-    .HeaderIcons {
-        gap: 5px; /* Reduces the gap between icons and text in mobile view */
-    }
+  .HeaderIcons {
+    gap: 5px;
+  }
 
-    .HeaderIcons p {
-        font-size: 14px; /* Adjust text size for mobile if needed */
-    }
+  .HeaderIcons p {
+    font-size: 14px;
+  }
 
-    .HeaderIcons svg {
-        width: 20px; /* Adjust icon size for mobile */
-        height: 20px;
-    }
+  .HeaderTopRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Hide only Tabs and Profile from the Top Row */
+  .HeaderTopRow .HeaderTabs,
+  .HeaderTopRow .HeaderProfile {
+    display: none;
+  }
+
+  /* Show Bottom Row */
+  .HeaderBottomRow {
+    margin-top: 0px;
+    display: flex;
+  }
 }
-
-

@@ -2,15 +2,6 @@
     padding: 20px 0 15px;
 }
 
-.ImageContainer {
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    max-width: 1140px;
-    text-align: center;
-    border-radius: 15px; /* Match the image's border radius */
-}
-
 .HeaderImage {
     width: 100%;
     max-height: 0; /* Start collapsed */
@@ -69,7 +60,7 @@
 .Overlay p {
     font-size: 1.7rem;
     margin: 3px;
-    text-align: center;
+    text-align: left;
     color: rgb(255, 255, 255);
     text-shadow: 0px 0px 10px rgb(0, 0, 0);
     font-family: 'PT Serif', serif;
@@ -127,7 +118,7 @@
     .Overlay p {
         font-size: 1.3rem;
         margin: 3px;
-        text-align: center;
+        text-align: left;
         color: rgb(255, 255, 255);
         text-shadow: 0px 0px 10px rgb(0, 0, 0);
         font-family: 'PT Serif', serif;

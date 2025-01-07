@@ -73,18 +73,7 @@ function AddCommentModal({ open, onClose }) {
 
         <TextField
           fullWidth
-          label="Title"
-          name="title"
-          variant="outlined"
-          value={formData.title}
-          onChange={handleChange}
-          margin="normal"
-          disabled={isSubmitting}
-        />
-
-        <TextField
-          fullWidth
-          label="Description"
+          label="Type Comment Here"
           name="description"
           variant="outlined"
           multiline
