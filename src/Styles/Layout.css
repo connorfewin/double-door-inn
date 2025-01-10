@@ -45,24 +45,4 @@ body {
   position: relative; /* Part of the normal flow */
 }
 
-.HeaderContainer {
-  text-align: center; /* Centers the text inside the Header */
-  display: flex;
-  justify-content: center; /* Ensures the text itself is centered inside the container */
-  max-width: 1140px;
-  width: 100%;
-  margin: 0 auto; /* Centers the container horizontally */
-  border-radius: 15px;
-}
-
-
-.CommentsContainer {
-  position: relative;
-  width: 100%; /* Take full width */
-  max-width: 1140px; /* Maximum width */
-  margin: 0 auto; 
-  height: auto;
-  padding-bottom: 20px;
-}
-
 

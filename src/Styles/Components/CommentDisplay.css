@@ -1,0 +1,65 @@
+.CommentDisplay {
+   background: white;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+   padding: 10px;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   text-align: left;
+   position: relative;
+   overflow: hidden;
+}
+
+.ScrollableContent {
+   display: flex;
+   padding: 10px;
+}
+
+/* Vertical => image goes on the right => so flex-direction: row */
+.VerticalLayout {
+   flex-direction: row;
+}
+
+/* Horizontal => image is on top => so flex-direction: column */
+.HorizontalLayout {
+   flex-direction: column;
+}
+
+.CommentImage {
+   display: block;
+   border-radius: 8px;
+   height: auto;
+   object-fit: contain;
+}
+
+/* layout-specific overrides */
+.ImageTop {
+   max-height: 50vh;
+   margin-bottom: 10px;
+}
+
+.ImageRight {
+   width: 34%;
+   margin-left: 10px;
+}
+
+.TextContent {
+   flex: 1;
+   padding: 10px;
+}
+
+.CommentDisplayAuthor {
+   font-style: italic;
+   font-size: 1em;
+   font-weight: bold;
+   color: #555;
+}
+
+.CommentDisplayDescription {
+   font-size: 1.3em;
+   white-space: pre-wrap;
+   word-wrap: break-word;
+   margin-top: 0px;
+   margin-bottom: 0px;
+}

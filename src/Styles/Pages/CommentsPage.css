@@ -2,12 +2,62 @@
    Comments Page Styles
 =========================== */
 
+/* General Layout */
 .CommentsContainer {
-    position: relative;
-    width: 100%;
-    max-width: 1140px;
-    margin: 0 auto;
-    height: auto;
-    padding-bottom: 20px;
-  }
-  
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+   max-width: 1140px;
+   margin: 0 auto;
+   height: 65vh;
+   /* Adjust this height as needed */
+}
+
+.CommentDisplayContainer {
+   flex: 1 1 70%;
+   max-width: 70%;
+   display: flex;
+   justify-content: flex-start;
+   /* Align content to the top */
+   align-items: flex-start;
+   /* Align content to the top */
+   /* Padding between the card and the container */
+   box-sizing: border-box;
+   /* Ensures padding is included in dimensions */
+   height: 100%;
+   /* Fills the height of CommentsContainer */
+   padding-top: 5px;
+   padding-left: 10px;
+}
+
+.CommentsCarouselContainer {
+   flex: 1 1 30%;
+   max-width: 30%;
+   overflow-y: auto;
+   height: 100%;
+   /* Fills the height of CommentsContainer */
+   scrollbar-width: none;
+   /* Firefox-specific */
+   -ms-overflow-style: none;
+   /* Internet Explorer 10+ */
+}
+
+/* Scrollbar Styles (Hidden) */
+.CommentsCarouselContainer::-webkit-scrollbar {
+   display: none;
+   /* Chrome, Edge, Safari */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+   .CommentDisplayContainer {
+      display: none;
+      /* Hide comment display on small screens */
+   }
+
+   .CommentsCarouselContainer {
+      flex: 1 1 100%;
+      /* Make carousel take full width */
+      max-width: 100%;
+   }
+}
