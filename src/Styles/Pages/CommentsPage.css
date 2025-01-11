@@ -1,63 +1,67 @@
-/* ===========================
-   Comments Page Styles
-=========================== */
-
 /* General Layout */
 .CommentsContainer {
    display: flex;
-   flex-wrap: wrap;
    width: 100%;
    max-width: 1140px;
    margin: 0 auto;
    height: 65vh;
    /* Adjust this height as needed */
-}
-
-.CommentDisplayContainer {
+ }
+ 
+ .CommentDisplayContainer {
    flex: 1 1 70%;
    max-width: 70%;
    display: flex;
    justify-content: flex-start;
-   /* Align content to the top */
    align-items: flex-start;
-   /* Align content to the top */
-   /* Padding between the card and the container */
    box-sizing: border-box;
-   /* Ensures padding is included in dimensions */
    height: 100%;
-   /* Fills the height of CommentsContainer */
    padding-top: 5px;
    padding-left: 10px;
-}
-
-.CommentsCarouselContainer {
+ }
+ 
+ .CommentsCarouselContainer {
    flex: 1 1 30%;
    max-width: 30%;
-   overflow-y: auto;
+   display: flex;
+   flex-direction: column;
    height: 100%;
-   /* Fills the height of CommentsContainer */
-   scrollbar-width: none;
-   /* Firefox-specific */
-   -ms-overflow-style: none;
-   /* Internet Explorer 10+ */
-}
-
-/* Scrollbar Styles (Hidden) */
-.CommentsCarouselContainer::-webkit-scrollbar {
-   display: none;
-   /* Chrome, Edge, Safari */
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
+ }
+ 
+ .CarouselFooter {
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-top: 1px solid #ccc;
+ }
+ 
+ .CarouselButton {
+   padding: 10px 20px;
+   font-size: 14px;
+   cursor: pointer;
+ }
+ 
+ .CommentsCarouselContainer > .Scrollbars {
+   flex: 1;
+   overflow-y: auto;
+   scrollbar-width: none; /* Firefox-specific */
+   -ms-overflow-style: none; /* Internet Explorer 10+ */
+ }
+ 
+ .CommentsCarouselContainer::-webkit-scrollbar {
+   display: none; /* Chrome, Edge, Safari */
+ }
+ 
+ /* Responsive Styles */
+ @media (max-width: 768px) {
    .CommentDisplayContainer {
-      display: none;
-      /* Hide comment display on small screens */
+     display: none; /* Hide comment display on small screens */
    }
-
+ 
    .CommentsCarouselContainer {
-      flex: 1 1 100%;
-      /* Make carousel take full width */
-      max-width: 100%;
+     flex: 1 1 100%;
+     max-width: 100%;
    }
-}
+ }
+ 

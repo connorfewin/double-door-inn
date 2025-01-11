@@ -4,6 +4,7 @@ import CommentDisplay from '../Components/CommentDisplay';
 import { fetchAllCommentsAPI } from "../Api/comment";
 import '../Styles/Pages/CommentsPage.css';
 import Scrollbars from 'react-custom-scrollbars-2';
+import AddComment from '../Components/AddComment';
 
 function CommentsPage() {
   const [comments, setComments] = useState([]);
@@ -29,11 +30,12 @@ function CommentsPage() {
   return (
     <div className="CommentsContainer">
       <div className="CommentsCarouselContainer">
-        <Scrollbars
-          style={{ height: '100%' }}
-        >
+        <Scrollbars style={{ height: 'calc(100% - 50px)' }}>
           <CommentCarousel comments={comments} onCommentSelect={handleCommentSelect} />
         </Scrollbars>
+        <div className="AddCommentContainer">
+          <AddComment />
+        </div>
       </div>
       {selectedComment && (
         <div className="CommentDisplayContainer">
@@ -45,3 +47,4 @@ function CommentsPage() {
 }
 
 export default CommentsPage;
+

@@ -38,6 +38,11 @@ body {
    Data Table Styles
    =========================== */
 
+.AddCommentContainer {
+  text-align: center;
+  position: relative; /* Part of the normal flow */
+}
+
 .Footer {
   padding: 20px 0 10px 0; /* Padding for top and bottom */
   color: #000000;

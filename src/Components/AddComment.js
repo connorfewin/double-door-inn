@@ -1,14 +1,21 @@
-import React from "react";
+import { Button } from "@aws-amplify/ui-react";
+import React, { useState } from "react";
+import AddCommentModal from "./AddCommentModal";
+import '../Styles/Components/AddComment.css';
 
 export default function AddComment() {
-    return (
-        <div>
-            <div className="AddCommentButton">
-                <Button onClick={() => { console.log("Hello World") }}>Add New</Button>
-            </div>
+    const [isOpen, setIsOpen] = useState(false);
 
+    const handleOpen = () => setIsOpen(true);
+    const handleClose = () => setIsOpen(false);
+
+    return (
+        <div className="add-comment-container">
+            <Button className="add-comment-button" onClick={handleOpen}>
+                Add New Comment
+            </Button>
             {/* Add Comment Modal */}
-            <AddCommentModal open={false} onClose={() => { console.log("Hello World"); }} />
+            <AddCommentModal open={isOpen} onClose={handleClose} />
         </div>
     );
 }
