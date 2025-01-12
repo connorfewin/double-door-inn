@@ -11,7 +11,7 @@ function CommentDisplay({ comment }) {
       img.src = comment.images[0];
       img.onload = () => {
         // If width >= height, treat it as 'horizontal'
-        setIsHorizontal(img.width >= img.height);
+        setIsHorizontal(img.width > img.height);
       };
     }
   }, [comment]);
