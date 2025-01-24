@@ -1,13 +1,19 @@
 import React from "react";
+import '../Styles/Components/CommentThumbnail.css';
 
-function CommentThumbnail({ comment }) {
+function CommentThumbnail({ comment, onCommentSelect }) {
+
   return (
-    <div className="CommentThumbnailContainer">
+    <div
+      key={comment.id}
+      className="CommentThumbnailContainer"
+      onClick={() => onCommentSelect(comment)}
+    >
       <div className="CommentText">
         {comment.author && (
-          <p className="CommentCarouselAuthor">-{comment.author}</p>
+          <p className="CommentAuthor">-{comment.author}</p>
         )}
-        <p className="CommentDescripton">{comment.descripton}</p>
+        <p className="CommentDescription">{comment.descripton}</p>
       </div>
       {comment.images?.length > 0 && (
         <img

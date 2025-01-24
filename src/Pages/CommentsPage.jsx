@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import CommentCarousel from '../Components/CommentCarousel';
 import CommentDisplay from '../Components/CommentDisplay';
-import { fetchAllVerifiedCommentsAPI } from "../Api/comment";
-import '../Styles/Pages/CommentsPage.css';
+import { fetchAllVerifiedCommentsAPI } from '../Api/comment';
 import Scrollbars from 'react-custom-scrollbars-2';
 import AddComment from '../Components/AddComment';
+
+// Import the new modal component
+import CommentModal from '../Components/CommentModal';
+
+import '../Styles/Pages/CommentsPage.css';
 
 function CommentsPage() {
   const [comments, setComments] = useState([]);
   const [selectedComment, setSelectedComment] = useState(null);
 
-  // Fetch comments and set the first comment as selected when the component mounts
+  // Modal control
+  const [showModal, setShowModal] = useState(false);
+
+  // Track if viewport is mobile
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  // Fetch comments
   useEffect(() => {
     const fetchComments = async () => {
       const fetchedComments = await fetchAllVerifiedCommentsAPI();
-      setComments(fetchedComments); // Store fetched comments in state
+      setComments(fetchedComments);
       if (fetchedComments.length > 0) {
         setSelectedComment(fetchedComments[0]);
       }
@@ -23,28 +33,58 @@ function CommentsPage() {
     fetchComments();
   }, []);
 
+  // Listen for window resize to toggle mobile/desktop state
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleCommentSelect = (comment) => {
     setSelectedComment(comment);
+    if (isMobile) {
+      // Open the modal on mobile
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
     <div className="CommentsContainer">
+      {/* Left Column: Carousel + AddComment */}
       <div className="CommentsCarouselContainer">
         <Scrollbars style={{ height: 'calc(100% - 50px)' }}>
-          <CommentCarousel comments={comments} onCommentSelect={handleCommentSelect} />
+          <CommentCarousel
+            comments={comments}
+            onCommentSelect={handleCommentSelect}
+            selectedComment={selectedComment}
+          />
         </Scrollbars>
         <div className="AddCommentContainer">
           <AddComment />
         </div>
       </div>
-      {selectedComment && (
+
+      {/* Right Column: Only show on desktop */}
+      {!isMobile && selectedComment && (
         <div className="CommentDisplayContainer">
           <CommentDisplay comment={selectedComment} />
         </div>
       )}
+
+      {/* The modal that appears on mobile */}
+      <CommentModal
+        isOpen={showModal}
+        onClose={closeModal}
+        comment={selectedComment}
+      />
     </div>
   );
 }
 
 export default CommentsPage;
-
