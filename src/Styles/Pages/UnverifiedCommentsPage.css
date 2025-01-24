@@ -1,7 +1,6 @@
 .CommentActions {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two columns of equal width */
-    gap: 0.75rem;                  /* Slight space between buttons */
     border-top: 1px solid #600000;
     padding: 10px 0px 0px;
     width: 100%;                   /* Take full available width */
@@ -14,8 +13,9 @@
     font-size: 1.2rem;             /* Increased font size */
     border-radius: 4px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    width: 100%;                   /* Fill the grid column's width */
+    width: 90%;                   /* Fill the grid column's width */
     text-align: center;            /* Center text on the button */
+    margin: auto;
 }
 
 /* Hover effect for all buttons */
