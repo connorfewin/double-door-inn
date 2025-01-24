@@ -8,6 +8,7 @@ export const getComment = /* GraphQL */ `
       title
       descripton
       author
+      verified
       images
       createdAt
       updatedAt
@@ -27,6 +28,7 @@ export const listComments = /* GraphQL */ `
         title
         descripton
         author
+        verified
         images
         createdAt
         updatedAt

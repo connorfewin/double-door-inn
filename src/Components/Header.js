@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Tabs, Tab } from '@mui/material';
+import { Tabs, Tab, Stack } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
 import Profile from '../Components/Profile';
+import VerifyComments from './VerifyComments';
 import '../Styles/Header.css';
 
-function Header({ setSuperAdmin }) {
+function Header({ superAdmin, setSuperAdmin }) {
   const location = useLocation();
 
   // Determine active tab based on current pathname
@@ -33,9 +34,12 @@ function Header({ setSuperAdmin }) {
           <p>1973-2017</p>
         </div>
 
-        {/* Profile Icon on the Right */}
+        {/* Profile and VerifyComments in a Stack on the Right */}
         <div className="HeaderProfile">
-          <Profile setSuperAdmin={setSuperAdmin}/>
+          <Stack spacing={2} direction="row" sx={{ color: 'action.active', alignItems: 'center' }}>
+            {superAdmin && <VerifyComments />}
+            <Profile setSuperAdmin={setSuperAdmin} />
+          </Stack>
         </div>
       </div>
 
@@ -48,7 +52,10 @@ function Header({ setSuperAdmin }) {
           </Tabs>
         </div>
         <div className="HeaderProfile">
-          <Profile setSuperAdmin={setSuperAdmin}/>
+          <Stack spacing={2} direction="row" sx={{ color: 'action.active', alignItems: 'center' }}>
+            {superAdmin && <VerifyComments />}
+            <Profile setSuperAdmin={setSuperAdmin} />
+          </Stack>
         </div>
       </div>
     </div>

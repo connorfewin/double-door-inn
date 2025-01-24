@@ -1,0 +1,71 @@
+.ImageCarousel {
+    position: relative;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent overflow during transitions */
+  }
+  
+  .CarouselImageWrapper {
+    display: flex; /* Arrange images horizontally */
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
+  }
+  
+  .CarouselDisplayImage {
+    flex-shrink: 0; /* Prevent images from shrinking */
+    width: 100%; /* Each image takes full width */
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  
+  .CarouselButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .CarouselButtonLeft {
+    left: 10px;
+  }
+  
+  .CarouselButtonRight {
+    right: 10px;
+  }
+  
+  .CarouselButton:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .ImageCarousel {
+      height: 60%; /* Adjust height for smaller screens */
+    }
+  
+    .CarouselButton {
+      width: 30px;
+      height: 30px; /* Smaller buttons for mobile */
+    }
+  
+    .CarouselDisplayImage {
+      height: auto; /* Adjust height to fit content */
+      max-width: 90%;
+    }
+  }
+  

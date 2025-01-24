@@ -9,57 +9,70 @@
    position: relative;
    overflow: hidden;
    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-.ScrollableContent {
-   display: flex;
-   padding: 10px;
-}
-
-/* Vertical => image goes on the right => so flex-direction: row */
-.VerticalLayout {
-   flex-direction: row;
-}
-
-/* Horizontal => image is on top => so flex-direction: column */
-.HorizontalLayout {
-   flex-direction: column;
-}
-
-.CommentImage {
+ }
+ 
+ .CommentDisplayImage {
    display: block;
-   border-radius: 8px;
-   height: auto;
+   margin: auto;
+   max-width: 100%;
+   height: 75%;
    object-fit: contain;
-}
-
-/* layout-specific overrides */
-.ImageTop {
-   max-height: 50vh;
    margin-bottom: 10px;
-}
-
-.ImageRight {
-   width: 34%;
-   margin-left: 10px;
-}
-
-.TextContent {
-   flex: 1;
-   padding: 10px;
-}
-
-.CommentDisplayAuthor {
+   border-radius: 10px;
+ }
+ 
+ .CommentDisplayAuthor {
    font-style: italic;
    font-size: 1em;
    font-weight: bold;
    color: #555;
-}
-
-.CommentDisplayDescription {
+ }
+ 
+ .CommentDisplayDescription {
    font-size: 1.3em;
    white-space: pre-wrap;
    word-wrap: break-word;
    margin-top: 0px;
    margin-bottom: 0px;
-}
+ }
+ 
+ .CommentActions {
+   display: flex;
+   gap: 1rem;              /* Increased spacing between buttons */
+   border-top: 1px solid #600000; /* Stronger separation */
+   padding: 10px 0px 0px;
+   justify-content: center;
+ }
+ 
+ .CommentButton {
+   padding: 0.75rem 2rem;  /* Larger padding for bigger buttons */
+   border: none;
+   cursor: pointer;
+   font-size: 1.2rem;      /* Increased font size */
+   border-radius: 4px;
+   transition: background-color 0.3s ease, transform 0.3s ease;
+ }
+ 
+ /* Hover effect for all buttons */
+ .CommentButton:hover {
+   transform: scale(1.05); /* Slightly enlarge on hover */
+ }
+ 
+ .VerifyButton {
+   background-color: #28a745;
+   color: #fff;
+ }
+ 
+ .VerifyButton:hover {
+   background-color: #218838; /* Slightly darker green on hover */
+ }
+ 
+ .DeleteButton {
+   background-color: #dc3545;
+   color: #fff;
+ }
+ 
+ .DeleteButton:hover {
+   background-color: #c82333; /* Slightly darker red on hover */
+ }
+ 

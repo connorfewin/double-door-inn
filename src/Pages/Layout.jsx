@@ -3,12 +3,12 @@ import { Outlet } from 'react-router-dom';
 import '../Styles/Layout.css';
 import Header from '../Components/Header';
 
-function Layout({ setSuperAdmin }) {
+function Layout({ superAdmin, setSuperAdmin }) {
   return (
     <div className="AppContainer">
       {/* Header always stays fixed at the top */}
       <div className="HeaderContainer">
-        <Header setSuperAdmin={setSuperAdmin}/>
+        <Header superAdmin={superAdmin} setSuperAdmin={setSuperAdmin}/>
       </div>
 
       {/* Main content container for dynamic routes */}

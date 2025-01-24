@@ -8,6 +8,7 @@ import CommentsPage from './Pages/CommentsPage';
 import Layout from './Pages/Layout';
 
 import './Styles/global.css'
+import UnverifiedCommentsPage from './Pages/UnverifiedCommentsPage';
 
 Amplify.configure(awsExports);
 
@@ -18,7 +19,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Layout wraps all routes */}
-        <Route element={<Layout setSuperAdmin={setSuperAdmin} />}>
+        <Route element={<Layout superAdmin={superAdmin} setSuperAdmin={setSuperAdmin} />}>
           <Route 
             path="/" 
             element={<Home superAdmin={superAdmin} />} 
@@ -26,6 +27,10 @@ function App() {
           <Route 
             path="/comments" 
             element={<CommentsPage />} 
+          />
+          <Route 
+            path="/verify-comments"
+            element={<UnverifiedCommentsPage />}
           />
         </Route>
       </Routes>

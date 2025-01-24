@@ -11,6 +11,7 @@ export const createComment = /* GraphQL */ `
       title
       descripton
       author
+      verified
       images
       createdAt
       updatedAt
@@ -28,6 +29,7 @@ export const updateComment = /* GraphQL */ `
       title
       descripton
       author
+      verified
       images
       createdAt
       updatedAt
@@ -45,6 +47,7 @@ export const deleteComment = /* GraphQL */ `
       title
       descripton
       author
+      verified
       images
       createdAt
       updatedAt
