@@ -13,33 +13,89 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
-}
-
-/* ==============================================
-     Modal Content
+  }
+  
+  /* ==============================================
+     Modal Content (Non-scrollable wrapper)
   ============================================== */
-.modal-content {
+  .modal-content {
+    position: relative; /* Needed for the close button's absolute positioning */
     background: #fff;
     width: 95vw;
-    /* Takes up 75% of viewport width */
-    max-height: 75vh;
-    /* Takes up at most 75% of viewport height */
-    position: relative;
+    max-width: 800px;  /* (Optional) limit max width on large screens */
     border-radius: 8px;
-    overflow-y: scroll;
-    /* So contents won't overflow the corners */
-    display: flex;
-    flex-direction: column;
-    /* Stack image and text */
-}
-
-/* ==============================================
-     Close Button
+    padding: 0px 0px 5px 0px;
+    /* No scrolling here; the body inside will scroll instead. */
+  }
+  
+  /* ==============================================
+     Scrollable Body
   ============================================== */
-.modal-close-button {
+  .modal-body {
+    max-height: 75vh;   /* Takes up at most 75% of viewport height */
+    overflow-y: auto;   /* This container scrolls if content is tall */
+    padding: 10px;      /* Overall padding */
+    box-sizing: border-box;
+  }
+  
+  /* ==============================================
+     Image Container
+  ============================================== */
+  .modal-image-container {
+    width: 100%;
+    height: auto;               /* Fixed container height (adjust if needed) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Make the image fit entirely without cropping. */
+  .modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+    background-color: #f1f1f1;  /* Slight grey behind images, optional */
+  }
+  
+  /* ==============================================
+     Carousel Dots Position
+  ============================================== */
+  .my-carousel .control-dots {
+    background-color: #3333338f;
+    margin: 0px;
+    border-radius: 5px;
+  }
+  
+  .my-carousel .control-dots .dot {
+    background: #000000;
+    opacity: 0.8;
+    box-shadow: none;
+  }
+  
+  .my-carousel .control-dots .dot.selected {
+    background: #ffffff;
+    opacity: 1;
+  }
+
+  .my-carousel .slide {
+    margin: auto; /* Adjust the 10px value to control the gap size */
+  }
+  
+  /* ==============================================
+     Text Content
+  ============================================== */
+  .modal-text-container {
+    padding: 5px 0;
+  }
+  
+  /* ==============================================
+     Close Button (Stays bottom-right of the modal)
+  ============================================== */
+  .modal-close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: 5px;
+    right: 5px;
     border: none;
     background-color: transparent;
     font-size: 26px;
@@ -47,26 +103,6 @@
     border-radius: 5px;
     color: #fff7e9;
     background-color: hsla(0, 0%, 0%, 0.623);
-}
-
-.modal-image-container {
-    padding: 10px;
-    /* Add padding around the image */
-    display: flex;
-    /* Center the image if needed */
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 5px;
-}
-
-.modal-text-container {
-    padding: 10px;
-    flex: 1;
-    /* Allow text section to grow and scroll if necessary */
-}
+    padding: 4px 8px; 
+  }
+  

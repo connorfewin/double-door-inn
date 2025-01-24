@@ -19,7 +19,11 @@ function ImageCarousel({ commentImages }) {
       <button className="CarouselButton CarouselButtonLeft" onClick={handlePrev}>
         &#9664;
       </button>
-      <div className="CarouselImageWrapper" style={{ transform: `translateX(-${index * 100}%)` }}>
+
+      <div
+        className="CarouselImageWrapper"
+        style={{ transform: `translateX(-${index * 100}%)` }}
+      >
         {commentImages.map((image, i) => (
           <img
             key={i}
@@ -29,6 +33,7 @@ function ImageCarousel({ commentImages }) {
           />
         ))}
       </div>
+
       <button className="CarouselButton CarouselButtonRight" onClick={handleNext}>
         &#9654;
       </button>
