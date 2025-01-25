@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CommentThumbnail from './CommentThumbnail';
-import '../Styles/Components/CommentCarousel.css';
+import '../../Styles/Components/CommentCarousel.css';
 
 function CommentCarousel({ comments, onCommentSelect, selectedComment }) {
   return (

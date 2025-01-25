@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Badge, IconButton } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
-import { fetchAllUnverifiedCommentsAPI } from '../Api/comment';
-import '../Styles/Pages/CommentsPage.css';
+import { fetchAllUnverifiedCommentsAPI } from '../../Api/comment';
+import '../../Styles/Pages/CommentsPage.css';
 import { Link } from 'react-router-dom';
 
 const VerifyComments = () => {

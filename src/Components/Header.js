@@ -4,7 +4,7 @@ import { Tabs, Tab, Stack } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
 import Profile from '../Components/Profile';
-import VerifyComments from './VerifyComments';
+import VerifyComments from './Comments/VerifyComments';
 import '../Styles/Header.css';
 
 function Header({ superAdmin, setSuperAdmin }) {

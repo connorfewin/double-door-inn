@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import CommentCarousel from '../Components/CommentCarousel';
-import CommentDisplay from '../Components/CommentDisplay';
+import CommentCarousel from '../Components/Comments/CommentCarousel';
+import CommentDisplay from '../Components/Comments/CommentDisplay';
 import { fetchAllVerifiedCommentsAPI } from '../Api/comment';
 import Scrollbars from 'react-custom-scrollbars-2';
-import AddComment from '../Components/AddComment';
-
-// Import the new modal component
-import CommentModal from '../Components/CommentModal';
+import AddComment from '../Components/Comments/AddComment';
 
 import '../Styles/Pages/CommentsPage.css';
+import CommentModal from '../Components/Comments/CommentModal';
 
 function CommentsPage() {
   const [comments, setComments] = useState([]);

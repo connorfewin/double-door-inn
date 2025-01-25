@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Box, TextField, Button } from '@mui/material';
-import { createCommentAPI } from '../Api/comment';
-import ImageDropzone from './ImageDropzone';
+import { createCommentAPI } from '../../Api/comment';
+import ImageDropzone from '../ImageDropzone';
 
 function AddCommentModal({ open, onClose }) {
   const [formData, setFormData] = useState({

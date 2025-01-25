@@ -1,55 +1,57 @@
-
 .CommentThumbnailContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    border-radius: 8px;
-    height: 10vh;
-    padding: 10px;
-    cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-    
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
-  }
-  
-  .CommentThumbnailContainer:hover {
-    border-color: #600000;
-    transform: scale(1.02);
-  }
-  
-  .CommentText {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    overflow: hidden;
-  }
-  
-  .CommentAuthor {
-    font-style: italic;
-    font-size: 1em;
-    font-weight: bold;
-    color: #555;
-    margin: 0;
-  }
-  
-  .CommentDescription {
-    font-size: 0.9em;
-    color: #333;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limit to 3 lines */
-    -webkit-box-orient: vertical;
-    margin: 0;
-  }
-  
-  .CommentThumbnailImage {
-    height: 100%; /* Matches the container's height */
-    width: auto; /* Ensures aspect ratio is maintained */
-    object-fit: cover;
-    border-radius: 5px;
-    margin-left: 10px;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 8px;
+  height: 10vh;
+  padding: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid transparent; /* Default border */
+}
+
+.CommentThumbnailContainer.Selected {
+  border-color: #600000; 
+  transform: scale(1.02);
+}
+
+.CommentThumbnailContainer:hover {
+  transform: scale(1.02);
+}
+
+.CommentText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.CommentAuthor {
+  font-style: italic;
+  font-size: 1em;
+  font-weight: bold;
+  color: #555;
+  margin: 0;
+}
+
+.CommentDescription {
+  font-size: 0.9em;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  margin: 0;
+}
+
+.CommentThumbnailImage {
+  height: 100%; /* Matches the container's height */
+  width: auto; /* Ensures aspect ratio is maintained */
+  object-fit: cover;
+  border-radius: 5px;
+  margin-left: 10px;
+}
