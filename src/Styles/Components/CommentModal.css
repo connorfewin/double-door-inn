@@ -49,14 +49,14 @@
     align-items: center;
   }
   
-  /* Make the image fit entirely without cropping. */
   .modal-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the container if needed, but may crop */
     border-radius: 5px;
-    background-color: #f1f1f1;  /* Slight grey behind images, optional */
+    background-color: #f1f1f1; /* Slight grey behind images, optional */
   }
+  
   
   /* ==============================================
      Carousel Dots Position

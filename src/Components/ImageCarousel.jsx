@@ -28,7 +28,7 @@ function ImageCarousel({ commentImages }) {
           <img
             key={i}
             src={image}
-            alt={`Comment Image ${i + 1}`}
+            alt={`Comment ${i + 1}`}
             className="CarouselDisplayImage"
           />
         ))}

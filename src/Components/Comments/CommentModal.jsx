@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
-import '../Styles/Components/CommentModal.css';
+import '../../Styles/Components/CommentModal.css';
 
 function CommentModal({ isOpen, onClose, comment }) {
   if (!isOpen || !comment) return null;
@@ -40,7 +40,7 @@ function CommentModal({ isOpen, onClose, comment }) {
                   <div key={idx}>
                     <img
                       src={imgUrl}
-                      alt={`Comment image ${idx}`}
+                      alt={`Comment ${idx}`}
                       className="modal-image"
                     />
                   </div>

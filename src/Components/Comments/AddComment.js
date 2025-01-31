@@ -1,7 +1,7 @@
 import { Button } from "@aws-amplify/ui-react";
 import React, { useState } from "react";
 import AddCommentModal from "./AddCommentModal";
-import '../Styles/Components/AddComment.css';
+import '../../Styles/Components/AddComment.css';
 
 export default function AddComment() {
     const [isOpen, setIsOpen] = useState(false);

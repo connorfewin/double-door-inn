@@ -1,12 +1,11 @@
 import React from "react";
-import '../Styles/Components/CommentThumbnail.css';
+import '../../Styles/Components/CommentThumbnail.css';
 
-function CommentThumbnail({ comment, onCommentSelect }) {
-
+function CommentThumbnail({ comment, onCommentSelect, isSelected }) {
   return (
     <div
       key={comment.id}
-      className="CommentThumbnailContainer"
+      className={`CommentThumbnailContainer ${isSelected ? "Selected" : ""}`}
       onClick={() => onCommentSelect(comment)}
     >
       <div className="CommentText">

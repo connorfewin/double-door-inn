@@ -1,7 +1,7 @@
 import React from "react";
 import Scrollbars from "react-custom-scrollbars-2";
-import "../Styles/Components/CommentDisplay.css";
-import ImageCarousel from "./ImageCarousel";
+import "../../Styles/Components/CommentDisplay.css";
+import ImageCarousel from "../ImageCarousel";
 
 function CommentDisplay({ comment }) {
 
