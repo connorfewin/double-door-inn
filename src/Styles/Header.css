@@ -1,33 +1,42 @@
-/* ===========================
-   Header Layout
-=========================== */
+/************************************
+  Typography Styles
+*************************************/
 
-h1, h2 {
+.headerTitle,
+.headerSubtitle {
   color: #600000;
   font-family: 'Bungee', sans-serif;
-  text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9), 0px 0px 6px rgb(255, 255, 255);
+  text-shadow:
+    3px 3px 6px rgba(255, 255, 255, 0.9),
+    0px 0px 6px rgb(255, 255, 255);
 }
 
-h1 {
+.headerTitle {
   padding-top: 50px;
   font-size: 3rem;
   font-weight: 700;
   margin: 0;
 }
 
-h2 {
+.headerSubtitle {
   font-size: 2rem;
   font-weight: 600;
   margin: 10px 0 0 0;
 }
 
-.Header p {
-  color: #000000;
+.headerContainer p {
+  color: #000;
   font-family: 'Bungee', sans-serif;
-  text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9), 0px 0px 6px rgb(255, 255, 255);
+  text-shadow:
+    3px 3px 6px rgba(255, 255, 255, 0.9),
+    0px 0px 6px rgb(255, 255, 255);
 }
 
-.Header {
+/************************************
+  Main Container
+*************************************/
+
+.headerContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -35,101 +44,82 @@ h2 {
   text-align: center;
 }
 
-/* Top Row: Tabs, Icons, Profile */
-.HeaderTopRow {
+/************************************
+  Top Bar
+*************************************/
+
+.topBar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
-  gap: 10px;
 }
 
-/* Tabs on the Left */
-.HeaderTabs {
+/* Left: Drawer Button */
+.drawerButtonWrapper {
   flex: 1;
   display: flex;
   justify-content: flex-start;
 }
 
-/* Icons in the Middle */
-.HeaderIcons {
-  flex: 3;
+/* Center: Location & Date Icons */
+.centerIcons {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
-/* Profile Icon on the Right */
-.HeaderProfile {
+.centerIcons p {
+  white-space: nowrap;
+  margin: 0;
+}
+
+
+/* Right: Profile / Verify Button */
+.profileArea {
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-/* Bottom Row (Mobile View) */
-.HeaderBottomRow {
-  display: none; /* Hidden by default */
-  flex-direction: row; /* Ensure side-by-side layout */
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  text-align: center;
-  width: 100%;
-}
+/************************************
+  Responsive (Mobile) Layout
+*************************************/
 
-/* Adjust Tabs and Profile in Bottom Row */
-.HeaderBottomRow .HeaderTabs {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.HeaderBottomRow .HeaderProfile {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* Media Query for Smaller Screens */
 @media (max-width: 768px) {
-  h1 {
+  .headerTitle {
     font-size: 2rem;
-    padding: 20px 1px 0px;
+    padding: 20px 1px 0;
   }
 
-  h2 {
+  .headerSubtitle {
     font-size: 1.5rem;
     padding: 5px 0 0 0;
   }
 
-  .HeaderIcons {
+  .centerIcons {
     gap: 5px;
   }
-
-  .HeaderIcons p {
+  .centerIcons p {
     font-size: 14px;
   }
 
-  .HeaderTopRow {
+  .topBar {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
-  /* Hide only Tabs and Profile from the Top Row */
-  .HeaderTopRow .HeaderTabs,
-  .HeaderTopRow .HeaderProfile {
+  /* Example: Hide the drawer button and profile
+     for small screens if you want them moved around. */
+  /*
+  .topBar .drawerButtonWrapper,
+  .topBar .profileArea {
     display: none;
   }
-
-  /* Show Bottom Row */
-  .HeaderBottomRow {
-    margin-top: 0px;
-    display: flex;
-  }
+  */
 }

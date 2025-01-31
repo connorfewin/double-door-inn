@@ -1,63 +1,105 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Tabs, Tab, Stack } from '@mui/material';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+} from '@mui/material';
+
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import CommentIcon from '@mui/icons-material/Comment';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
+
 import Profile from '../Components/Profile';
 import VerifyComments from './VerifyComments';
 import '../Styles/Header.css';
 
 function Header({ superAdmin, setSuperAdmin }) {
-  const location = useLocation();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  // Determine active tab based on current pathname
-  const tabValue = location.pathname === '/comments' ? 1 : 0;
-  
+  const handleDrawerOpen = () => setDrawerOpen(true);
+  const handleDrawerClose = () => setDrawerOpen(false);
+
   return (
-    <div className="Header">
-      <h1>The Double Door Inn</h1>
-      <h2>Celebrating 43 Years of Live Music</h2>
-      <div className="HeaderTopRow">
-        {/* Tabs on the Left */}
-        <div className="HeaderTabs">
-          <Tabs value={tabValue} variant="standard">
-            <Tab label="Home" component={Link} to="/" />
-            <Tab label="Comments" component={Link} to="/comments" />
-          </Tabs>
+    <div className="headerContainer">
+      <h1 className="headerTitle">The Double Door Inn</h1>
+      <h2 className="headerSubtitle">Celebrating 43 Years of Live Music</h2>
+
+      {/* Top Bar with Drawer, Icons, and Profile */}
+      <div className="topBar">
+        {/* Left: Drawer (Hamburger) Button */}
+        <div className="drawerButtonWrapper">
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
         </div>
 
-        {/* Icons in the Middle */}
-        <div className="HeaderIcons">
+        {/* Center: Location & Date */}
+        <div className="centerIcons">
           <LocationOnIcon />
           <p>Charlotte, North Carolina</p>
           <CalendarMonthTwoToneIcon />
           <p>1973-2017</p>
         </div>
 
-        {/* Profile and VerifyComments in a Stack on the Right */}
-        <div className="HeaderProfile">
-          <Stack spacing={2} direction="row" sx={{ color: 'action.active', alignItems: 'center' }}>
+        {/* Right: Profile / Verify Comments */}
+        <div className="profileArea">
+          <Stack
+            spacing={2}
+            direction="row"
+            sx={{ color: 'action.active', alignItems: 'center' }}
+          >
             {superAdmin && <VerifyComments />}
             <Profile setSuperAdmin={setSuperAdmin} />
           </Stack>
         </div>
       </div>
 
-      {/* Responsive Row for Smaller Screens */}
-      <div className="HeaderBottomRow">
-        <div className="HeaderTabs">
-          <Tabs value={tabValue} variant="standard">
-            <Tab label="Home" component={Link} to="/" />
-            <Tab label="Comments" component={Link} to="/comments" />
-          </Tabs>
-        </div>
-        <div className="HeaderProfile">
-          <Stack spacing={2} direction="row" sx={{ color: 'action.active', alignItems: 'center' }}>
-            {superAdmin && <VerifyComments />}
-            <Profile setSuperAdmin={setSuperAdmin} />
-          </Stack>
-        </div>
-      </div>
+      {/* Drawer for Navigation */}
+      <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
+        <List sx={{ width: 250 }} onClick={handleDrawerClose}>
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/">
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/comments">
+              <ListItemIcon>
+                <CommentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Comments" />
+            </ListItemButton>
+          </ListItem>
+
+          {superAdmin && (
+            <ListItem disablePadding>
+              <ListItemButton component={Link} to="/verify-comments">
+                <ListItemIcon>
+                  <CommentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Verify Comments" />
+              </ListItemButton>
+            </ListItem>
+          )}
+        </List>
+      </Drawer>
     </div>
   );
 }
