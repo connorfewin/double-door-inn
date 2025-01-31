@@ -1,5 +1,5 @@
 .CommentDisplay {
-   background: white;
+   background: var(--color-surface);
    border-radius: 10px;
    padding: 10px;
    width: 100%;

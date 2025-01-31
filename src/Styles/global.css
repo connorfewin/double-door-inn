@@ -1,3 +1,13 @@
+/* ==========================
+   Global CSS Variables
+========================== */
+:root {
+  /* Primary Palette */
+  --color-primary: #600000;
+  --color-surface: yellow;
+  --color-background: #fff7e9;
+}
+
 /* ===========================
    General Reset and Body Styles
 =========================== */
@@ -10,7 +20,7 @@ html, body {
   
   body {
     font-family: 'Roboto', sans-serif;
-    background: #fff7e9;
+    background: var(--color-background);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
