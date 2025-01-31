@@ -54,6 +54,7 @@
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
+  /* Desktop: Left (drawer), Center (icons), Right (profile) */
 }
 
 /* Left: Drawer Button */
@@ -61,6 +62,7 @@
   flex: 1;
   display: flex;
   justify-content: flex-start;
+  padding-left: 10px;
 }
 
 /* Center: Location & Date Icons */
@@ -77,7 +79,6 @@
   margin: 0;
 }
 
-
 /* Right: Profile / Verify Button */
 .profileArea {
   flex: 1;
@@ -89,8 +90,7 @@
 /************************************
   Responsive (Mobile) Layout
 *************************************/
-
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .headerTitle {
     font-size: 2rem;
     padding: 20px 1px 0;
@@ -101,25 +101,34 @@
     padding: 5px 0 0 0;
   }
 
+  /* Let the topBar wrap to new lines */
+  .topBar {
+    flex-wrap: wrap;
+    justify-content: center; /* centers content horizontally */
+  }
+
+  /* Center Icons: Take up full width on the first row */
   .centerIcons {
+    order: 1;
+    width: 100%;
     gap: 5px;
   }
   .centerIcons p {
     font-size: 14px;
   }
 
-  .topBar {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  /* Drawer + Profile side by side on next row */
+  .drawerButtonWrapper {
+    order: 2;
+    width: 50%;
+    display: flex;
+    justify-content: left;
   }
 
-  /* Example: Hide the drawer button and profile
-     for small screens if you want them moved around. */
-  /*
-  .topBar .drawerButtonWrapper,
-  .topBar .profileArea {
-    display: none;
+  .profileArea {
+    order: 2;
+    width: 50%;
+    display: flex;
+    justify-content: right;
   }
-  */
 }
