@@ -13,6 +13,7 @@ import {
 
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
 import CommentIcon from '@mui/icons-material/Comment';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
@@ -70,12 +71,21 @@ function Header({ superAdmin, setSuperAdmin }) {
       {/* Drawer for Navigation */}
       <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
         <List sx={{ width: 250 }} onClick={handleDrawerClose}>
-          <ListItem disablePadding>
+        <ListItem disablePadding>
             <ListItemButton component={Link} to="/">
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/about-us">
+              <ListItemIcon>
+                <InfoIcon />
+              </ListItemIcon>
+              <ListItemText primary="About Us" />
             </ListItemButton>
           </ListItem>
 

@@ -2,7 +2,7 @@
 .CommentsContainer {
    display: flex;
    width: 100%;
-   max-width: 1140px;
+   max-width:  var(--size-max-width);
    margin: 0 auto;
    height: 65vh;
    /* Adjust this height as needed */

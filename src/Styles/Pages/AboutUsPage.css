@@ -1,0 +1,74 @@
+.AboutUsContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px 0px;
+    background-color: var(--color-background);
+}
+
+.AboutUsContent {
+    max-width: var(--size-max-width);
+    text-align: left;
+}
+.AboutUsContent p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* General Section Styling */
+.AboutUsSection {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+/* Reverse layout for alternating sections */
+.Reverse {
+    flex-direction: row-reverse;
+}
+
+/* Text block styling */
+.TextBlock {
+    flex: 1;
+}
+
+/* Image Styling */
+.AboutUsImage {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Signature Styling */
+.Signature {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Ensure proper alignment of images */
+.RightImage {
+    order: 2;
+}
+
+.LeftImage {
+    order: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .AboutUsSection {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .AboutUsImage {
+        max-width: 100%;
+    }
+}

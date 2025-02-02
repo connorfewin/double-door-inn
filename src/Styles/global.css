@@ -4,8 +4,9 @@
 :root {
   /* Primary Palette */
   --color-primary: #600000;
-  --color-surface: yellow;
+  --color-surface: #fff;
   --color-background: #fff7e9;
+  --size-max-width: 1140px;
 }
 
 /* ===========================

@@ -4,7 +4,7 @@
 .ImageContainer {
   position: relative;
   width: 100%; /* Take full width */
-  max-width: 1140px; /* Maximum width */
+  max-width:  var(--size-max-width); /* Maximum width */
   margin: 0 auto; 
   height: auto;
   padding:5px 0px;
@@ -13,7 +13,7 @@
 .DataTableContainer {
   position: relative;
   padding: 10px 20px 20px 20px;
-  max-width: 1140px;
+  max-width:  var(--size-max-width);
   width: 100%;
   margin: 0 auto;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
