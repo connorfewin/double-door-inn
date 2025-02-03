@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Divider,
   Drawer,
   IconButton,
   List,
@@ -69,29 +70,37 @@ function Header({ superAdmin, setSuperAdmin }) {
       </div>
 
       {/* Drawer for Navigation */}
-      <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
-        <List sx={{ width: 250 }} onClick={handleDrawerClose}>
-        <ListItem disablePadding>
-            <ListItemButton component={Link} to="/">
-              <ListItemIcon>
+      {/* Drawer for Navigation */}
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={handleDrawerClose}
+        sx={{
+          '& .MuiDrawer-paper': { backgroundColor: '#1e1e1e', color: 'white', width: 300, padding: 0 }
+        }}
+      >
+        <List sx={{ width: '100%' }} onClick={handleDrawerClose}>
+          <ListItem sx={{ padding: 1 }}>
+            <ListItemButton sx={{ borderRadius: "8px", '&:hover': { backgroundColor: '#333' } }} component={Link} to="/">
+              <ListItemIcon sx={{ color: 'white' }}>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
-            <ListItemButton component={Link} to="/about-us">
-              <ListItemIcon>
+          <ListItem sx={{ padding: 1 }}>
+            <ListItemButton sx={{ borderRadius: "8px", '&:hover': { backgroundColor: '#333' } }} component={Link} to="/about-us">
+              <ListItemIcon sx={{ color: 'white' }}>
                 <InfoIcon />
               </ListItemIcon>
               <ListItemText primary="About Us" />
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
-            <ListItemButton component={Link} to="/comments">
-              <ListItemIcon>
+          <ListItem  sx={{ padding: 1 }}>
+            <ListItemButton sx={{ borderRadius: "8px", '&:hover': { backgroundColor: '#333' } }} component={Link} to="/comments">
+              <ListItemIcon sx={{ color: 'white' }}>
                 <CommentIcon />
               </ListItemIcon>
               <ListItemText primary="Comments" />
@@ -99,17 +108,21 @@ function Header({ superAdmin, setSuperAdmin }) {
           </ListItem>
 
           {superAdmin && (
-            <ListItem disablePadding>
-              <ListItemButton component={Link} to="/verify-comments">
-                <ListItemIcon>
-                  <CommentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Verify Comments" />
-              </ListItemButton>
-            </ListItem>
+            <>
+              <Divider sx={{ backgroundColor: 'gray', my: 1 }} />
+              <ListItem sx={{ padding: 1 }}>
+                <ListItemButton sx={{ borderRadius: "8px", '&:hover': { backgroundColor: '#333' } }} component={Link} to="/verify-comments">
+                  <ListItemIcon sx={{ color: 'white' }}>
+                    <CommentIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Verify Comments" />
+                </ListItemButton>
+              </ListItem>
+            </>
           )}
         </List>
       </Drawer>
+
     </div>
   );
 }

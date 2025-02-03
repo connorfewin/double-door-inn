@@ -4,7 +4,7 @@
 :root {
   /* Primary Palette */
   --color-primary: #600000;
-  --color-surface: #fff;
+  --color-surface: #fffdfb;
   --color-background: #fff7e9;
   --size-max-width: 1140px;
 }
