@@ -1,41 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import CommentCarousel from '../Components/Comments/CommentCarousel';
 import CommentDisplay from '../Components/Comments/CommentDisplay';
-import { fetchAllVerifiedCommentsAPI } from '../Api/comment';
+import { CommentsContext } from '../Contexts/CommentsContext';
 import Scrollbars from 'react-custom-scrollbars-2';
 import AddComment from '../Components/Comments/AddComment';
-
-import '../Styles/Pages/CommentsPage.css';
 import CommentModal from '../Components/Comments/CommentModal';
 
+import '../Styles/Pages/CommentsPage.css';
+
 function CommentsPage() {
-  const [comments, setComments] = useState([]);
+  const { comments, isLoading } = useContext(CommentsContext);
   const [selectedComment, setSelectedComment] = useState(null);
-
-  // Modal control
   const [showModal, setShowModal] = useState(false);
-
-  // Track if viewport is mobile
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  // Fetch comments
   useEffect(() => {
-    const fetchComments = async () => {
-      const fetchedComments = await fetchAllVerifiedCommentsAPI();
-      setComments(fetchedComments);
-      if (fetchedComments.length > 0) {
-        setSelectedComment(fetchedComments[0]);
-      }
-    };
+    if (comments.length > 0) {
+      setSelectedComment(comments[0]);
+    }
+  }, [comments]);
 
-    fetchComments();
-  }, []);
-
-  // Listen for window resize to toggle mobile/desktop state
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -43,18 +29,14 @@ function CommentsPage() {
   const handleCommentSelect = (comment) => {
     setSelectedComment(comment);
     if (isMobile) {
-      // Open the modal on mobile
       setShowModal(true);
     }
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  if (isLoading) return <p>Loading comments...</p>;
 
   return (
     <div className="CommentsContainer">
-      {/* Left Column: Carousel + AddComment */}
       <div className="CommentsCarouselContainer">
         <Scrollbars style={{ height: 'calc(100% - 50px)' }}>
           <CommentCarousel
@@ -68,19 +50,13 @@ function CommentsPage() {
         </div>
       </div>
 
-      {/* Right Column: Only show on desktop */}
       {!isMobile && selectedComment && (
         <div className="CommentDisplayContainer">
           <CommentDisplay comment={selectedComment} />
         </div>
       )}
 
-      {/* The modal that appears on mobile */}
-      <CommentModal
-        isOpen={showModal}
-        onClose={closeModal}
-        comment={selectedComment}
-      />
+      <CommentModal isOpen={showModal} onClose={() => setShowModal(false)} comment={selectedComment} />
     </div>
   );
 }

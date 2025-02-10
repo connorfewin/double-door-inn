@@ -11,6 +11,7 @@ Amplify.configure(config);
 const client = generateClient();
 
 const fetchAllVerifiedCommentsAPI = async () => {
+    console.log("Fetch all verified comments")
     const allComments = [];
     let nextToken = null;
     try {

@@ -6,10 +6,11 @@ import awsExports from './aws-exports';
 import Home from './Pages/Home';
 import CommentsPage from './Pages/CommentsPage';
 import Layout from './Pages/Layout';
-
-import './Styles/global.css'
 import UnverifiedCommentsPage from './Pages/UnverifiedCommentsPage';
 import AboutUs from './Pages/AboutUs';
+
+import './Styles/global.css';
+import { CommentsProvider } from './Contexts/CommentsContext';
 
 Amplify.configure(awsExports);
 
@@ -17,29 +18,30 @@ function App() {
   const [superAdmin, setSuperAdmin] = useState(false);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Layout wraps all routes */}
-        <Route element={<Layout superAdmin={superAdmin} setSuperAdmin={setSuperAdmin} />}>
-          <Route
-            path="/"
-            element={<Home superAdmin={superAdmin} />}
-          />
-          <Route
-            path="/about-us"
-            element={<AboutUs />}
-          />
-          <Route
-            path="/comments"
-            element={<CommentsPage />}
-          />
-          <Route
-            path="/verify-comments"
-            element={<UnverifiedCommentsPage />}
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <CommentsProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout superAdmin={superAdmin} setSuperAdmin={setSuperAdmin} />}>
+            <Route
+              path="/"
+              element={<Home superAdmin={superAdmin} />}
+            />
+            <Route
+              path="/about-us"
+              element={<AboutUs />}
+            />
+            <Route
+              path="/comments"
+              element={<CommentsPage />}
+            />
+            <Route
+              path="/verify-comments"
+              element={<UnverifiedCommentsPage />}
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CommentsProvider>
   );
 }
 
