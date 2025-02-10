@@ -52,6 +52,18 @@
  .CommentsCarouselContainer::-webkit-scrollbar {
    display: none; /* Chrome, Edge, Safari */
  }
+
+ .LoadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; /* Full-page height */
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
  
  /* Responsive Styles */
  @media (max-width: 768px) {

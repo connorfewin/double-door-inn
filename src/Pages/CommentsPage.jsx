@@ -5,7 +5,7 @@ import { CommentsContext } from '../Contexts/CommentsContext';
 import Scrollbars from 'react-custom-scrollbars-2';
 import AddComment from '../Components/Comments/AddComment';
 import CommentModal from '../Components/Comments/CommentModal';
-
+import { CircularProgress } from '@mui/material';
 import '../Styles/Pages/CommentsPage.css';
 
 function CommentsPage() {
@@ -33,7 +33,14 @@ function CommentsPage() {
     }
   };
 
-  if (isLoading) return <p>Loading comments...</p>;
+  if (isLoading) {
+    return (
+      <div className="LoadingContainer">
+        <CircularProgress size={50} color="primary" />
+        <p>Loading comments...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="CommentsContainer">
