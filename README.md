@@ -4,7 +4,7 @@ https://doubledoormusic.com/
 This searchable list of over 10,500 nights of music in the Queen City is dedicated to Nick Karres and all the people who breathed life into the Double Door Inn day after day and night after night.
 
 ### 📸 A Look Back
-<img src="https://github.com/user-attachments/assets/9aec29c9-53d8-43df-9323-adca0564a7c5" width="500" style="border-radius: 5px;"> <img src="https://github.com/user-attachments/assets/263a9b27-190c-4a3d-b416-a005375c46e2" width="500" style="border-radius: 5px;">
+<img src="https://github.com/user-attachments/assets/9aec29c9-53d8-43df-9323-adca0564a7c5" width="200" > <img src="https://github.com/user-attachments/assets/263a9b27-190c-4a3d-b416-a005375c46e2" width="200" >
 
 This list was compiled from Nick’s boxes of monthly music calendars with intermittent help from The Charlotte Observer Archives when Nick was missing a calendar. 
 
