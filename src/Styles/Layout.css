@@ -11,7 +11,7 @@ html, body {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: #ffffff;
+  background: #fff7e9;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -31,7 +31,6 @@ body {
   min-height: 100vh; /* Full viewport height */
   display: flex;
   flex-direction: column; /* Keeps footer at the bottom */
-  justify-content: space-between; /* Space between content and footer */
 }
 
 
@@ -39,23 +38,9 @@ body {
    Data Table Styles
    =========================== */
 
-/* Sticky DataTable container */
-.DataTableContainer {
-  position: relative;
-  padding: 10px 20px 20px 20px; /* Adjust padding to prevent overflow */
-  max-width: 1140px; /* Set max width to viewport width */
-  width: 100%;
-  margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-  border-radius: 15px;
-  overflow-x: hidden; /* Handle horizontal overflow */
-  overflow-y: auto; /* Enable scrolling inside the table */
-  box-sizing: border-box; /* Ensure padding is included in width calculations */
-  background-color: #ffffff;
-}
-
-.MuiDataGrid-cell:hover {
-  color: #1976D2
+.AddCommentContainer {
+  text-align: center;
+  position: relative; /* Part of the normal flow */
 }
 
 .Footer {
@@ -65,23 +50,13 @@ body {
   position: relative; /* Part of the normal flow */
 }
 
-.HeaderContainer {
-  text-align: center; /* Centers the text inside the Header */
-  display: flex;
-  justify-content: center; /* Ensures the text itself is centered inside the container */
-  max-width: 1140px;
-  width: 100%;
-  margin: 0 auto; /* Centers the container horizontally */
-  border-radius: 15px;
-  background:  #ffffff;
-}
-
-.ImageContainer {
-  position: relative;
-  width: 100%; /* Take full width */
-  max-width: 1140px; /* Maximum width */
-  margin: 0 auto; 
-  height: auto;
+@media (max-width: 600px) {
+  .Footer {
+    padding:0; /* Padding for top and bottom */
+    color: #000000;
+    text-align: center;
+    position: relative; /* Part of the normal flow */
+  }
 }
 
 

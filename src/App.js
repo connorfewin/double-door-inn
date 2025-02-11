@@ -1,35 +1,47 @@
 import React, { useState } from 'react';
-import './Styles/Layout.css';
-import './Styles/Image.css';
-import Header from './Components/Header';
-import DataTable from './Components/DataTable';
-import Profile from './Components/Profile';
-import Image from './Components/Image';
-import { Amplify } from 'aws-amplify';
-import awsExports from './aws-exports'; 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Configure Amplify
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
+import Home from './Pages/Home';
+import CommentsPage from './Pages/CommentsPage';
+import Layout from './Pages/Layout';
+import UnverifiedCommentsPage from './Pages/UnverifiedCommentsPage';
+import AboutUs from './Pages/AboutUs';
+
+import './Styles/global.css';
+import { CommentsProvider } from './Contexts/CommentsContext';
+
 Amplify.configure(awsExports);
 
 function App() {
-  const [superAdmin, setSuperAdmin] = useState(false)
+  const [superAdmin, setSuperAdmin] = useState(false);
 
   return (
-    <div className="AppContainer">
-      <div className="ProfileContainer">
-        <Profile setSuperAdmin={setSuperAdmin}/> 
-      </div>
-      <div className='HeaderContainer'>
-        <Header />
-      </div>  
-      <div className='ImagePadding'>
-        <Image />
-      </div>    
-      <div className="DataTableContainer">
-        <DataTable superAdmin={superAdmin}/>
-      </div>
-      <p className="Footer">Copyright 2024. All rights reserved.</p>
-    </div>
+    <CommentsProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout superAdmin={superAdmin} setSuperAdmin={setSuperAdmin} />}>
+            <Route
+              path="/"
+              element={<Home superAdmin={superAdmin} />}
+            />
+            <Route
+              path="/about-us"
+              element={<AboutUs />}
+            />
+            <Route
+              path="/comments"
+              element={<CommentsPage />}
+            />
+            <Route
+              path="/verify-comments"
+              element={<UnverifiedCommentsPage />}
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CommentsProvider>
   );
 }
 

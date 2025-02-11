@@ -1,0 +1,95 @@
+/* General Layout */
+.CommentsContainer {
+   display: flex;
+   width: 100%;
+   max-width:  var(--size-max-width);
+   margin: 0 auto;
+   height: 65vh;
+   /* Adjust this height as needed */
+ }
+ 
+ .CommentDisplayContainer {
+   flex: 1 1 70%;
+   max-width: 70%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: flex-start;
+   box-sizing: border-box;
+   height: 100%;
+   padding-top: 5px;
+   padding-left: 10px;
+ }
+ 
+ .CommentsCarouselContainer {
+   flex: 1 1 30%;
+   max-width: 30%;
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+ }
+ 
+ .CarouselFooter {
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-top: 1px solid #ccc;
+ }
+ 
+ .CarouselButton {
+   padding: 10px 20px;
+   font-size: 14px;
+   cursor: pointer;
+ }
+ 
+ .CommentsCarouselContainer > .Scrollbars {
+   flex: 1;
+   overflow-y: auto;
+   scrollbar-width: none; /* Firefox-specific */
+   -ms-overflow-style: none; /* Internet Explorer 10+ */
+ }
+ 
+ .CommentsCarouselContainer::-webkit-scrollbar {
+   display: none; /* Chrome, Edge, Safari */
+ }
+
+ .LoadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; /* Full-page height */
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+.NoCommentsContainer {
+  text-align: center;
+  max-width: 600px;
+  height: 50vh;
+  margin: auto;
+  padding: 20px;
+}
+
+.NoCommentsContainer p {
+  font-size: 30px;
+  color: #555;
+  margin-bottom: 15px;
+  padding: 40px 0px;
+}
+
+
+ 
+ /* Responsive Styles */
+ @media (max-width: 768px) {
+   .CommentDisplayContainer {
+     display: none; /* Hide comment display on small screens */
+   }
+ 
+   .CommentsCarouselContainer {
+     flex: 1 1 100%;
+     max-width: 100%;
+   }
+ }
+ 

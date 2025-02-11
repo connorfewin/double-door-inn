@@ -1,0 +1,39 @@
+/* ============================
+   Add Comment Component Styles
+============================ */
+
+/* Container for the Add Comment Button */
+.add-comment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-top: 1px solid var(--color-primary); /* Stronger separation */
+    background-color: var(--color-background);
+    padding: 10px 0px 0px;
+}
+
+/* Add Comment Button */
+.add-comment-button {
+    width: 95%; /* Makes the button stretch across the container */
+    padding: 12px 0px; /* Vertical padding remains, horizontal adjusted */
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    border: 2px solid #600000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-comment-button:hover {
+    color: var(--color-surface);
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle interactive shadow */
+}
+
+.add-comment-button:active {
+    background-color: var(--color-primary);
+    transform: translateY(2px); /* Simulates a pressed effect */
+}

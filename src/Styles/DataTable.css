@@ -23,3 +23,7 @@
   transition: all .5s ease-in-out;
 }
 
+.MuiDataGrid-cell:hover {
+  color: #1976D2;
+  background-color: #ffffffc4;
+}

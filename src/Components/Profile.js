@@ -3,13 +3,13 @@ import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import { Dialog, DialogTitle, DialogContent, /* Link,*/ Button, Snackbar } from '@mui/material';
 import { signOut, getCurrentUser, fetchUserAttributes } from 'aws-amplify/auth';
 import SignIn from './SignIn';
-// import SignUp from './SignUp';
+import SignUp from './SignUp';
 import '../Styles/Profile.css';
 import '../Styles/Modals.css';
 
 const Profile = ({ setSuperAdmin }) => {
   const [open, setOpen] = useState(false);
-  // const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,14 +38,14 @@ const Profile = ({ setSuperAdmin }) => {
 
   const handleClose = () => {
     setOpen(false);
-    // setIsSignUp(false); // Commented out
+    setIsSignUp(false); // Commented out
     resetForm();
   };
 
-  // const toggleSignUp = () => { // Commented out
-  //   setIsSignUp(!isSignUp);
-  //   resetForm();
-  // }; 
+  const toggleSignUp = () => { // Commented out
+    setIsSignUp(!isSignUp);
+    resetForm();
+  }; 
 
   const resetForm = () => {
     setEmail('');
