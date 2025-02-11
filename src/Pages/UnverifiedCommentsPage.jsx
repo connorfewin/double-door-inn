@@ -11,6 +11,15 @@ import '../Styles/Pages/CommentsPage.css';
 import '../Styles/Pages/UnverifiedCommentsPage.css';
 import Scrollbars from 'react-custom-scrollbars-2';
 
+function NoComments() {
+  return (
+    <div className="NoCommentsContainer">
+      <p>If the number over the envelope in the top right is 0, there are no unverified events</p>
+      <p>Loading Events...</p>
+    </div>
+  );
+}
+
 function UnverifiedCommentsPage() {
   const [comments, setComments] = useState([]);
   const [selectedComment, setSelectedComment] = useState(null);
@@ -101,6 +110,10 @@ function UnverifiedCommentsPage() {
       console.error("Failed to delete comment:", error);
     }
   };
+
+  if (comments.length === 0) {
+    return <NoComments />;
+  }
 
   return (
     <div className="CommentsContainer">

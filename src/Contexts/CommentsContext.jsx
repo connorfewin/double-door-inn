@@ -8,14 +8,12 @@ export function CommentsProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (comments.length === 0) {  // Fetch only if empty
-      setIsLoading(true);
-      fetchAllVerifiedCommentsAPI()
-        .then((data) => setComments(data))
-        .catch((error) => console.error('Error fetching comments:', error))
-        .finally(() => setIsLoading(false));
-    }
-  }, [comments]);
+    setIsLoading(true);
+    fetchAllVerifiedCommentsAPI()
+      .then((data) => setComments(data))
+      .catch((error) => console.error('Error fetching comments:', error))
+      .finally(() => setIsLoading(false));
+  }, []);
 
   return (
     <CommentsContext.Provider value={{ comments, setComments, isLoading }}>

@@ -8,6 +8,18 @@ import CommentModal from '../Components/Comments/CommentModal';
 import { CircularProgress } from '@mui/material';
 import '../Styles/Pages/CommentsPage.css';
 
+function NoComments() {
+  return (
+    <div className="NoCommentsContainer">
+            <div className="AddCommentContainer">
+        <AddComment />
+      </div>
+      <p>No comments yet. Be the first to add one! Press the button above to add a new comment.</p>
+
+    </div>
+  );
+}
+
 function CommentsPage() {
   const { comments, isLoading } = useContext(CommentsContext);
   const [selectedComment, setSelectedComment] = useState(null);
@@ -40,6 +52,10 @@ function CommentsPage() {
         <p>Loading comments...</p>
       </div>
     );
+  }
+
+  if (comments.length === 0) {
+    return <NoComments />;
   }
 
   return (

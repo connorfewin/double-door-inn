@@ -64,6 +64,22 @@
   color: #555;
 }
 
+.NoCommentsContainer {
+  text-align: center;
+  max-width: 600px;
+  height: 50vh;
+  margin: auto;
+  padding: 20px;
+}
+
+.NoCommentsContainer p {
+  font-size: 30px;
+  color: #555;
+  margin-bottom: 15px;
+  padding: 40px 0px;
+}
+
+
  
  /* Responsive Styles */
  @media (max-width: 768px) {
