@@ -1,7 +1,7 @@
 {
-  "resourceName": "DoubleDoorInnDevImages",
-  "policyUUID": "99c8fa56",
-  "bucketName": "doubledoorinn7682a0acc2b6402995ba7f72d186da81",
+  "resourceName": "DoubleDoorProdStorage",
+  "policyUUID": "ed14bf40",
+  "bucketName": "doubledoorinnd74d6fc3ad5f4085bbd0fb38c572d990",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "CREATE_AND_UPDATE",

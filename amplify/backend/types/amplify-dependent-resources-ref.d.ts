@@ -18,7 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "DoubleDoorInnDevImages": {
+    "DoubleDoorProdStorage": {
       "BucketName": "string",
       "Region": "string"
     }

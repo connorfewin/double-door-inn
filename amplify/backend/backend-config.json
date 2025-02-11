@@ -48,7 +48,7 @@
     }
   },
   "storage": {
-    "DoubleDoorInnDevImages": {
+    "DoubleDoorProdStorage": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"

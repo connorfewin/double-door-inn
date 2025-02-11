@@ -41,6 +41,9 @@
       },
       "api": {
         "doubledoorinn": {}
+      },
+      "storage": {
+        "DoubleDoorProdStorage": {}
       }
     }
   }
