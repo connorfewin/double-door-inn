@@ -45,7 +45,7 @@ function AddCommentModal({ open, onClose }) {
       console.log(`Preparing to send email: \n${process.env.REACT_APP_EMAILJS_SERVICE_ID} \n${process.env.REACT_APP_EMAILJS_TEMPLATE_ID}`)
       // Send email that there is a new unverified comment to cjfewin2018@gmail.com
       const templateParams = {
-        to_email: 'info@doubeldoormusic.com',
+        to_email: 'info@doubledoormusic.com',
         to_name: author,
         message: description,
         num_images: files.length,
